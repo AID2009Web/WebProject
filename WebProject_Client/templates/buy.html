@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <title>扫码付款</title>
+    <style type="text/css">
+        .content{
+            width:80%;
+            margin:200px auto;
+        }
+        .hide_box{
+            z-index:999;
+            filter:alpha(opacity=50);
+            background:lightsteelblue;
+            opacity: 0.5;
+            -moz-opacity: 0.5;
+            left:0;
+            top:0;
+            height:99%;
+            width:100%;
+            position:fixed;
+            display:none;
+        }
+        .goumai_box{
+            width:540px;
+            height:540px;
+            padding:10px;
+            background-color:white;
+            border-radius:10px;
+            position:fixed;
+            z-index:1000;
+            left:50%;
+            top:50%;
+            margin-left:-280px;
+            margin-top:-280px;
+            border:1px dotted #dedede;
+            display:none;
+        }
+        .goumai_box img{
+            border:none;
+            border-width:0;
+        }
+        .bofang{
+            display:block;
+            width:100px;
+            margin:5px auto;
+            height:25px;
+            line-height:25px;
+            padding:10px;
+            background-color:#E74851;
+            color:#fff;
+            text-align:center;
+            text-decoration:none;
+            border-radius:10px;
+            font-weight:bold;
+            font-size:16px;
+            transition: all 0.3s;
+        }
+        .bofang:hover{
+            opacity:0.8;
+            padding:15px;
+            font-size:18px;
+        }
+        .goumai_close{
+            float:right;
+            display:inline-block;
+        }
+                
+        .goumai_logo{
+            display:block;
+            text-align:center;
+            margin:20px auto;
+        }
+        .goumai_tit{
+            width: 100%;
+            height: 75px;
+            text-align: center;
+            line-height: 66px;
+            color: #a3a3a3;
+            font-size: 16px;
+            background: url('../static/images/bimg/cy-reward-title-bg.jpg');
+            font-family: 'Microsoft YaHei';
+            margin-top: 7px;
+            margin-right:2px;}
+        .goumai_tit p{
+            color:#a3a3a3;
+            text-align:center;
+            font-size:16px;
+        }
+        .goumai_payimg{
+            width:140px;
+            padding:10px;
+            border:6px solid #f07c4f;
+            margin:0 auto;
+            border-radius:3px;
+            height:140px;}
+        .goumai_payimg img{
+            display:block;
+            text-align:center;
+            width:140px;
+            height:140px; 
+        }
+        .pay_explain{
+            text-align:center;
+            margin:10px auto;
+            font-size:12px;
+            color:#545454;
+            opacity: 50%;
+            font-weight: bolder;
+        }
+        .radiobox{
+            width: 16px;
+            height: 16px;
+            background: url('../static/images/bimg/radio2.jpg');
+            display: block;
+            float: left;
+            margin-top: 5px;
+            margin-right: 14px;
+        }
+        .checked .radiobox{
+            background:url('../static/images/bimg/radio1.jpg');
+        }
+        .goumai_payselect{
+            text-align:center;
+            margin:0 auto;
+            margin-top:40px;
+            cursor:pointer;
+            height:60px;
+            width:280px;
+        }
+        .goumai_payselect .pay_item{
+            display:inline-block;
+            margin-right:10px;
+            float:left;
+        }
+        .goumai_info{
+            clear:both;
+        }
+		.goumai_info p,.goumai_info a{
+            color:#C3C3C3;
+            text-align:center;
+            font-size:12px;
+            text-decoration:none;
+            line-height:2em;
+        }
+        /* 这是我找到的模板，格式方面修改的不多，具体的颜色字体等等框架内容都确定了之后我在慢慢调整哈 */
+    </style>
+</head>
+
+<body>
+    <div class="content">
+    <p><a href="javascript:void(0)" onClick="bofangToggle()" class="bofang">播放</a></p>
+    <!-- 这个地方可以直接链接到视频播放，视频播放触发此弹框，也就是最后网页里不用单独出现这个“播放”，点击视频上的播放键即可弹出购买页面-->
+    <div class="hide_box"></div>
+    <div class="goumai_box">
+    	<a class="goumai_close" href="javascript:void(0)" onClick="bofangToggle()" title="关闭"><img src="../static/images/bimg/close.jpg" alt="取消" /></a>
+        <img class="goumai_logo" src="../static/images/bimg/logo.png" alt="logo" />
+        <!-- 此处放logo照片，因为暂时还没有所以没放-->
+    	<div class="goumai_tit">
+    		<p>您还未购买本课程，可以扫描下方购买哦！</p>
+    	</div>
+    	<div class="goumai_payimg">
+    		<img src="../static/images/bimg/alipayimg.jpg" alt="扫码购买" title="扫一扫" />
+    	</div>
+    		<div class="pay_explain">如果不想购买，可以直接按×返回前一页</div>
+    	<div class="goumai_payselect">
+    		<div class="pay_item checked" data-id="alipay">
+	    		<span class="radiobox"></span>
+	    		<span class="pay_logo"><img src="../static/images/bimg/alipay.jpg" alt="支付宝" /></span>
+    		</div>
+    		<div class="pay_item" data-id="weipay">
+	    		<span class="radiobox"></span>
+	    		<span class="pay_logo"><img src="../static/images/bimg/wechat.jpg" alt="微信" /></span>
+    		</div>
+    	</div>
+    	<div class="goumai_info">
+    		<p>打开<span id="goumai_pay_txt">支付宝</span>扫一扫，即可购买哦</p>
+    		<p>Powered by <a href="#" target="_blank" title="轻厨">轻厨</a>，轻松下厨，乐享生活</p>
+    	</div>
+    </div>
+    </div>
+    <script type="text/javascript">
+    $(function(){
+    	$(".pay_item").click(function(){
+    		$(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+    		var dataid=$(this).attr('data-id');
+    		$(".goumai_payimg img").attr("src","../static/images/bimg/"+dataid+"img.jpg");
+    		$("#goumai_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+    	});
+    });
+    // 扫码付款完成之后应该要跳回播放页面，但是我不知道怎么确认扫码是否成功，所以后面不太会写
+    function bofangToggle(){
+    	$(".hide_box").fadeToggle();
+        $(".goumai_box").fadeToggle();
+        // 这里设置点击X后自动跳转至前一页，因为不知道前一页是啥，所以先注释了
+        // function gotoUrl(){
+        //     this.location.href = '.aspx'
+        // }
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+/* 导航 */
+
+nav{
+  /* width: 1000px; */
+  height: 60px;
+  margin: 0 auto;
+  line-height: 60px;
+  /* 为后面元素添加定位 */
+  position: relative;
+  box-shadow: -3px 2px 7px  rgb(70, 70, 70);
+}
+#logo{
+  width: 150px;
+  height: 60px;
+  float: left;
+  margin-left: 40px;
+}
+.nav_list{
+  float: left;
+  margin-left: 40px;
+}
+.nav_list li{
+  float: left;
+  padding: 0 30px;
+}
+.nav_list li a{
+  font-size: 20px;
+  color: #000;
+}
+/* 登录注册 */
+.user_btn{
+  background-color: #fff;
+}
+.user_btn a, .user_area a{
+  /* position: absolute; */
+  color: #000;
+  font-size: 18px;
+  float: right;
+}
+#login{
+  /* right: 100px; */
+  margin-right: 40px;
+}
+#register{
+  /* right: 10px; */
+  margin-right: 40px;
+}
+.user_btn a>div{
+  width: 80px;
+  height: 40px;
+  background-color: rgb(30, 150, 250);
+  margin: 10px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
+}
+.user_area{
+
+}
+.user_area a{
+  margin-right: 40px;
+}
+.username{
+  width: 120px;
+  height: 60px;
+  display: block;
+}
+#setting{
+  /* margin-right: 40px; */
+}
+#user img{
+  height: 30px;
+  display: block;
+  margin: 15px 5px 0 0;
+  float: left;
+}
+#setting img{
+  height: 30px;
+  margin: 15px 0;
+}
+
+.is_logout{
+  display: none;
+}

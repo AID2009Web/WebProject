@@ -1,0 +1,437 @@
+/**************************************main*******************************************/
+
+
+.bgimg{
+  width: 100%;
+  height: 100%;
+}
+.bgimg>img{
+  width: 1000px;
+}
+.user_box{
+  position: relative;
+  text-align: center;
+}
+.user{
+  display: inline-block;
+  margin-top: -50px;
+}
+.tx{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.tx>img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.gz{
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* width: 200px; */
+  height: 25px;
+  padding: 40px 10px;
+  
+}
+.gz li{
+  display: inline-block;
+  padding: 5px 15px;
+  line-height: 25px;
+  border-radius: 5px;
+  
+}
+.gz a>div{
+  display: inline-block;
+  margin-left: 10px;
+  color: #333;
+}
+.gz a>img{
+  width: 20px;
+  
+  float: left;
+}
+
+.follow, .share{
+  border: 1px solid rgb(30, 150, 250);
+}
+
+.yhm{
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 23px;
+  color: #333;
+}
+.liuran{
+  display: inline-block;
+  padding: 10px;
+  height: 21px;
+  border-top: 2px solid #eeeff2;
+}
+.liuran>li{
+  float: left;
+  padding: 0 15px;
+  line-height: 21px;
+}
+.sc{
+  width: 100%;
+  height: 60px;
+  /* background-color: blue; */
+  line-height: 60px;
+  font-size: 20px;
+  text-align: center;
+}
+.sc div{
+  display: inline-block;
+  margin: 0 100px;
+
+}
+.sc a{
+  
+  color: #333;
+  
+}
+.sc .active{
+  font-weight: bold;
+  border-bottom: 3px solid rgb(30, 150, 250);
+}
+
+
+
+/* .clear{
+  clear: both;
+} */
+
+.blank{
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color:   #f7f8fa;
+}
+
+
+
+
+
+.mainBady{
+  /* position: absolute; */
+  width:100%;
+  /* height: 595px; */
+  /* background-color: gray; */
+  padding: 20px;
+}
+
+
+
+
+
+.personalData{
+  position: absolute;
+
+  width: 300px;
+  /* height: 150px; */
+  /* top: 100px; */
+  display: inline-block;
+}
+.personalData ul{
+  border: 2px solid rgb(30, 150, 250, 0.6);
+  border-radius: 5px;
+}
+
+.personalData li{
+  width: auto;
+  text-align: left;
+  padding: 10px;
+  
+}
+.personalData li>div{
+  display: inline-block;
+  
+}
+.personalData li>img{
+  width: 20px;
+  float: left;
+  margin: 5px;
+}
+#birthday,#location,#note,#tag{
+  display: inline-block;
+  
+}
+
+
+
+.message{
+  width: 650px;
+  /* height: 150px; */
+  margin-left: 325px;
+  display: inline-block;
+  border-left: 5px solid rgb(30, 150, 250);
+  padding-left: 25px;
+  padding-bottom: 25px;
+}
+
+.meessage li{
+  display:inline-block;
+  width: 700px;
+  height: 235px;
+  margin-bottom: 10px;
+}
+.msg_pic{
+  width: 215px;
+  height: 200px;
+  overflow: hidden;
+  /* display: inline-block; */
+  padding: 10px;
+  float: left;
+}
+.msg_img{
+  width: 100%;
+  border-radius: 5px;
+}
+.msg{
+  display: inline-block;
+  margin: 20px 20px 0px 20px;
+  border: 1px solid rgb(30, 150, 250);
+  border-radius: 5px;
+  width: 600px;
+}
+.user_m{
+  width: 340px;
+  height: 215px;
+  display: inline-block;
+  padding: 10px;
+  
+}
+.head{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url(../images/head/boy.png);
+  background-size: cover;
+  background-position: 50% 50%;
+  display: inline-block;
+}
+.info{
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 18px;
+  color: #333;
+}
+.content{
+  width: 100%;
+  height: 108px;
+  display: inline-block;
+  text-overflow:ellipsis ;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.view{
+  display: inline-block;
+}
+.view ul{
+}
+.view li{
+  width: 100px;
+  height: 25px;
+  display: inline-block;
+  /* border: 1px solid blue; */
+}
+.view a{
+  display: inline-block;
+  position: absolute;
+}
+.view a>img{
+  width: 20px;
+  margin: 5px 10px;
+}
+.view div{
+  display: inline-block;
+  margin: 5px 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.show{
+  position:relative;
+  width: 70%;
+  height: 150px;
+  top: 100px;
+  left: 260px;
+
+
+  }
+
+  .photo1 img{
+    width: 100%;
+    height: 100%;
+  z-index: 101;
+  
+  
+  
+  }
+  .photo1{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  /* float: left; */
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  /* z-index: 102; */
+  
+  }
+
+  .name {
+    position: absolute;
+    top:30px;
+    left: 100px;
+  }
+  .time{
+    position: absolute;
+    top: 10px;
+    left: 100px;
+  }
+.theIdea{
+  position: absolute;
+  width: 80%;
+  height: 100px;
+  top: 50px;
+  left: 80px;
+}
+
+
+.show2{
+  position:relative;
+  width: 100%;
+  height: 150px;
+  top: 160px;
+  left: 0px;
+
+  }
+
+  .photo2 img{
+    width: 100%;
+    height: 100%;
+   
+      }
+  .photo2{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  /* float: left; */
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  /* z-index: 102; */
+  
+  }
+
+  .name2 {
+    position: absolute;
+    top:30px;
+    left: 100px;
+  }
+  .time2{
+    position: absolute;
+    top: 10px;
+    left: 100px;
+  }
+.theIdea2{
+  position: absolute;
+  width: 80%;
+  height: 100px;
+  top: 50px;
+  left: 80px;
+}
+
+
+
+.show3{
+  position:relative;
+  width: 100%;
+  height: 160px;
+  top: 150px;
+  left: 0px;
+
+  }
+
+  .photo3 img{
+    width: 100%;
+    height: 100%;
+   
+      }
+  .photo3{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  /* float: left; */
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  /* z-index: 102; */
+  
+  }
+
+  .name3{
+    position: absolute;
+    top:30px;
+    left: 100px;
+  }
+  .time3{
+    position: absolute;
+    top: 10px;
+    left: 100px;
+  }
+.theIdea3{
+  position: absolute;
+  width: 80%;
+  height: 100px;
+  top: 50px;
+  left: 80px;
+}
+
+

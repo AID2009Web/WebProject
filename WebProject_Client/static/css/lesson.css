@@ -1,0 +1,169 @@
+
+
+/**********************主体内容*************************/
+body{
+    position: relative;
+}
+.master{
+    padding-bottom: 10px;
+}
+
+.video{
+    width: 1000px;
+    height: 506px;
+    text-align: center;
+}
+.vlocation{
+    height: 506px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+}
+video{
+    max-width: 1000px;
+    height: 506px;
+    /* width: 100%; */
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+}
+
+
+.title_area{
+    width: 100%;
+    height: 100px;
+    text-align: left;
+}
+.title_area table{
+    position: relative;
+    top: 50px;
+}
+
+
+.title{
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.user_img{
+    display: inline-block;
+ }
+.user_img img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 20px;
+}
+
+.userinfo{
+    font-size: 26px;
+    display: inline-block;
+}
+.follow{
+    height: 25px;
+    width: 50px;
+    background-color:  rgb(30, 150, 250);
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 3px 5px;
+    color: #fff;
+}
+.content_info ul{
+    display: inline-block;
+    position: relative;
+    top: 50px;
+    left: 140px;
+}
+
+.content_info li{
+    display: inline-block;
+    margin-left: 10px;
+}
+.blank{
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color:   #f7f8fa;
+}
+
+.content{
+    text-align: left;
+    width: 70%;
+    margin-top: 120px;
+    background-color:rgb(206, 208, 255, 0.5);
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 10px;
+ 
+}
+
+.content samp{
+    
+}
+.content img{
+    max-width: 500px;
+    max-height: 500px;
+    margin: 10px auto;
+}
+.action{
+    height: 50px;
+    border-top: 2px solid  #f7f8fa;
+}
+.action ul{
+    display: inline-block;
+    
+}
+
+.action li{
+    display: inline-block;
+    margin-left: 10px;
+}
+.action a>div{
+    display: inline-block;
+    line-height: 50px;
+}
+
+.action a>div>img{
+    float: left;
+    width: 25px;
+    margin: 10px 20px;
+
+}
+
+
+
+#goods{
+
+    width: 200px;
+    height:200px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    background-color: rgba(255, 218, 56, 0.685);
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    display: none;
+    /* margin-top: -700px; */
+}
+#goods>a{
+    display: inline-block;
+}
+#goods img{
+    max-width: 180px;
+    /* height: 270px; */
+    margin: 5px;
+}
+
+
+
+
+
+

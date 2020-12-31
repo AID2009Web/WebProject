@@ -1,0 +1,188 @@
+.topBanner{
+    position: relative;
+    height: 370px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 5px solid rgb(30, 150, 250);
+    border-top: 0;
+}
+/* 左侧 */
+
+/* 轮播图 */
+.banner{
+    width: 650px;
+    height: 370px;
+    position: absolute;
+    left: 15px;
+    overflow: hidden;
+    border: 1px solid rgb(000, 000, 000,0);
+    /* display: none; */
+}
+.fader{
+    padding-top: 60%;
+    position: relative; 
+    
+}
+.fader .slide{
+    
+    position: absolute;
+    top: 0;
+    /* z-index: 图片堆叠次序 */
+    /* z-index: 1; */
+}
+.fader .slide img{
+    height: 370px;
+    display: block;
+    
+}
+/* 箭头 */
+.fader div{
+    position: absolute;
+    z-index: 10;
+    font-size: 100px;
+    width: 50px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    color: #fff;
+    top: 50%;
+    margin-top:-50px; 
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s;
+}
+.fader .prev{
+    left:50px;
+}
+.fader .next{
+    right: 50px;
+}
+.banner:hover .fader .prev{
+    left: 0;
+    opacity: 0.8;
+}
+.banner:hover .fader .next{
+    right:0;
+    opacity: 0.8;
+}
+
+/* 小圆点 */
+.fader .pager_list{
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    bottom: 0;
+    z-index: 10;
+}
+.fader .pager_list li{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #000;
+    border-radius: 50%;
+    margin:0 7px;
+    cursor: pointer;
+    opacity:0.3;
+    transition: all 0.2s;
+    text-indent: -9999px;
+}
+.fader .pager_list li:hover{
+    opacity: 1;
+}
+
+/* 右侧 */
+.recommend{
+    width: 300px;
+    height: 370px;
+    position: absolute;
+    right: 15px;
+    overflow: hidden;
+    /* display: none; */
+}
+.recommend a img{
+    height: 180px;
+    margin-bottom: 10px;
+}
+    
+.recommend a i{
+    display: block;
+    opacity: 0.8;
+    transition: all 0.5s;
+}
+.recommend a:hover i{
+    opacity: 1;
+}
+
+
+.blank{
+    clear: both;
+}
+/* 商品 */
+.shopsbox{
+    /* display: none; */
+    width:100%;
+    /* margin-top: 20px; */
+    padding-bottom: 20px;
+    /* background-color: #999; */
+    overflow: hidden;
+    border-top: 5px solid #eeeff2;
+}
+
+.shopsbox .items-item{
+    background-color: #fff;
+    width: 300px;
+    height: 250px;
+    margin: 20px 10px 0;
+    float: left;
+    box-sizing: border-box;
+    /* border: 1px solid rgb(30, 150, 250); */
+    border-radius: 5px;
+    background: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0,rgba(47, 189, 255, 0.1) 100%);
+}
+.shopsbox .items-item:hover{
+    border: 1px solid #f99;
+}
+.shopsbox .items-item a{
+    display: inline-block;
+    /* width: 200px; */
+    
+    padding: 20px 28px 0px;
+    
+}
+.shopsbox .item-img{
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.shopsbox img{
+    width: 100%;
+    /* height: 150px; */
+    
+}
+.price{
+    height: 31px;
+    line-height: 31px;
+    padding-top: 10px;
+}
+/* .price span{
+    font-size: 20px;
+} */
+.price .price-title,.price-after{
+    color: #f00;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.item-title .title-text{
+    font-size: 16px;
+    height: 45px;
+    /* line-height: 23px; */
+    color: #555;
+    overflow: hidden;
+    border-top: 2px solid #eeeff2;
+    padding-top: 5px;
+    padding-left: 20px;
+}
+
+
