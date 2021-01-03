@@ -7,49 +7,51 @@
 		<link rel="stylesheet" href="../static/css/common.css">
 		<link rel="stylesheet" type="text/css" href="../static/css/login.css"/>
 		<!-- 引入外部js文件 -->
+		<script src="../static/js/jquery.min.js"></script>
 		<!-- 自定js文件 -->
+		<script src="../static/js/login.js"></script>
 	</head>
 	<body>
 	<form method="POST" action="/user/login">
 		<div id="sign">
 			<div id="top">
 				<div class="first">
-					扫码登陆
+					<a href="javascript:void(0);">扫码登陆</a>
 				</div>
-				<div class="second">
-					账号登陆
+				<div class="second active">
+					<a href="javascript:void(0);">账号登陆</a>
 				</div>
 				
 			</div>
 			<div id="middle">
-				<div class="uname">
-					<img src="../static/images/icon/user.png" >
-					<input type="text" name="uname" value="" placeholder="手机号/用户名"/>
-				</div>
-				<div class="psd">
-					<img src="../static/images/icon/pwd.png" >
-					<input type="password" name="psd" placeholder="密码"/>
-				
-				<div class='add'>
-					<div id=input_text><input type="text" placeholder="请输入短信验证码"></div>
-					<div id='gettext'><a href="#">获取验证码</a></div>
-				</div>
-					
-
-
-				</div>
-				<div id="text">
-					<a href="#">短信验证登陆</a>
-				</div>
-				<div id="sign1">
-						手机号格式错误
-				</div>
-
-				<a href="../templates/square.html">
-					<div class="buttom">
-						<input type="text" value="登陆">
+				<div class="account">
+					<div class="uname">
+						<img src="../static/images/icon/user.png" >
+						<input type="text" id="uname" value="" placeholder="手机号/用户名"/>
 					</div>
-				</a>
+					<div class="psd">
+						<div class="psd_add hide">
+							<img src="../static/images/icon/pwd.png" >
+							<input type="password" id="psd" placeholder="密码"/>
+						</div>
+						<div class='text_add'>
+							<div id=input_text><input type="text" id="sms" placeholder="请输入短信验证码"></div>
+							<input type="button" name="" id="gettext" onclick="sendSMS();settime(this)" value="获取验证码">
+							
+						</div>
+					</div>
+					<div >
+						<a href="javascript:void(0);" id="pwdtext">密码登录</a>
+						<a href="javascript:void(0);" id="text" class="hide">短信验证登陆</a>
+					</div>
+					<div id="sign1"></div>
+
+					
+					
+					<input class="buttom" type="button" onclick="login()" value="登陆">
+					
+					
+				</div>
 			</div>
 			
 			<div id="last">
@@ -59,5 +61,8 @@
 			
 		</div>
 	</form>
+	<script>
+
+	</script>
 	</body>
 </html>

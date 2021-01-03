@@ -12,33 +12,43 @@ body{
 	position: relative;
 	width: 400px;
 	/* height: 350px; */
-	border: 1px solid #D4D4D2;
+	border: 1px solid rgb(30, 150, 250);
+	border-radius: 5px;
 	/* line-height: 300px; */
 	 margin: 200px auto;
 	}
 		
 #top{
-	position: relative;
+	/* position: relative; */
 	width: 80%;
 	height: 60px;
 	/* border: 1px solid red; */
 	margin: 0 auto;
 	font-size: 20px;
 }
-
+#top>div{
+	display: inline-block;
+	width: 150px;
+	text-align: center;
+}
+#top div>a{
+	line-height: 60px;
+	padding: 0 5px 15px 5px;
+}
 
 #top .first{
-	float: left;
-	line-height: 60px;
-	margin-left: 50px;
+	/* float: left; */
+	
 }
 
 #top .second{
-	float:right;
-	line-height: 60px;
-	margin-right: 50px;
+	/* float:right; */
+	
 }
-
+.active>a{
+	padding: 0 5px 15px 5px;
+	border-bottom: 3px solid  rgb(30, 150, 250);
+}
 #top .line{
 	text-align: center;
 	
@@ -46,12 +56,12 @@ body{
 
 #middle{
 	width: 80%;
-	/* height: 200px; */
+	height: 300px;
 	/* border: 1px solid red; */
 	margin: 0 auto;
 }
 
-#middle .uname,#middle .psd,#middle .buttom{
+.account .uname,.account .psd,.account .buttom{
 	width: 100%;
 	height: 50px;
 	/* border: 1px solid blanchedalmond; */
@@ -59,7 +69,7 @@ body{
 	margin: 10px auto;
 }
 
-#middle>.uname,#middle>.psd{
+.account>.uname,.account>.psd{
 	border: 1px solid #E0E0D3;
 }
 
@@ -73,40 +83,28 @@ img{
 	margin-top: 15px;
 }
 
-#middle input{
+.uname>input, .psd_add>input{
 	float: left;
 	font-size: 16px;
 	border-width:0px;	
-	margin-top: 15px;
+	margin-top: 10px;
+	height: 30px;
 	/* width: 80%; */
 	/* margin-top: -27px; */
 	/* line-height: 50px;; */
 
 }
-
-#text a{
-	float: right;
-	border-width: 0px;
-	font-size: 12px;
-	color: black;
-}
-
-#sign1{
-	color: red;
-	/* display: none; */
-	font-size: 12px;
-	float: left;
+.uname>input:focus,.psd_add>input:focus{
+	outline: none;
 }
 
 
-
-
-#middle .add {
-	position: relative;
-	width: 100%;
-	height: 50px;
-	border-radius: 5px;
-	margin: 10px auto;
+.account .text_add {
+	/* position: relative; */
+	/* width: 100%; */
+	/* height: 50px; */
+	
+	/* margin: 10px auto; */
 	/* display: none; */
 
 } 
@@ -116,48 +114,66 @@ img{
 }
 
 #input_text>input{
-float: left;
-margin-top:-35px; 
-  line-height: 49px;
+	float: left;
+	width: 170px;
+  line-height: 50px;
 	font-size: 16px;
-	border:1px solid #D4D4D2;	
-	border-right:0px; 
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
 	padding: 0 11px;
+	/* display: none; */
 }
-
+#input_text>input:focus{
+	outline: none;
+}
 #gettext{
 	float: right;
-	line-height: 50px;
-	float: right;
+	width: 110px;
+	text-align: center;
 	background-color: #D4D4D2;
-	padding:0 20px; 
-	margin-top:-35px; 
+	padding: 13px 5px; 
+	border: none;
+}
+#gettext:focus{
+	outline: none;
 }
 
-#middle>a>.buttom 
+.account .buttom 
 {
 	border-width: 0px;
 	margin:35px auto;
 	font-size: 21px;
 	text-align: center;
 	line-height: 50px;
-	background-color: #C7C783;
+	background-color:  rgba(30, 151, 250, 0.788);
 	margin-bottom:20px; 
 }
-#middle .buttom input{
-	font-size: 20px;
-	border-width: 0px;
-	background-color: #C7C783;
-	text-align: center;
-	width: 100%;
+
+
+
+
+
+
+#text:hover,#pwdtext:hover{
+	color:#C7C783;
 }
 
+#text,#pwdtext{
+	float: right;
+	border-width: 0px;
+	font-size: 15px;
+	color: black;
+}
 
+#sign1{
+	color: red;
+	/* display: none; */
+	font-size: 14px;
+	float: left;
+}
 
-
-
-#text>a:hover{
-	color:#C7C783;
+.hide{
+	display: none;
 }
 
 #last{
@@ -165,7 +181,7 @@ margin-top:-35px;
 	position: relative;
 	width: 100%;
 	height: 45px;
-	background-color: #E0E0D3;
+	background-color:  rgba(30, 151, 250, 0.226);
 	border-width: 0px;
 }
 

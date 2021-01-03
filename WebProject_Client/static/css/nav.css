@@ -61,7 +61,9 @@ nav{
   margin-right: 40px;
 }
 .username{
-  width: 120px;
+  width: 130px;
+  font-size: 18px;
+  color:#333;
   height: 60px;
   display: block;
 }
@@ -71,7 +73,7 @@ nav{
 #user img{
   height: 30px;
   display: block;
-  margin: 15px 5px 0 0;
+  margin: 15px 15px 0 0;
   float: left;
 }
 #setting img{

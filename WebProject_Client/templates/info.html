@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>个人主页</title>
+  <!-- 引入外部css文件 -->
+  <link rel="stylesheet" href="../static/css/common.css">
+  <link rel="stylesheet" href="../static/css/info.css">
+  <!-- 引入外部js文件 -->
+  <script src="../static/js/jquery.min.js"></script>
+  <!-- 自定js文件 -->
+  <script src="../static/js/nav.js"></script>
+  <script src="../static/js/footer.js"></script>
+  <script src="../static/js/info.js"></script>
+  <script src="../static/js/rightIcon.js"></script>
+</head>
+<body onLoad="scrollTo(0,520)">
+  <header>
+    
+  </header>
+
+  <main>
+    <div class="parent">
+      <div class="bgimg">
+        <img src="../static/images/bgimg.jpg" alt="">
+      </div>
+      <div class="user_box">
+        <div class="user">
+            <div class="tx">
+                <img  src="" alt="">
+            </div>
+            <div class="yhm"></div>
+            <ul class="liuran">
+                <li>被浏览次数</li>
+                <li>12236543</li>
+                <li>粉丝</li>
+                <li>8230</li>
+                <li>关注</li>
+                <li>5437</li>
+            </ul>
+            <!-- <div class="gz">
+              <ul>
+                <li class="follow">
+                  <a class="fbtn" href="">
+                    <div>关注</div>
+                    <img src="../static/images/icon/follow.png" alt="">
+                  </a>
+                </li>
+                <li class="share">  
+                  <a class="sbtn" href="">
+                    <div>分享</div>
+                    <img src="../static/images/icon/share.png" alt="">
+                  </a>
+                </li>
+                <li class="setting">
+                  <a class="set" href="">
+                    <div></div>
+                    <img src="../static/images/icon/menu.png" alt="">
+                  </a>
+                </li>
+              </ul>
+                
+                
+                
+              </div> -->
+        </div>
+      </div>
+      <div class="blank"></div>
+      <div class="sc">
+        <!-- <div>
+          <a href="../templates/homepage_m.html">他的首页</a>
+        </div>
+        <div class="active">
+          <a href="">他的收藏</a>
+        </div> -->
+        
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <td><label for="avatar">上传头像</label></td>
+            <td>
+              <form action="" method="POST" enctype="multipart/form-data" class="avatar_form">
+                <p>
+                  <input type="file" name="avatar" id="avatar">
+                  <input type="button" id="submit-btn" value="上传" onclick="upload()">
+                </p>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td><label>昵称</label></td>
+            <td>
+              <input type="text" name="nickname" class="nickname" placeholder="请输入新昵称">
+            </td>
+          </tr>
+          <tr>
+            <td><label>性别</label></td>
+            <td>
+              <select name="gender" id="" class="gender" >
+                <option value="-">-</option>
+                <option value="m">男</option>
+                <option value="f">女</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label>地区</label></td>
+            <td>
+              <select name="location" id="" class="location" >
+                <option value="-">-</option>
+                <option value="zh">中国</option>
+                <option value="other">海外</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label>生日</label></td>
+            <td>
+              <input type="text" name="birthday" class="birthday" placeholder="YYYY-MM-DD">
+            </td>
+          </tr>
+          <tr>
+            <td><label>个人签名</label></td>
+            <td>
+              <input type="text" class="sign" name="sign" placeholder="请输入个人签名" required value="/">
+            </td>
+          </tr>
+          <tr>
+            <td><label>个人描述</label></td>
+            <td>
+              <textarea class="profile" cols="30" rows="3" cols="20" placeholder="请输入个人描述" required></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td><label>新密码</label></td>
+            <td>
+              <input type="password" class="pwd_1" name="pwd_1" placeholder="请输入密码" required minlength="6" maxlength="11">
+            </td>
+          </tr>
+          <tr>
+            <td><label>再次输入密码</label></td>
+            <td>
+              <input type="password" class="pwd_2" name="pwd_2" placeholder="请再次输入密码" required minlength="6" maxlength="11">
+            </td>
+          </tr>
+          <tr>
+            <td class="save" colspan="2">
+              <input type="button" value="保存" onclick="changeInfo()">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+        
+        
+    </div>
+  </main>
+
+  <footer>
+
+  </footer>
+</body>
+</html>
