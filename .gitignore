@@ -1,2 +1,8 @@
 WebProject_Client/WebProject_Client/__pycache__
 WebProject_Server/WebProject_Server/__pycache__
+WebProject_Server/user/__pycache__
+WebProject_Server/tools/__pycache__
+WebProject_Server/item/__pycache__
+WebProject_Server/lesson/__pycache__
+WebProject_Server/order/__pycache__
+WebProject_Server/topic/__pycache__
