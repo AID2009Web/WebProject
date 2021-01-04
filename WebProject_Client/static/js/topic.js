@@ -11,6 +11,11 @@ $(function(){
     
   }
 
+  const E = window.wangEditor
+  const editor = new E('#editor')
+  editor.create()
+
+
   $.ajax({
     url: BASE_URL+'/v1/u/'+ user_id,
     type: 'GET',

@@ -26,7 +26,8 @@ urlpatterns = [
     path('shop', views.shop_view),
     path('<int:user_id>/hm', views.hm_view),
     path('<int:user_id>/hc', views.hc_view),
-    path('<int:user_id>/info', views.info_view,)
+    path('<int:user_id>/info', views.info_view),
+    path('<int:user_id>/topic', views.topic_view),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

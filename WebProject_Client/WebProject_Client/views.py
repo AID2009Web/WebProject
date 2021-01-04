@@ -21,3 +21,6 @@ def hc_view(request, user_id):
 
 def info_view(request, user_id):
   return render(request, 'info.html')
+
+def topic_view(request, user_id):
+  return render(request, 'topic.html')
