@@ -1,4 +1,7 @@
 $(function(){
+  var js = '<script type="text/javascript" src="../static/js/init.js"></script>'
+  $('head').append(js)
+  
   var faderData = [
     "1.png","2.jpg",
     "3.jpg","4.png",

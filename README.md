@@ -16,6 +16,7 @@ V1.2020/12/12
   * 修改显示语言与时区  
     `LANGUAGE_CODE = 'zh-Hans'`
     `TIME_ZONE = 'Asia/Shanghai'`
+
   * 修改模板路径  
     `'DIRS': [os.path.join(BASE_DIR,'templates')]`
   * 增加静态文件的路径  
@@ -55,7 +56,8 @@ V1.2020/12/12
   * 修改显示语言与时区  
     `LANGUAGE_CODE = 'zh-Hans'`
     `TIME_ZONE = 'Asia/Shanghai'`
-    
+  * 取消格林尼治时间保存，取前端当前时区时间   
+    `USE_TZ = False`  
   * 修改数据库
   `DATABASES = {
     	'default': {
@@ -77,15 +79,18 @@ V1.2020/12/12
 * 由于跨域会被 Django 的`CSRF`保护拦截，使用`token`令牌解决。常用`JWT`。【Cross-Site Request Forgey】【 Json-Web-Token 】  
 * 
 ### 并发访问所需技术  
+#### 上线服务器  
 nginx/uwsgi
 
 ### 接口所需技术  
 #### SMS短信发送  
 使用容联云通讯进行短信API接入。  
+
 * 前端向后端发起请求。  
 * 后端构建地址、请求包头、请求包体后封装并向容联云发送请求。  
 * 后端接收容联云响应并反馈给前端。  
 * 后端通过｀Redis｀缓存验证码，与前端POST回的验证码进行比对。  
+* 由于同步发送验证方式在高并发场景可能会阻塞，所以导入使用`Celery`启动消费者-生产者模式进行高并发的异步处理。  
 
 #### 已登录校验  
 使用token校验  

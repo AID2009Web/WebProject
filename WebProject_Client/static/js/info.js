@@ -1,4 +1,7 @@
 $(function(){
+  var js = '<script type="text/javascript" src="../static/js/init.js"></script>'
+  $('head').append(js)
+
   var token = window.localStorage.getItem('web_token');
   var user_id = window.localStorage.getItem('web_user');
   if(!(token)){
@@ -9,7 +12,7 @@ $(function(){
   }
 
   $.ajax({
-    url: 'http://127.0.0.1:5000/v1/u/'+ user_id,
+    url: BASE_URL+'/v1/u/'+ user_id,
     type: 'GET',
     beforeSend: function(request){
       request.setRequestHeader('Authorization', token);
@@ -17,7 +20,7 @@ $(function(){
     success: function(res){
       if(res.code == 200){
         console.log(res);
-        var avatar_url = 'http://127.0.0.1:5000/media/'+ res.data.avatar;
+        var avatar_url = BASE_URL+'/media/'+ res.data.avatar;
         $('.tx img').attr('src', avatar_url);
         $('.yhm').html(res.data.nickname);
         $('.nickname').attr('value', res.data.nickname);
@@ -44,7 +47,7 @@ $(function(){
     var info = $('.profile').val();
     var post_data = {'nickname': nickname, 'gender': gender, 'location': location, 'birthday': birthday, 'sign': sign, 'info': info,}
     $.ajax({
-      url: 'http://127.0.0.1:5000/v1/u/' + user_id,
+      url: BASE_URL+'/v1/u/' + user_id,
       type: 'PUT',
       contentType: 'application/json',
       dataType: 'json',
@@ -71,7 +74,7 @@ $(function(){
   upload = function(){
     var token = window.localStorage.getItem('web_token');
     var user_id = window.localStorage.getItem('web_user');
-    var url = 'http://127.0.0.1:5000/v1/u/'+ user_id + '/avatar';
+    var url = BASE_URL+'/v1/u/'+ user_id + '/avatar';
     var formdata = new FormData();
     formdata.append('avatar',$('#avatar')[0].files[0]);
     $.ajax({

@@ -1,5 +1,6 @@
 $(function(){
-  
+  var js = '<script type="text/javascript" src="../static/js/init.js"></script>'
+  $('head').append(js)
 
   
   $('.first>a').click(function(){
@@ -104,7 +105,7 @@ $(function(){
     // post_data = {'user_id':user_id, 'pwd': pwd, 'sms': sms}
     console.log(post_data)
     $.ajax({
-      url: 'http://127.0.0.1:5000/v1/u',
+      url: BASE_URL+'/v1/u',
       type: 'POST',
       dataType: 'json',
       data:JSON.stringify(post_data),
@@ -127,7 +128,7 @@ $(function(){
     var phone = $('#uname').val();
     var post_data = {"phone": phone}
     $.ajax({
-      url: 'http://127.0.0.1:5000/v1/u/sms',
+      url: BASE_URL+'/v1/u/sms',
       type: 'POST',
       data: JSON.stringify(post_data),
       contentType: 'application/json',

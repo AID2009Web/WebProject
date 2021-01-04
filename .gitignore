@@ -6,3 +6,10 @@ WebProject_Server/item/__pycache__
 WebProject_Server/lesson/__pycache__
 WebProject_Server/order/__pycache__
 WebProject_Server/topic/__pycache__
+
+WebProject_Server/item/migrations/
+WebProject_Server/lesson/migrations/
+WebProject_Server/order/migrations/
+WebProject_Server/topic/migrations/
+WebProject_Server/user/migrations/
+WebProject_Server/wtoken/migrations/

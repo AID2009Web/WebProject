@@ -1,7 +1,9 @@
 $(function(){
   var css = '<link rel="stylesheet" href="../static/css/nav.css"></link>'
   $('head').append(css)
-
+  var js = '<script type="text/javascript" src="../static/js/init.js"></script>'
+  $('head').append(js)
+  
   var html = '<!-- 导航栏 -->\
   <nav>\
       <!-- logo -->\
@@ -56,7 +58,7 @@ $(function(){
   }
 
   $.ajax({
-    url: 'http://127.0.0.1:5000/v1/u/'+user_id,
+    url: BASE_URL+'/v1/u/'+user_id,
     type: 'GET',
     beforeSend: function(request){
       request.setRequestHeader('Authorization',token);
@@ -65,8 +67,8 @@ $(function(){
       console.log('登录用户:'+res.user_id)
       if(res.code == 200){
         $('.username').html(res.data.nickname);
-        $('#user').attr('href','http://127.0.0.1:8000/'+ user_id + '/hm');
-        $('#setting').attr('href','http://127.0.0.1:8000/'+ user_id + '/info');
+        $('#user').attr('href',BASE_URL_WEB+ user_id + '/hm');
+        $('#setting').attr('href',BASE_URL_WEB+ user_id + '/info');
 
       }else{
         alert(res.error)
