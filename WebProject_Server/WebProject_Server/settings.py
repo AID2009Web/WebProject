@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'lesson',
     'item',
     'order',
+    
 ]
 
 MIDDLEWARE = [

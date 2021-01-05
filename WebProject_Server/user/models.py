@@ -13,7 +13,7 @@ def default_sign():
 
 
 # Create your models here.
-class User0(models.Model):
+class User(models.Model):
   user_id = models.CharField('用户ID', max_length=11,unique=True,null=False)
   pwd = models.CharField(max_length=32)
   created_time = models.DateTimeField(auto_now_add=True)

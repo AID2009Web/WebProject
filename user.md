@@ -24,8 +24,8 @@ POST
 json 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
-|user_id|char|用户ID|
-|pwd|char|密码|
+|user_id|varchar|用户ID|
+|pwd|varchar|密码|
 请求示例：  
 {'user_id':user_id, 'pwd': pwd}  
 ### 1.3 响应格式  
@@ -33,8 +33,8 @@ json 具体参数如下：
 |字段|类型|备注|
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见1.4|
-|error|char|错误提示|
-|user_id|char|用户ID|
+|error|varchar|错误提示|
+|user_id|varchar|用户ID|
 |data|{}|返回数据。用token令牌为此会话保持|
 响应示例：  
 {‘code’: 200 , ‘username’: ‘abc’, ’data’: {‘token’: ‘asdadasd.cvreijvd.dasdadad’} }  
@@ -62,7 +62,7 @@ POST
 json 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
-|phone|char|用户ID|
+|phone|varchar|用户ID|
 请求示例：  
 {"phone": phone}   
 ### 2.3 响应格式  
@@ -70,7 +70,7 @@ json 具体参数如下：
 |字段|类型|备注|
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见2.4|
-|error|char|错误提示|
+|error|varchar|错误提示|
 响应示例：  
 {'code': 10101, 'error': '请输入手机号'}  
 ### 2.4 异常码  
@@ -91,8 +91,8 @@ POST
 json 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
-|user_id|char|用户ID|
-|pwd|char|密码|
+|user_id|varchar|用户ID|
+|pwd|varchar|密码|
 请求示例：  
 {'user_id':user_id, 'pwd': pwd}  
 ### 3.3 响应格式  
@@ -100,8 +100,8 @@ json 具体参数如下：
 |字段|类型|备注|
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见3.4|
-|error|char|错误提示|
-|user_id|char|用户ID|
+|error|varchar|错误提示|
+|user_id|varchar|用户ID|
 |data|{}|token|
 响应示例：  
 {'code': 10201, 'error': '用户名或密码错误'}  
@@ -127,8 +127,8 @@ json 具体参数如下：
 |字段|类型|备注|
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见4.4|
-|error|char|错误提示|
-|user_id|char|用户ID|
+|error|varchar|错误提示|
+|user_id|varchar|用户ID|
 |data|{}|返回数据。|
 响应示例：  
 {'code': 200, 'user_id': '123', 'data': {'nickname': 'asd'}}  
@@ -148,12 +148,12 @@ PUT
 json 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
-|nickname|char|用户昵称|
-|gender|char|性别|
-|location|char|地区|
+|nickname|varchar|用户昵称|
+|gender|varchar|性别|
+|location|varchar|地区|
 |birthday|date|生日|
-|sign|char|标签|
-|info|char|个人简介|
+|sign|varchar|标签|
+|info|varchar|个人简介|
 该请求需客户端在HTTP header 里添加 token,  格式如下：  
 Authorization ： token  
 请求示例：  
@@ -163,8 +163,8 @@ json 具体参数如下：
 |字段|类型|备注|
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见5.4|
-|error|char|错误提示|
-|user_id|char|用户ID|
+|error|varchar|错误提示|
+|user_id|varchar|用户ID|
 响应示例：  
 {'code': 200, 'user_id': '123'}  
 ### 5.4 异常码  
@@ -186,7 +186,7 @@ POST multipart/form-data
 表单 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
-|avatar|char|图片|
+|avatar|varchar|图片|
 该请求需客户端在HTTP header 里添加 token,  格式如下：  
 Authorization ： token  
 ### 6.3 响应格式  
@@ -194,8 +194,8 @@ json 具体参数如下：
 |字段|类型|备注|
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见6.4|
-|error|char|错误提示|
-|user_id|char|用户ID|
+|error|varchar|错误提示|
+|user_id|varchar|用户ID|
 响应示例：  
 {'code': 200, 'user_id': '123'}  
 ### 6.4 异常码  

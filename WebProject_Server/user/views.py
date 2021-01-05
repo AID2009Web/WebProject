@@ -12,7 +12,7 @@ import time
 import jwt
 import hashlib
 
-from user.models import User0
+from user.models import User
 from tools.sms import YunTongXin
 from tools.login_dec import login_check
 
@@ -21,7 +21,7 @@ class UsersView(View):
   def get(self, request, user_id=None):
     if user_id:
       try:
-        user = User0.objects.get(user_id=user_id)
+        user = User.objects.get(user_id=user_id)
       except:
         result = {'code': 10108, 'error': '用户名不存在'}
         return JsonResponse(result)
@@ -82,20 +82,20 @@ class UsersView(View):
     
     # if pwd:
     #   try:
-    #     user = User0.objects.get(user_id=user_id)
+    #     user = User.objects.get(user_id=user_id)
     #   except:
     #     result = {'code':10105, 'error':'用户或密码错误'}
     #     return JsonResponse(result)
-    #   old_user = User0.objects.filter(user_id=user_id)
+    #   old_user = User.objects.filter(user_id=user_id)
     # else:
     #   try:
-    #     user = User0.objects.create(user_id=user_id)
+    #     user = User.objects.create(user_id=user_id)
     #   except:
     md5 = hashlib.md5()
     md5.update(pwd.encode())
     pwd_h = md5.hexdigest()
 
-    old_user = User0.objects.filter(user_id=user_id)
+    old_user = User.objects.filter(user_id=user_id)
     token = make_token(user_id)
     if old_user:
       return JsonResponse({'code': 200, 'user_id': user_id, 'data': {'token': token.decode()}})
@@ -105,7 +105,7 @@ class UsersView(View):
         print(nickname)
         info = '这个人很懒，什么都没有留下'
         avatar = 'avatar/boy.png'
-        user = User0.objects.create(user_id=user_id,pwd=pwd,nickname=nickname,info=info, avatar=avatar)
+        user = User.objects.create(user_id=user_id,pwd=pwd,nickname=nickname,info=info, avatar=avatar)
       except:
         result = {'code': 10107, 'error': '入库失败'}
         return JsonResponse(result)

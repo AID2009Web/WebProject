@@ -9,6 +9,11 @@ $(function(){
   var token = window.localStorage.getItem('web_token');
   var user_id = window.localStorage.getItem('web_user');
 
+  if(user_id == homepage_userId){
+    $('.release').removeClass('hide');
+    $('#topic_re').attr('href',BASE_URL_WEB+user_id+'/topic');
+    $('#lesson_re').attr('href',BASE_URL_WEB+user_id+'/lesson');
+  }
   $.ajax({
     url: BASE_URL+'/v1/u/' + homepage_userId,
     type: 'GET',
@@ -27,6 +32,7 @@ $(function(){
         $('#note').html(res.data.info);
         $('#tag').html(res.data.sign);
         $('.hc').attr('href',BASE_URL_WEB+homepage_userId+'/hc');
+        
       }else{
         alert(res.error);
       }

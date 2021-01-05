@@ -58,11 +58,23 @@
         
       <div class="infosbox">
         <br>
-        <p class="classification">
-          <input name="limit" type="radio" value="public" checked=check >公开
-          <input name="limit" type="radio" value="private" >私人
+        <p>
+          <label for="author">文章标题</label>
+          <input class="comment_input" id="author" maxlength="50" name="author" required="required" size="25" tabindex="1" type="text">
+          
         </p>
         <br>
+        <p class="classification">
+          <input name="limit" type="radio" value="public" checked=check >公开博客
+          <input name="limit" type="radio" value="private" >个人博客'
+        </p>
+        <br>
+        <p class="classification">
+          <input name="category" type="radio" value="tec" checked=check>技术类
+          <input name="category" type="radio" value="no-tec">非技术类
+        </p>
+        <br>
+
         <form>
 
           <div id="editor" style="margin-left: 12px;margin-right: 12px"></div>

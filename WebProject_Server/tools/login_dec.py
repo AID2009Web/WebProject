@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.conf import settings
-from user.models import User0
+from user.models import User
 import jwt
 
 def login_check(func):
@@ -17,7 +17,7 @@ def login_check(func):
       return JsonResponse(result)
 
     user_id = payload['user_id']
-    user = User0.objects.get(user_id=user_id)
+    user = User.objects.get(user_id=user_id)
     request.myuser = user
     return func(request, *args, **kwargs)
   return wrap

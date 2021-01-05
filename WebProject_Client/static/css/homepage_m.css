@@ -164,7 +164,16 @@
   
 }
 
-
+.release{
+  position: relative;
+  top: 300px;
+  width: 300px;
+  border: 2px solid rgb(30, 150, 250, 0.6);
+  border-radius: 5px;
+}
+.hide{
+  display: none;
+}
 
 .message{
   width: 650px;
