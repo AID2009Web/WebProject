@@ -36,46 +36,38 @@ $(function(){
   </nav>'
   $('header').append(html);  
   
-  // $('#login').click(function(){
-  //   $('.user_btn').addClass('is_logout');
-  //   $('.user_area').removeClass('is_logout');
-  // })
-  // $('#setting').click(function(){
-  //   $('.user_area').addClass('is_logout');
-  //   $('.user_btn').removeClass('is_logout');
-  // })
+
 
   var token = window.localStorage.getItem('web_token');
-  var user_id = window.localStorage.getItem('web_user');
+  var uid = window.localStorage.getItem('web_user');
 
-  if ((user_id)&&(token)){
+  if ((uid)&&(token)){
     $('.user_btn').addClass('is_logout');
     $('.user_area').removeClass('is_logout');
-    
+    // 已登录用户个人信息获取
+    $.ajax({
+      url: BASE_URL+'/v1/u/'+uid,
+      type: 'GET',
+      beforeSend: function(request){
+        request.setRequestHeader('Authorization',token);
+      },
+      success: function(res){
+        console.log('登录用户:'+res.uid)
+        if(res.code == 200){
+          $('.username').html(res.data.nickname);
+          $('#user').attr('href',BASE_URL_WEB+ '/' + uid + '/hm');
+          $('#setting').attr('href',BASE_URL_WEB+ '/' + uid + '/info');
+        }else{
+          alert(res.error)
+        }
+      }
+    })
+
   }else{
     $('.user_area').addClass('is_logout');
     $('.user_btn').removeClass('is_logout');
+    
   }
-
-  $.ajax({
-    url: BASE_URL+'/v1/u/'+user_id,
-    type: 'GET',
-    beforeSend: function(request){
-      request.setRequestHeader('Authorization',token);
-    },
-    success: function(res){
-      console.log('登录用户:'+res.user_id)
-      if(res.code == 200){
-        $('.username').html(res.data.nickname);
-        $('#user').attr('href',BASE_URL_WEB+ '/' + user_id + '/hm');
-        $('#setting').attr('href',BASE_URL_WEB+ '/' + user_id + '/info');
-
-      }else{
-        alert(res.error)
-      }
-    }
-
-  })
 
 
 

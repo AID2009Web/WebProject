@@ -5,7 +5,7 @@ $(function(){
   $('head').append(ed)
 
   var token = window.localStorage.getItem('web_token');
-  var user_id = window.localStorage.getItem('web_user');
+  var uid = window.localStorage.getItem('web_user');
   if(!(token)){
     alert('请先登录');
     $('body').addClass('hide');
@@ -19,7 +19,7 @@ $(function(){
 
 
   $.ajax({
-    url: BASE_URL+'/v1/u/'+ user_id,
+    url: BASE_URL+'/v1/u/'+ uid,
     type: 'GET',
     beforeSend: function(request){
       request.setRequestHeader('Authorization', token);
@@ -56,13 +56,13 @@ $(function(){
       'content': content,
     }
     console.log(post_data)
-    console.log(user_id);
+    console.log(uid);
     
     $.ajax({
       type: 'POST',
       contentType: 'application/json',
       dataType: 'json',
-      url: BASE_URL + '/v1/topic/' + user_id,
+      url: BASE_URL + '/v1/topic/' + uid,
       data: JSON.stringify(post_data),
       beforeSend: function(request){
         request.setRequestHeader('Authorization', token);
@@ -72,7 +72,7 @@ $(function(){
           alert('发布成功');
           console.log(res);
           
-          window.location.href = BASE_URL_WEB + '/u/' + user_id +'/hm'
+          window.location.href = BASE_URL_WEB + '/' + uid +'/hm'
         }else{
           alert(res.error)
         }

@@ -18,10 +18,10 @@ from tools.login_dec import login_check
 
 # Create your views here.
 class UsersView(View):
-  def get(self, request, user_id=None):
-    if user_id:
+  def get(self, request, uid=None):
+    if uid:
       try:
-        user = User.objects.get(user_id=user_id)
+        user = User.objects.get(id=uid)
       except:
         result = {'code': 10108, 'error': '用户名不存在'}
         return JsonResponse(result)
@@ -34,9 +34,9 @@ class UsersView(View):
           if hasattr(user, k):
             data[k] = getattr(user, k)
 
-        result = {'code': 200, 'user_id': user_id, 'data':data}
+        result = {'code': 200, 'uid': uid, 'data':data}
       else:
-        result = {'code': 200, 'user_id': user_id, 'data': {
+        result = {'code': 200, 'uid': uid, 'data': {
           'id': user.id, 'user_id': user.user_id, 'nickname': user.nickname,
           'info': user.info, 'sign': user.sign, 'gender': user.gender,
           'location': user.location, 'birthday': user.birthday,
@@ -96,9 +96,9 @@ class UsersView(View):
     pwd_h = md5.hexdigest()
 
     old_user = User.objects.filter(user_id=user_id)
-    token = make_token(user_id)
+    token = make_token(old_user[0].id)
     if old_user:
-      return JsonResponse({'code': 200, 'user_id': user_id, 'data': {'token': token.decode()}})
+      return JsonResponse({'code': 200, 'uid': old_user[0].id, 'data': {'token': token.decode()}})
     else:
       try:
         nickname = '用户'+str(random.randint(1000, 9999))
@@ -109,11 +109,12 @@ class UsersView(View):
       except:
         result = {'code': 10107, 'error': '入库失败'}
         return JsonResponse(result)
-      
-      return JsonResponse({'code': 200, 'user_id': user_id, 'data': {'token': token.decode()}})
+      uid = get_uid(user_id)  
+      token = make_token(uid)
+      return JsonResponse({'code': 200, 'uid': uid, 'data': {'token': token.decode()}})
 
   @method_decorator(login_check)
-  def put(self, request, user_id):
+  def put(self, request, uid):
     json_str = request.body
     py_obj = json.loads(json_str)
     print(py_obj)
@@ -137,7 +138,7 @@ class UsersView(View):
       result = {'code': 10109, 'error': '保存失败'}
       return JsonResponse(result)
 
-    result = {'code': 200, 'user_id': user_id}
+    result = {'code': 200, 'uid': uid}
     return JsonResponse(result)
     
     
@@ -168,14 +169,14 @@ def sms_view(request):
     # print(res)
     return JsonResponse({'code': 200})
 
-def make_token(user_id, expire=3600*24):
+def make_token(uid, expire=3600*24):
   key = settings.JWT_TOKEN_KEY
   now = time.time()
-  payload = {'user_id': user_id, 'exp': now+expire}
+  payload = {'uid': uid, 'exp': now+expire}
   return jwt.encode(payload, key, algorithm='HS256')
 
 @login_check
-def user_avatar(request, user_id):
+def user_avatar(request, uid):
   if request.method != 'POST':
     result = {'code': 10111, 'error': '请求方式错误'}
     return JsonResponse(result)
@@ -183,5 +184,10 @@ def user_avatar(request, user_id):
   user = request.myuser
   user.avatar = request.FILES['avatar']
   user.save()
-  result = {'code': 200, 'user_id': user_id}
+  result = {'code': 200, 'uid': uid}
   return JsonResponse(result)
+
+
+def get_uid(user_id):
+  user = User.objects.filter(user_id=user_id)
+  return user.id

@@ -34,10 +34,10 @@ json 具体参数如下：
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见1.4|
 |error|varchar|错误提示|
-|user_id|varchar|用户ID|
+|uid|varchar|用户ID数据库编号|
 |data|{}|返回数据。用token令牌为此会话保持|
 响应示例：  
-{‘code’: 200 , ‘username’: ‘abc’, ’data’: {‘token’: ‘asdadasd.cvreijvd.dasdadad’} }  
+{‘code’: 200 , ‘uid’: ‘12’, ’data’: {‘token’: ‘asdadasd.cvreijvd.dasdadad’} }  
 ### 1.4 异常码  
 |异常码|含义|备注|
 |---|---|---|
@@ -91,17 +91,17 @@ POST
 json 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
-|user_id|varchar|用户ID|
+|uid|varchar|用户ID数据库编号|
 |pwd|varchar|密码|
 请求示例：  
-{'user_id':user_id, 'pwd': pwd}  
+{'uid':uid, 'pwd': pwd}  
 ### 3.3 响应格式  
 json 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见3.4|
 |error|varchar|错误提示|
-|user_id|varchar|用户ID|
+|uid|varchar|用户ID数据库编号|
 |data|{}|token|
 响应示例：  
 {'code': 10201, 'error': '用户名或密码错误'}  
@@ -128,10 +128,10 @@ json 具体参数如下：
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见4.4|
 |error|varchar|错误提示|
-|user_id|varchar|用户ID|
+|uid|varchar|用户ID数据库编号|
 |data|{}|返回数据。|
 响应示例：  
-{'code': 200, 'user_id': '123', 'data': {'nickname': 'asd'}}  
+{'code': 200, 'uid': '123', 'data': {'nickname': 'asd'}}  
 ### 4.4 异常码  
 |异常码|含义|备注|
 |---|---|---|
@@ -164,9 +164,9 @@ json 具体参数如下：
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见5.4|
 |error|varchar|错误提示|
-|user_id|varchar|用户ID|
+|uid|varchar|用户ID数据库编号|
 响应示例：  
-{'code': 200, 'user_id': '123'}  
+{'code': 200, 'uid': '123'}  
 ### 5.4 异常码  
 |异常码|含义|备注|
 |---|---|---|
@@ -195,9 +195,9 @@ json 具体参数如下：
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见6.4|
 |error|varchar|错误提示|
-|user_id|varchar|用户ID|
+|uid|varchar|用户ID数据库编号|
 响应示例：  
-{'code': 200, 'user_id': '123'}  
+{'code': 200, 'uid': '123'}  
 ### 6.4 异常码  
 |异常码|含义|备注|
 |---|---|---|

@@ -13,7 +13,7 @@ from topic.models import Topic
 class TopicView(View):
 
   @method_decorator(login_check)
-  def post(self, request,user_id):
+  def post(self, request, uid):
     json_str = request.body
     py_obj = json.loads(json_str)
     print(py_obj)
@@ -30,7 +30,8 @@ class TopicView(View):
     except:
       result = {'code': 10302, 'error': '入库失败'}
       return JsonResponse(result)
-    return JsonResponse({'code': 200, 'user_id': author.user_id,})
+    return JsonResponse({'code': 200, 'uid': author.id,})
 
-    
+  def get(self, request):
+    pass  
 

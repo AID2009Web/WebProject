@@ -16,8 +16,8 @@ def login_check(func):
       result = {'code': 10110, 'error': '用户未登录'}
       return JsonResponse(result)
 
-    user_id = payload['user_id']
-    user = User.objects.get(user_id=user_id)
+    uid = payload['uid']
+    user = User.objects.get(id=uid)
     request.myuser = user
     return func(request, *args, **kwargs)
   return wrap

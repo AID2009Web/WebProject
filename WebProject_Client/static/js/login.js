@@ -115,8 +115,8 @@ $(function(){
         if(res.code == 200){
           alert('登录成功') ;
           window.localStorage.setItem('web_token', res.data.token);
-          window.localStorage.setItem('web_user', res.user_id);
-          window.location.href = user_id + '/info';
+          window.localStorage.setItem('web_user', res.uid);
+          window.location.href = BASE_URL_WEB +'/'+ res.uid + '/info';
         }else{
           alert(res.error);
         }

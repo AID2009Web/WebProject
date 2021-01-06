@@ -120,19 +120,22 @@
 .infosbox{
   /* border: 1px solid #f7f8fa; */
   border: 1px solid rgb(30, 150, 250);
+  border-radius: 5px;
   width: 75%;
   margin: 20px auto;
 }
 .infosbox p{
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .infosbox form{
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 .infosbox p>label, .classification{
   padding-left: 20px;
 }
-
+.buttom{
+  text-align: center;
+}
 .hide{
   display:none;
 }

@@ -4,25 +4,30 @@ $(function(){
   
   var url = document.location.toString();
   var arrUrl = url.split('//');
-  var homepage_userId = arrUrl[1].split('/')[1];
+  var homepage_uId = arrUrl[1].split('/')[1];
   
   var token = window.localStorage.getItem('web_token');
-  var user_id = window.localStorage.getItem('web_user');
+  var uid = window.localStorage.getItem('web_user');
 
-  if(user_id == homepage_userId){
+  // 自己访问自己的主页
+  if(uid == homepage_uId){
     $('.release').removeClass('hide');
-    $('#topic_re').attr('href',BASE_URL_WEB+user_id+'/topic');
-    $('#lesson_re').attr('href',BASE_URL_WEB+user_id+'/lesson');
+    $('#topic_re').attr('href',BASE_URL_WEB+'/'+uid+'/topic');
+    $('#lesson_re').attr('href',BASE_URL_WEB+'/'+uid+'/lesson');
+    $('.hm').html('我的首页');
+    $('.hc').html('我的收藏');
   }
+
+  // 获取被访问用户个人信息
   $.ajax({
-    url: BASE_URL+'/v1/u/' + homepage_userId,
+    url: BASE_URL+'/v1/u/' + homepage_uId,
     type: 'GET',
     beforeSend: function(request){
       request.setRequestHeader("Authorization", token);
     },
     success: function(res){
       if(res.code == 200){
-        console.log('被访问用户:'+ res.user_id);
+        console.log('被访问用户:'+ res.uid);
         console.log(res);
         var avatar_url = BASE_URL+'/media/'+ res.data.avatar;
         $('.tx img').attr('src', avatar_url);
@@ -31,12 +36,28 @@ $(function(){
         $('#location').html(res.data.location);
         $('#note').html(res.data.info);
         $('#tag').html(res.data.sign);
-        $('.hc').attr('href',BASE_URL_WEB+'/'+ homepage_userId+'/hc');
-        
+        $('.hc').attr('href',BASE_URL_WEB+'/'+ homepage_uId+'/hc');
       }else{
         alert(res.error);
       }
-
     }
   })
+
+  //　获取被访问用户动态信息 
+  $.ajax({
+    url: BASE_URL + '/v1/topic/' + homepage_uId,
+    type: 'GET',
+    beforeSend: function(request){
+      request.setRequestHeader("Authorization", token);
+    },
+    success: function(res){
+      if(res.code == 200){
+        console.log(res)
+      }else{
+        alert(res.error)
+      }
+    }
+  })
+
+
 })

@@ -13,14 +13,14 @@ def square_view(request):
 def shop_view(request):
   return render(request, 'shop.html')
 
-def hm_view(request, user_id):
+def hm_view(request, uid):
   return render(request, 'homepage_m.html')
 
-def hc_view(request, user_id):
+def hc_view(request, uid):
   return render(request, 'homepage_c.html')
 
-def info_view(request, user_id):
+def info_view(request, uid):
   return render(request, 'info.html')
 
-def topic_view(request, user_id):
+def topic_view(request, uid):
   return render(request, 'topic.html')

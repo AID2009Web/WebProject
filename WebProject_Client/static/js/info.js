@@ -3,7 +3,7 @@ $(function(){
   $('head').append(js)
 
   var token = window.localStorage.getItem('web_token');
-  var user_id = window.localStorage.getItem('web_user');
+  var uid = window.localStorage.getItem('web_user');
   if(!(token)){
     alert('请先登录');
     $('body').addClass('hide');
@@ -12,7 +12,7 @@ $(function(){
   }
 
   $.ajax({
-    url: BASE_URL+'/v1/u/'+ user_id,
+    url: BASE_URL+'/v1/u/'+ uid,
     type: 'GET',
     beforeSend: function(request){
       request.setRequestHeader('Authorization', token);
@@ -43,7 +43,7 @@ $(function(){
 
   changeInfo = function (){
     var token = window.localStorage.getItem('web_token');
-    var user_id = window.localStorage.getItem('web_user');
+    var uid = window.localStorage.getItem('web_user');
     var nickname = $('.nickname').val();
     var gender = $('.gender').val();
     var location = $('.location').val();
@@ -52,7 +52,7 @@ $(function(){
     var info = $('.profile').val();
     var post_data = {'nickname': nickname, 'gender': gender, 'location': location, 'birthday': birthday, 'sign': sign, 'info': info,}
     $.ajax({
-      url: BASE_URL+'/v1/u/' + user_id,
+      url: BASE_URL+'/v1/u/' + uid,
       type: 'PUT',
       contentType: 'application/json',
       dataType: 'json',
@@ -78,8 +78,8 @@ $(function(){
 
   upload = function(){
     var token = window.localStorage.getItem('web_token');
-    var user_id = window.localStorage.getItem('web_user');
-    var url = BASE_URL+'/v1/u/'+ user_id + '/avatar';
+    var uid = window.localStorage.getItem('web_user');
+    var url = BASE_URL+'/v1/u/'+ uid + '/avatar';
     var formdata = new FormData();
     formdata.append('avatar',$('#avatar')[0].files[0]);
     $.ajax({
