@@ -67,8 +67,8 @@ $(function(){
       console.log('登录用户:'+res.user_id)
       if(res.code == 200){
         $('.username').html(res.data.nickname);
-        $('#user').attr('href',BASE_URL_WEB+ user_id + '/hm');
-        $('#setting').attr('href',BASE_URL_WEB+ user_id + '/info');
+        $('#user').attr('href',BASE_URL_WEB+ '/' + user_id + '/hm');
+        $('#setting').attr('href',BASE_URL_WEB+ '/' + user_id + '/info');
 
       }else{
         alert(res.error)

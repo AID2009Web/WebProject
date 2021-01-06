@@ -31,7 +31,7 @@ $(function(){
         $('#location').html(res.data.location);
         $('#note').html(res.data.info);
         $('#tag').html(res.data.sign);
-        $('.hc').attr('href',BASE_URL_WEB+homepage_userId+'/hc');
+        $('.hc').attr('href',BASE_URL_WEB+'/'+ homepage_userId+'/hc');
         
       }else{
         alert(res.error);

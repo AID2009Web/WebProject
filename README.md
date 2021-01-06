@@ -23,15 +23,17 @@ V1.2020/12/12
     `STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'),    ]`
   
 * 路由及模板对应  
+
 |路由|模板|备注|
 |---|---|---|
 |`/`|`index.html`|首页|
 |`/login`|`login.html`|登录注册页|
-|`/u/<user_id>/info`||用户个人信息页|
-|`/u/<user_id>/hm`|`homepage_m.html`|用户个人动态页|
-|`/u/<user_id>/hc`|`homepage_c.html`|用户收藏页|
+|`/u/<uid>/info`||用户个人信息页|
+|`/u/<uid>/hm`|`homepage_m.html`|用户个人动态页|
+|`/u/<uid>/hc`|`homepage_c.html`|用户收藏页|
 |`/square`|`square.html`|广场页|
 |`/shop`|`shop.html`|商城页|
+|`/<uid>/topic`|`topic.html`|发布动态页|
 
 
 * WebProject/urls.py  

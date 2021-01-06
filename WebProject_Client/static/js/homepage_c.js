@@ -22,7 +22,7 @@ $(function(){
         var avatar_url = BASE_URL+'/media/'+ res.data.avatar;
         $('.tx img').attr('src', avatar_url);
         $('.yhm').html(res.data.nickname);
-        $('.hm').attr('href',BASE_URL_WEB+homepage_userId+'/hm');
+        $('.hm').attr('href',BASE_URL_WEB+'/'+ homepage_userId+'/hm');
       }else{
         alert(res.error);
       }

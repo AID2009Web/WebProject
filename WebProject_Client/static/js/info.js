@@ -23,7 +23,7 @@ $(function(){
         if (res.data.avatar){
           var avatar_url = BASE_URL+'/media/'+ res.data.avatar;
         }else{
-          var avatar_url = BASE_URL_WEB+'static/images/head/boy.png';
+          var avatar_url = BASE_URL_WEB+'/static/images/head/boy.png';
         }
         
         $('.tx img').attr('src', avatar_url);
