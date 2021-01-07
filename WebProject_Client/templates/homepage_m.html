@@ -11,10 +11,12 @@
   <!-- 引入外部js文件 -->
   <script src="../static/js/jquery.min.js"></script>
   <!-- 自定js文件 -->
+  <script src="../static/js/init.js"></script>
   <script src="../static/js/homepage_m.js"></script>
   <script src="../static/js/nav.js"></script>
   <script src="../static/js/footer.js"></script>
   <script src="../static/js/rightIcon.js"></script>
+  
 </head>
 <body onLoad="scrollTo(0,520)">
   <header>
@@ -76,7 +78,7 @@
     </div>
   </div>
 
-  <div  class="mainBady">
+  <div  class="mainBody">
       
     <div class="personalData">
         <ul>
@@ -107,36 +109,38 @@
       <a href="javascript:void(0)" id="topic_re">发表动态</a>
       <a href="javascript:void(0)" id="lesson_re">发表教程</a>
     </div>
+
     <div class="message">
       <ul>
-        <li>
-          <div class="msg">
+        <!-- <li>
+          <div class="msg_withpic" data-scroll-reveal="enter bottom over 1s">
             <div class="msg_pic">
               <img src="../static/images/pic/18.jpeg" alt="" class="msg_img">
             </div>
             <div class="user_m">
               <div class="head"></div>
               <div class="info">特邀用户</div>
-              <span class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet dolorem soluta necessitatibus neque dolores, beatae porro alias non nisi ipsum laboriosam mollitia quasi sed amet minima nobis velit ullam quisquam.</span>
+              <div class="time">2020-12-31 12:30:00</div>
+              <span class="content">开始这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段结束</span>
               <div class="view">
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="" id="comment">
                             <img src="../static/images/icon/comment.png" alt="">
+                            <div>1231</div>
                         </a>
-                        <div>1231</div>
                     </li>
                     <li>
-                        <a href="" >
+                        <a href="" id="like">
                             <img src="../static/images/icon/like.png" alt="">
+                            <div>1231</div>
                         </a>
-                        <div>1231</div>
                     </li>
                     <li>
-                        <a href="" >
+                        <a href="" id="share">
                             <img src="../static/images/icon/share.png" alt="">
+                            <div>234</div>  
                         </a>
-                        <div>234</div>
                     </li>
                 </ul>
             </div>
@@ -145,41 +149,39 @@
 
         </li>
         <li>
-          <div class="msg">
-            <div class="msg_pic">
-              <img src="../static/images/pic/18.jpeg" alt="" class="msg_img">
-            </div>
+          <div class="msg_withoutpic"  data-scroll-reveal="enter bottom over 1s">
             <div class="user_m">
               <div class="head"></div>
               <div class="info">特邀用户</div>
-              <span class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet dolorem soluta necessitatibus neque dolores, beatae porro alias non nisi ipsum laboriosam mollitia quasi sed amet minima nobis velit ullam quisquam.</span>
+              <div class="time">2020-12-31 12:30:00</div>
+              <span class="content">开始这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段一百四十字的动态这是一段结束</span>
               <div class="view">
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="" id="comment">
                             <img src="../static/images/icon/comment.png" alt="">
+                            <div>1231</div>
                         </a>
-                        <div>1231</div>
                     </li>
                     <li>
-                        <a href="" >
+                        <a href="" id="like">
                             <img src="../static/images/icon/like.png" alt="">
+                            <div>1231</div>
                         </a>
-                        <div>1231</div>
                     </li>
                     <li>
-                        <a href="" >
+                        <a href="" id="share">
                             <img src="../static/images/icon/share.png" alt="">
+                            <div>642</div>
                         </a>
-                        <div>642</div>
                     </li>
                 </ul>
             </div>
             </div>
           </div>
-        </li>
+        </li> 
         <li>
-          <div class="msg">
+          <div class="msg_withpic"  data-scroll-reveal="enter bottom over 1s">
             <div class="msg_pic">
               <img src="../static/images/pic/18.jpeg" alt="" class="msg_img">
             </div>
@@ -190,19 +192,19 @@
               <div class="view">
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="" id="comment">
                             <img src="../static/images/icon/comment.png" alt="">
                         </a>
                         <div>1231</div>
                     </li>
                     <li>
-                        <a href="" >
+                        <a href="" id="like">
                             <img src="../static/images/icon/like.png" alt="">
                         </a>
                         <div>1231</div>
                     </li>
                     <li>
-                        <a href="" >
+                        <a href="" id="share">
                             <img src="../static/images/icon/share.png" alt="">
                         </a>
                         <div>241</div>
@@ -211,71 +213,12 @@
             </div>
             </div>
           </div>
-        </li>
+        </li>  -->
       </ul>
     </div>
   </div>
   
 
-<!-- <div  class="show">
-  <div  class="photo1"><img src="123.jpg" alt=""></div>
-  <p  class="name">个人昵称</p>
-  <p  class="time">具体日期</p>
-</div>
-  <div class="theIdea">
-    <span>心情。。。。。。。。</span>
-    <img src="#" alt="#">
-    <img src="#" alt="#">
-    <img src="#" alt="#">
-
-</div> -->
-   
-
-
-
-<!-- <div  class="show2">
-  <div  class="photo2"><img src="123.jpg" alt=""></div>
-  <p  class="name2">个人昵称</p>
-  <p  class="time2">具体日期</p>
-</div>
-  <div class="theIdea2">
-    <span>心情。。。。。。。。</span>
-    <img src="#" alt="#">
-    <img src="#" alt="#">
-    <img src="#" alt="#">
-
-</div> -->
-   
-
-
-
-
-  <!-- <div  class="show3">
-    <div  class="photo3"><img src="123.jpg" alt=""></div>
-    <p  class="name3">个人昵称</p>
-    <p  class="time3">具体日期</p>
-
-    <div class="theIdea3">
-      <span>心情。。。。。。。。</span>
-      <img src="#" alt="#">
-     <img src="#" alt="#">
-      <img src="#" alt="#">
-
-    </div>
-  </div>   -->
-
-
-
-
-
-
-
-
-
-
-
-
-  
 </main>
 
 <footer>

@@ -29,9 +29,9 @@ json 具体参数如下：
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见1.4|
 |error|varchar|错误提示|
-|user_id|varchar|用户ID|
+|uid|varchar|用户ID数据库编码|
 响应示例：  
-{'code': 200, 'user_id': '123'}  
+{'code': 200, 'uid': '123'}  
 ### 1.4 异常码  
 |异常码|含义|备注|
 |---|---|---|
@@ -57,16 +57,17 @@ json 具体参数如下：
 |---|---|---|
 |code|int|状态码。默认正常为200，异常见２.4|
 |error|varchar|错误提示|
-|user_id|varchar|用户ID|
+|data|{}|返回数据。|
+|uid|varchar|用户ID数据库编码|
+|topics|[]|返回动态数据。id/limit/content/author_id/created_time|
+
 响应示例：  
-{'code': 200, 'user_id': '123'}  
+{'code': 200, 'data':{'uid': '123', 'topics':[{'id':topic_id, 'limit':'public', 'content':'sss', 'author':nickname, 'created_time':'2020-12-31 12:00:00'}]}}  
 ### 2.4 异常码  
 |异常码|含义|备注|
 |---|---|---|
-|10110|用户未登录||
 |10300|请求错误||
-|10301|权限码错误||
-|10302|入库失败||
+|10303|访问用户不存在||
 |500|服务器异常||
 异常响应示例：  
-{'code': 10301, 'error': '权限码错误'} 
+{'code': 10303, 'error': '访问用户不存在'} 

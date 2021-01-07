@@ -1,6 +1,5 @@
 $(function(){
-  var js = '<script type="text/javascript" src="../static/js/init.js"></script>'
-  $('head').append(js)
+  
   var ed = '<script src="../static/js/wangEditor.js"></script>'
   $('head').append(ed)
 

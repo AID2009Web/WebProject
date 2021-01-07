@@ -1,39 +1,38 @@
 $(function(){
   var css = '<link rel="stylesheet" href="../static/css/nav.css"></link>'
-  $('head').append(css)
-  var js = '<script type="text/javascript" src="../static/js/init.js"></script>'
-  $('head').append(js)
+  $('title').after(css)
   
-  var html = '<!-- 导航栏 -->\
-  <nav>\
-      <!-- logo -->\
-      <img id="logo" src="../static/images/logo.png" alt="">\
-      <ul class="nav_list">\
-          <li><a href="/square">广场</a></li>\
-          <li><a href="/shop">商城</a></li>\
-          <li><a href="javascript:void(0)">关于我们</a></li>\
-      </ul>\
-      <!-- 登录注册 -->\
-      <div class="user_btn">\
-          <a href="/login" id="register">\
-          <div>注册</div>\
-          </a>\
-          <a href="/login" id="login">\
-          登录\
-          </a>\
-      </div>\
-      <div class="user_area is_logout">\
-        <a href="javascript:void(0)" id="setting">\
-            <img src="../static/images/icon/setting.png" alt="">\
-        </a>\
-        <a href="javascript:void(0)" id="user">\
-          <div>\
-            <img src="../static/images/icon/user.png" alt="">\
-            <div class="username"></div>\
-          </div>\
-        </a>\
-      </div>\
-  </nav>'
+  
+  var html = `<!-- 导航栏 -->
+  <nav>
+      <!-- logo -->
+      <img id="logo" src="../static/images/logo.png" alt="">
+      <ul class="nav_list">
+          <li><a href="/square">广场</a></li>
+          <li><a href="/shop">商城</a></li>
+          <li><a href="javascript:void(0)">关于我们</a></li>
+      </ul>
+      <!-- 登录注册 -->
+      <div class="user_btn">
+          <a href="/login" id="register">
+          <div>注册</div>
+          </a>
+          <a href="/login" id="login">
+          登录
+          </a>
+      </div>
+      <div class="user_area is_logout">
+        <a href="javascript:void(0)" id="setting">
+            <img src="../static/images/icon/setting.png" alt="">
+        </a>
+        <a href="javascript:void(0)" id="user">
+          <div>
+            <img src="../static/images/icon/user.png" alt="">
+            <div class="username"></div>
+          </div>
+        </a>
+      </div>
+  </nav>`
   $('header').append(html);  
   
 

@@ -22,4 +22,14 @@ def login_check(func):
     return func(request, *args, **kwargs)
   return wrap
   
-    
+def get_user_by_request(request):
+  token = request.META.get('HTTP_AUTHORIZATION')
+  if not token:
+    return None
+  else:
+    try:
+      payload = jwt.decode(token, settings.JWT_TOKEN_KEY)
+    except:
+      return None
+    uid = payload['uid']
+    return uid
