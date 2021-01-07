@@ -96,8 +96,10 @@ class UsersView(View):
     pwd_h = md5.hexdigest()
 
     old_user = User.objects.filter(user_id=user_id)
-    token = make_token(old_user[0].id)
+    print(old_user)
+    
     if old_user:
+      token = make_token(old_user[0].id)
       return JsonResponse({'code': 200, 'uid': old_user[0].id, 'data': {'token': token.decode()}})
     else:
       try:
@@ -106,11 +108,12 @@ class UsersView(View):
         info = '这个人很懒，什么都没有留下'
         avatar = 'avatar/boy.png'
         user = User.objects.create(user_id=user_id,pwd=pwd,nickname=nickname,info=info, avatar=avatar)
+        uid = get_uid(user_id)  
+        token = make_token(uid)
       except:
         result = {'code': 10107, 'error': '入库失败'}
         return JsonResponse(result)
-      uid = get_uid(user_id)  
-      token = make_token(uid)
+      
       return JsonResponse({'code': 200, 'uid': uid, 'data': {'token': token.decode()}})
 
   @method_decorator(login_check)

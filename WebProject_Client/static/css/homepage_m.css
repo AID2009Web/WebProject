@@ -195,7 +195,7 @@
   float: left;
 }
 .msg_img{
-  width: 100%;
+  height: 100%;
   border-radius: 5px;
 }
 .msg_withoutpic, .msg_withpic{

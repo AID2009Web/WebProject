@@ -7,15 +7,16 @@
   <title>个人主页</title>
   <!-- 引入外部css文件 -->
   <link rel="stylesheet" href="../static/css/common.css">
-  <link rel="stylesheet" href="../static/css/topic.css">
+  <link rel="stylesheet" href="../static/css/lesson_add.css">
   <!-- 引入外部js文件 -->
   <script src="../static/js/jquery.min.js"></script>
   <!-- 自定js文件 -->
+  <script src="../static/js/init.js"></script>
   <script src="../static/js/nav.js"></script>
   <script src="../static/js/footer.js"></script>
-  <script src="../static/js/topic.js"></script>
+  <script src="../static/js/lesson_add.js"></script>
   <script src="../static/js/rightIcon.js"></script>
-  <script src="../static/js/wangEditor.js"></script>
+  
 </head>
 <body onLoad="scrollTo(0,520)">
   <header>
@@ -61,27 +62,44 @@
         <p>
           <label for="author">文章标题</label>
           <input class="comment_input" id="author" maxlength="50" name="author" required="required" size="25" tabindex="1" type="text">
-          
         </p>
         <br>
         <p class="classification">
-          <input name="limit" type="radio" value="public" checked=check >公开博客
-          <input name="limit" type="radio" value="private" >个人博客'
+          <input name="limit" type="radio" value="public" checked=check >公开教程
+          <input name="limit" type="radio" value="private" >私人教程
         </p>
         <br>
         <p class="classification">
-          <input name="category" type="radio" value="tec" checked=check>技术类
-          <input name="category" type="radio" value="no-tec">非技术类
+          <input name="category" type="radio" value="food" checked=check>美食
+          <input name="category" type="radio" value="life">生活
         </p>
         <br>
-
+        
+        
+        <form action="" method="POST" enctype="multipart/form-data" class="cover_form">
+          <p>
+            <label for="cover">封面图</label>
+            <input type="file" name="civer" id="cover">
+            <input type="button" id="submit-btn" value="上传" onclick="upload()">
+            <div class="cover">
+              <img src="../static/images/pic/18.jpeg" alt="" class="cover_img">
+            </div>
+          </p>
+        </form>
+        
+        <br>
+        <p>
+          <label for="video">视频外链</label>
+          <input class="video_link" id="video" maxlength="50" name="video_link" size="25" tabindex="1" type="text">
+        </p>
+        <br>
         <form>
 
           <div id="editor" style="margin-left: 12px;margin-right: 12px"></div>
           <br>
           <p>
             <input id="id_article" name="article" type="hidden" value="1">
-            <input name="button" type="button" id="button" tabindex="5" value="提交" class="button" />
+            <input name="button" type="button" id="button" tabindex="5" value="提交" class="button" onclick="sumbit()">
           </p>
         </form>
       </div>

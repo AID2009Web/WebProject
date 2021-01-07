@@ -5,7 +5,8 @@ $(function(){
   var url = document.location.toString();
   var arrUrl = url.split('//');
   var homepage_uId = arrUrl[1].split('/')[1];
-  
+  var avatar_url ='';
+
   var token = window.localStorage.getItem('web_token');
   var uid = window.localStorage.getItem('web_user');
 
@@ -29,7 +30,7 @@ $(function(){
       if(res.code == 200){
         console.log('被访问用户:'+ res.uid);
         console.log(res);
-        var avatar_url = BASE_URL+'/media/'+ res.data.avatar;
+        avatar_url = BASE_URL+'/media/'+ res.data.avatar;
         $('.tx img').attr('src', avatar_url);
         $('.yhm').html(res.data.nickname);
         $('#birthday').html(res.data.birthday);
@@ -102,14 +103,17 @@ $(function(){
                 </div>
               </li> 
               `
+              
               $('.message>ul').prepend(html);
-              console.log(res.data.topics[i]);
+              
+              // console.log(res.data.topics[i]);
 
             }
         
           }
           //初始化scroll
           window.scrollReveal = new scrollReveal();
+          $('.head').css('background-image', ('url('+avatar_url+')'))
         }
       }else{
         alert(res.error)

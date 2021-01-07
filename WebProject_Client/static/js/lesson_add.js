@@ -50,7 +50,6 @@ $(function(){
   sumbit = function (){
     var content = editor.txt.html()
     var limit = $("input[name='limit']:checked").val()
-    
     var post_data = {
       'limit': limit,
       'content': content,
