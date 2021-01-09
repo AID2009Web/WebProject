@@ -23,5 +23,5 @@ class User(models.Model):
   info = models.CharField('个人简介', max_length=150, default='')
   sign = models.CharField('标签', max_length=50,default=default_sign)
   gender = models.CharField('性别',max_length=1, choices=GENDER, default='-')
-  location = models.CharField('地区', max_length=50, default='')
+  location = models.CharField('地区', max_length=50, default='-')
   birthday = models.DateField('生日', default='2000-01-01')

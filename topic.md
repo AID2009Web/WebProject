@@ -62,7 +62,7 @@ json 具体参数如下：
 |topics|[]|返回动态数据。id/limit/content/author_id/created_time|
 
 响应示例：  
-{'code': 200, 'data':{'uid': '123', 'topics':[{'id':topic_id, 'limit':'public', 'content':'sss', 'author':nickname, 'created_time':'2020-12-31 12:00:00'}]}}  
+{'code': 200, 'data':{'reader': '123', 'topics':[{'id':topic_id, 'limit':'public', 'content':'sss', 'author':nickname, 'created_time':'2020-12-31 12:00:00'}]}}  
 ### 2.4 异常码  
 |异常码|含义|备注|
 |---|---|---|

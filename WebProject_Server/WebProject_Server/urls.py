@@ -28,6 +28,7 @@ urlpatterns = [
     path('v1/u/', include('user.urls')),
     # path('v1/tokens', wtoken_views.TokenView.as_view()),
     path('v1/topic/',include('topic.urls')),
+    path('v1/lesson/',include('lesson.urls')),
     
 ]
 

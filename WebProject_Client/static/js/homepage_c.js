@@ -10,7 +10,8 @@ $(function(){
   var uid = window.localStorage.getItem('web_user');
 
   if(uid == homepage_uId){
-    $('.hm').html('我的首页');
+    $('.hm').html('我的动态');
+    $('.hl').html('我的教程');
     $('.hc').html('我的收藏');
   }
 
@@ -29,6 +30,8 @@ $(function(){
         $('.tx img').attr('src', avatar_url);
         $('.yhm').html(res.data.nickname);
         $('.hm').attr('href',BASE_URL_WEB+'/'+ homepage_uId+'/hm');
+        $('.hl').attr('href',BASE_URL_WEB+'/'+ homepage_uId+'/hl');
+        $('title').html(res.data.nickname+'主页')
       }else{
         alert(res.error);
       }

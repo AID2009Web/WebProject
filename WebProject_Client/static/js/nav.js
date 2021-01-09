@@ -1,12 +1,12 @@
 $(function(){
-  var css = '<link rel="stylesheet" href="../static/css/nav.css"></link>'
+  var css = '<link rel="stylesheet" href="/static/css/nav.css"></link>'
   $('title').after(css)
   
   
   var html = `<!-- 导航栏 -->
   <nav>
       <!-- logo -->
-      <img id="logo" src="../static/images/logo.png" alt="">
+      <img id="logo" src="/static/images/logo.png" alt="">
       <ul class="nav_list">
           <li><a href="/square">广场</a></li>
           <li><a href="/shop">商城</a></li>
@@ -23,11 +23,11 @@ $(function(){
       </div>
       <div class="user_area is_logout">
         <a href="javascript:void(0)" id="setting">
-            <img src="../static/images/icon/setting.png" alt="">
+            <img src="/static/images/icon/setting.png" alt="">
         </a>
         <a href="javascript:void(0)" id="user">
           <div>
-            <img src="../static/images/icon/user.png" alt="">
+            <img src="/static/images/icon/user.png" alt="">
             <div class="username"></div>
           </div>
         </a>

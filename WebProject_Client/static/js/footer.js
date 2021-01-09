@@ -1,5 +1,5 @@
 $(function(){
-  var css = '<link rel="stylesheet" href="../static/css/footer.css"></link>'
+  var css = '<link rel="stylesheet" href="/static/css/footer.css"></link>'
   $('title').after(css)
 
   var html = `<!---------footer------- -->

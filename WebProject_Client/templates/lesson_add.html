@@ -60,8 +60,8 @@
       <div class="infosbox">
         <br>
         <p>
-          <label for="author">文章标题</label>
-          <input class="comment_input" id="author" maxlength="50" name="author" required="required" size="25" tabindex="1" type="text">
+          <label for="title">文章标题</label>
+          <input id="title" maxlength="50" name="title" required="required" size="25" tabindex="1" type="text">
         </p>
         <br>
         <p class="classification">
@@ -82,7 +82,7 @@
             <input type="file" name="civer" id="cover">
             <input type="button" id="submit-btn" value="上传" onclick="upload()">
             <div class="cover">
-              <img src="../static/images/pic/18.jpeg" alt="" class="cover_img">
+              <img src="" alt="" class="cover_img">
             </div>
           </p>
         </form>
@@ -97,10 +97,11 @@
 
           <div id="editor" style="margin-left: 12px;margin-right: 12px"></div>
           <br>
-          <p>
+          <p class="buttom">
             <input id="id_article" name="article" type="hidden" value="1">
             <input name="button" type="button" id="button" tabindex="5" value="提交" class="button" onclick="sumbit()">
           </p>
+          <br>
         </form>
       </div>
 

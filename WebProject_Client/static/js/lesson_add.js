@@ -48,11 +48,19 @@ $(function(){
   });
 
   sumbit = function (){
-    var content = editor.txt.html()
-    var limit = $("input[name='limit']:checked").val()
+    var title = $('#title').val();
+    var content_text = editor.txt.text();
+    var content = editor.txt.html();
+    var limit = $("input[name='limit']:checked").val();
+    var category = $("input[name='category']:checked").val();
+    var video = $('#video').val();
     var post_data = {
+      'title': title,
+      'category': category,
       'limit': limit,
       'content': content,
+      'content_text': content_text,
+      'video': video,
     }
     console.log(post_data)
     console.log(uid);
@@ -61,7 +69,7 @@ $(function(){
       type: 'POST',
       contentType: 'application/json',
       dataType: 'json',
-      url: BASE_URL + '/v1/topic/' + uid,
+      url: BASE_URL + '/v1/lesson/' + uid,
       data: JSON.stringify(post_data),
       beforeSend: function(request){
         request.setRequestHeader('Authorization', token);
@@ -71,13 +79,15 @@ $(function(){
           alert('发布成功');
           console.log(res);
           
-          window.location.href = BASE_URL_WEB + '/' + uid +'/hm'
+          window.location.href = BASE_URL_WEB + '/' + uid +'/hl'
         }else{
           alert(res.error)
         }
       }
     })
-    console.log('ajax done');
   }
     
+  upload = function(){
+
+  }
 })

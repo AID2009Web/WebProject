@@ -12,26 +12,12 @@ from user.models import User
 
 # Create your views here.
 class TopicView(View):
-  def make_topics_res(self, author, author_topics):
-    topics_res = []
-    for topic in author_topics:
-      data = {}
-      data['id'] = topic.id
-      data['limit'] = topic.limit
-      data['content'] = topic.content
-      data['created_time'] = topic.created_time.strftime('%Y-%m-%d %H:%M:%S')
-      data['author'] = author.nickname
-      topics_res.append(data)
-    result = {'code': 200, 'data': {}}
-    result['data']['topics'] = topics_res
-    result['data']['uid'] = author.id
-    return result
-
+  
   @method_decorator(login_check)
   def post(self, request, uid):
     json_str = request.body
     py_obj = json.loads(json_str)
-    print(py_obj)
+    
     content = py_obj['content']
     limit = py_obj['limit']
     
@@ -59,6 +45,23 @@ class TopicView(View):
       author_topics = Topic.objects.filter(author_id=uid)
     else:
       author_topics = Topic.objects.filter(author_id=uid,limit='public')
-    print(author_topics)
-    res = self.make_topics_res(author, author_topics)
+
+    res = self.make_topics_res(vistor, author, author_topics)
     return JsonResponse(res)
+
+
+  def make_topics_res(self, vistor_id, author, author_topics):
+    topics_res = []
+    for topic in author_topics:
+      data = {}
+      data['id'] = topic.id
+      data['limit'] = topic.limit
+      data['content'] = topic.content
+      data['created_time'] = topic.created_time.strftime('%Y-%m-%d %H:%M:%S')
+      data['author'] = author.nickname
+      topics_res.append(data)
+
+    result = {'code': 200, 'data': {}}
+    result['data']['topics'] = topics_res
+    result['data']['reader'] = vistor_id
+    return result

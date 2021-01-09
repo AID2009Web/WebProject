@@ -31,5 +31,5 @@ def topic_view(request, uid):
 def lesson_add_view(request, uid):
   return render(request, 'lesson_add.html')
 
-def lesson_view(request, uid):
+def lesson_view(request, uid, lid):
   return render(request, 'lesson.html')

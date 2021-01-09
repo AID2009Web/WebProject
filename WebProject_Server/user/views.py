@@ -96,14 +96,14 @@ class UsersView(View):
     pwd_h = md5.hexdigest()
 
     old_user = User.objects.filter(user_id=user_id)
-    print(old_user)
+    
     
     if old_user:
       token = make_token(old_user[0].id)
       return JsonResponse({'code': 200, 'uid': old_user[0].id, 'data': {'token': token.decode()}})
     else:
       try:
-        nickname = '用户'+str(random.randint(1000, 9999))
+        nickname = '用户'+str(user_id[7:11])
         print(nickname)
         info = '这个人很懒，什么都没有留下'
         avatar = 'avatar/boy.png'
@@ -192,5 +192,5 @@ def user_avatar(request, uid):
 
 
 def get_uid(user_id):
-  user = User.objects.filter(user_id=user_id)
+  user = User.objects.get(user_id=user_id)
   return user.id
