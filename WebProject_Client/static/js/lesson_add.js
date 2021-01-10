@@ -3,6 +3,10 @@ $(function(){
   var ed = '<script src="../static/js/wangEditor.js"></script>'
   $('head').append(ed)
 
+  var url = document.location.toString();
+  var arrUrl = url.split('//');
+  var author_uid = arrUrl[1].split('/')[1];
+
   var token = window.localStorage.getItem('web_token');
   var uid = window.localStorage.getItem('web_user');
   if(!(token)){
@@ -11,10 +15,14 @@ $(function(){
     window.location.href = '/login';
     
   }
+  if(uid != author_uid){
+    alert('地址错误禁止访问，正在重定向...');
+    window.location.href = BASE_URL_WEB + '/' + author_uid + '/hl';
+  }
 
-  const E = window.wangEditor
-  const editor = new E('#editor')
-  editor.create()
+  const E = window.wangEditor;
+  const editor = new E('#editor');
+  editor.create();
 
 
   $.ajax({

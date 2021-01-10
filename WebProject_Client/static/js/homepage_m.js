@@ -1,6 +1,9 @@
 $(function(){
-  var js = `<script src="../static/js/scrollReveal.js"></script>`
+  var js = `<script src="../static/js/scrollReveal.js"></script>
+  <script src="/static/js/xcConfirm.js"></script>`
   $('head').append(js)
+  var css = `<link rel="stylesheet" href="/static/css/comment.css">`
+  $('title').after(css)
 
   var url = document.location.toString();
   var arrUrl = url.split('//');
@@ -66,14 +69,14 @@ $(function(){
         }else{
           $('.message').css('height','100%')
 
-          for(var i=0;i<topics.length;i++){
+          for(var topic of topics){
 
             if(1){
               var view = `
               <div class="view">
                 <ul>
                     <li>
-                        <a href="javascript:void(0)" >
+                        <a href="javascript:void(0)" class="replyComment" tid=`+topic.id+`>
                             <img src="../static/images/icon/comment.png" alt="">
                             <div>1231</div>
                         </a>
@@ -97,32 +100,64 @@ $(function(){
               <li>
                 <div class="msg_withoutpic" data-scroll-reveal="enter bottom over 1s">
                   <div class="user_m">
-                    <div class="head"></div>
-                    <div class="info">`+ res.data.topics[i].author +`</div>
-                    <div class="time">`+ res.data.topics[i].created_time+`</div>
-                    <span class="content">`+ res.data.topics[i].content +`</span>`
+                    <div class="head" style="background-image: url(`+avatar_url+`);"></div>
+                    <div class="info">`+ topic.author +`</div>
+                    <div class="time">`+ topic.created_time+`</div>
+                    <span class="content">`+ topic.content +`</span>`
                     + view + `
                   </div>
                 </div>
               </li> 
               `
-              
+              console.log(topic.id);
               $('.message>ul').prepend(html);
-              
-              // console.log(res.data.topics[i]);
-
             }
-        
           }
+
           //初始化scroll
           window.scrollReveal = new scrollReveal();
-          $('.head').css('background-image', ('url('+avatar_url+')'))
+
+          var list = document.getElementsByClassName('replyComment');
+          for(var i of list){
+            i.addEventListener('click', function(even){
+              even.preventDefault();
+              var cid = this.getAttribute('cid');
+              var tid = this.getAttribute('tid');
+              window.wxc.xcConfirm("请输入回复：","input",{onOk:function(reply){
+                // console.log(reply);
+                if(reply != ''){
+                  var post_data = {'content': reply}
+                  var reply_url = BASE_URL + '/v1/message/t/'+ tid;
+                  $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    url: reply_url,
+                    data: JSON.stringify(post_data),
+                    beforeSend: function(request){
+                      request.setRequestHeader("Authorization", token);
+                    },
+                    success: function(res){
+                      if(res.code == 200){
+                        alert('评论成功')
+                        window.location.reload()
+                      }else{
+                        alert(res.error)
+                      }
+                    }
+                  })
+                }
+              }})
+            })
+          }
         }
       }else{
-        alert(res.error)
+        alert(res.error);
       }
     }
   })
+
+  
 
 
 })

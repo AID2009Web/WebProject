@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'user',
     'topic',
     'lesson',
+    'message',
     'item',
     'order',
     

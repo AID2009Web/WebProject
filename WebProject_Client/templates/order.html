@@ -12,9 +12,14 @@
     <link rel="stylesheet" href="../static/css/order.css">
     <!-- 引入外部js文件 -->
     <script src="../static/js/jquery.min.js"></script>
+    <!-- 引入外部js文件, 功能：地址三级联动下拉选择 -->
+    <script src="../static/js/distpicker.min.js"></script>
     <!-- 自定js文件 -->
-    <!-- <script src="../static/js/nav.js"></script>
-    <script src="../static/js/order.js"></script> -->
+    <script src="../static/js/init.js"></script>
+    <script src="../static/js/nav.js"></script>
+    <script src="../static/js/footer.js"></script>
+    <script src="../static/js/order.js"></script>
+    <script src="../static/js/address.js"></script>
 </head>
 
 <body>
@@ -56,6 +61,55 @@
                                 使用新地址
                             </div>
                         </div>
+                        <!--点击弹出新增/收货地址界面start-->
+                        <div class="xm-edit-addr-box" id="J_editAddrBox">
+                            <div class="bd">
+                                <div class="item">
+                                    <label>收货人姓名<span>*</span></label>
+                                    <input type="text" name="userAddress[consignee]" id="Consignee" class="input"
+                                           placeholder="收货人姓名" maxlength="15" autocomplete='off'>
+                                    <p class="tip-msg tipMsg"></p>
+                                </div>
+                                <div class="item">
+                                    <label>联系电话<span>*</span></label>
+                                    <input type="text" name="userAddress[tel]" class="input" id="Telephone"
+                                           placeholder="11位手机号" autocomplete='off'>
+                                    <p class="tel-modify-tip" id="telModifyTip"></p>
+                                    <p class="tip-msg tipMsg"></p>
+                                </div>
+                                <div class="item" id="addr_select">
+                                    <label>地址<span>*</span></label>
+                                    <select name="userAddress[province]" id="Provinces" class="select-1">
+                                    </select>
+                                    <select name="userAddress[city]" id="Citys" class="select-2">
+                                    </select>
+                                    <select name="userAddress[county]" id="Countys" class="select-3">
+                                    </select>
+                                    <textarea name="userAddress[street]" class="input-area" id="Street"
+                                              placeholder="路名或街道地址，门牌号"></textarea>
+                                    <p class="tip-msg tipMsg"></p>
+                                </div>
+                                <div class="item">
+                                    <label>邮政编码<span>*</span></label>
+                                    <input type="text" name="userAddress[zipcode]" id="Zipcode" class="input"
+                                           placeholder="邮政编码" autocomplete='off'>
+                                    <p class="zipcode-tip" id="zipcodeTip"></p>
+                                    <p class="tip-msg tipMsg"></p>
+                                </div>
+                                <div class="item">
+                                    <label>地址标签<span>*</span></label>
+                                    <input type="text" name="userAddress[tag]" id="Tag" class="input"
+                                           placeholder='地址标签：如"家"、"公司"。限5个字内'>
+                                    <p class="tip-msg tipMsg"></p>
+                                </div>
+                            </div>
+                            <div class="ft fixWindow">
+                                <button type="button" class="btn btn-gray btn-small" id="J_editAddrCancel">取消
+                                </button>
+                                <button type="button" class="btn btn-red btn-small" id="J_editAddrOk">保存</button>
+                            </div>
+                        </div>
+                        <!--点击弹出新增/收货地址界面end-->
                     </div>
                 </div>
                 <!-- 收货地址结束 -->
@@ -142,67 +196,40 @@
                                 <span class="col col-3">购买数量</span>
                                 <span class="col col-4">小计（元）</span>
                             </dt>
-                            <dd class="item fixWindow">
-                                <div class="item-row">
-                                    <div class="col col-1">
-                                        <div class="good-pic">
-                                            <img src="../static/images/beef.jpg" alt="" width="40px" height="40px">
-                                        </div>
-                                        <div class="good-info"><a href="../templates/shopitem.html">农夫好牛 精品肥牛卷鲜嫩牛肉卷1200g</a></div>
-                                    </div>
-                                    <div class="col col-2">99.00元</div>
-                                    <div class="col col-3">1</div>
-                                    <div class="col col-4">99.00元</div>
-                                </div>
-                            </dd>
-                            <dd class="item fixWindow">
-                                <div class="item-row">
-                                    <div class="col col-1">
-                                        <div class="good-pic">
-                                            <img src="../static/images/uimg.jpg" alt="" width="40px" height="40px">
-                                        </div>
-                                        <div class="good-info"><a href="../templates/shopitem.html">郑发哥 猪肉卷猪肉饼 500g 潮汕特产 潮汕家庭炒菜常备 潮汕猪肉饼500g</a>
-                                        </div>
-                                    </div>
-                                    <div class="col col-2">35.00元</div>
-                                    <div class="col col-3">3</div>
-                                    <div class="col col-4">105.00元</div>
-                                </div>
-                            </dd>
-                            <dd class="item fixWindow">
-                                <div class="item-row">
-                                    <div class="col col-1">
-                                        <div class="good-pic">
-                                            <img src="../static/images/vimg.jpg" alt="" width="40px" height="40px">
-                                        </div>
-                                        <div class="good-info"><a href="../templates/shopitem.html">坤兴 冷冻鱿鱼须国产鱿鱼爪 380g/包 火锅 烧烤 生鲜 海鲜水产</a></div>
-                                    </div>
-                                    <div class="col col-2">39.90元</div>
-                                    <div class="col col-3">1</div>
-                                    <div class="col col-4">39.90元</div>
-                                </div>
-                            </dd>
+                            <!--<dd class="item fixWindow">-->
+                            <!--    <div class="item-row">-->
+                            <!--        <div class="col col-1">-->
+                            <!--           <div class="good-pic">-->
+                            <!--               <img src="../static/images/beef.jpg" alt="" width="40px" height="40px">-->
+                            <!--            </div>-->
+                            <!--           <div class="good-info"><a href="../templates/shopitem.html">农夫好牛 精品肥牛卷鲜嫩牛肉卷1200g</a></div>-->
+                            <!--       </div>-->
+                            <!--         <div class="col col-2">99.00元</div>-->
+                            <!--         <div class="col col-3">1</div>-->
+                            <!--        <div class="col col-4">99.00元</div>-->
+                            <!--     </div>-->
+                            <!--</dd>-->
                         </dl>
                         <div class="good-confirm fixWindow">
                             <div class="good-confirm-note">
                                 <h3 class="title">会员留言</h3>
                                 <input type="text">
                             </div>
-                            <div class="good-confirm-price">
-                                <ul>
-                                    <li>订单总额：<span>343.90元</span></li>
-                                    <li>活动优惠：<span>-0元</span></li>
-                                    <li>优惠券抵扣：<span>-0元</span></li>
-                                    <li>运费：<span>0元</span></li>
-                                </ul>
-                                <p class="good-confirm-total">
-                                    应付总额：
-                                    <span>
-                                        <strong id="totalPrice">343.90</strong>
-                                        元
-                                    </span>
-                                </p>
-                            </div>
+                            <!--<div class="good-confirm-price">-->
+                            <!--<ul>-->
+                            <!--<li>订单总额：<span>343.90元</span></li>-->
+                            <!--<li>活动优惠：<span>-0元</span></li>-->
+                            <!--<li>优惠券抵扣：<span>-0元</span></li>-->
+                            <!--<li>运费：<span>0元</span></li>-->
+                            <!--</ul>-->
+                            <!--<p class="good-confirm-total">-->
+                            <!--应付总额：-->
+                            <!--<span>-->
+                            <!--<strong id="totalPrice">343.90</strong>-->
+                            <!--元-->
+                            <!--</span>-->
+                            <!--</p>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -210,7 +237,8 @@
                 <!-- 下单按钮 -->
                 <div class="good-confirm-btn">
                     <a href="#" class="btn btn-gray btn-back-cart">返回</a>
-                    <input type="submit" class="btn btn-red btn-order-now" value="立即下单" id="checkoutToPay">
+                    <input type="button" class="btn btn-red btn-order-now" value="立即下单" id="checkoutToPay"
+                           onclick="checkoutOrder()">
                 </div>
                 <!-- 下单按钮结束 -->
             </div>
@@ -218,9 +246,121 @@
     </div>
 </main>
 <footer>
-    页脚
+    
 </footer>
 
 </body>
+<script>
+    $(function () {
+        // 初始化 地址三级联动选择
+        $('#addr_select').distpicker({
+            province: '请选择省份/自治区',
+            city: '请选择城市/地区',
+            district: '请选择区/县'
+        });
+        var item_html = "";
+        // 商品跳转详情页 "127.0.0.1:5000/item/" + id
+        var item_url = "http://127.0.0.1:8000/item/";
+        var total_price = 0;
 
+        $.ajax({
+            // 此地址作为测试，实际应向上一级页面发get请求
+            url: 'http://127.0.0.1:5000/v1/order',
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function (request) {
+                // request.setRequestHeader("Authorization", token);
+            },
+            success: function (res) {
+                if (res.code == 200) {
+                    // alert('导入商品列表');
+                    var item = res.data.item
+                    if (item.length == 0) {
+                        alert('没有商品数据');
+                    } else {
+                        for (var i in item) {
+                            var id = item[i].id;
+                            var title = item[i].title;
+                            var image = item[i].image;
+                            var price = item[i].price;
+                            var count = item[i].count;
+                            item_html += '<dd class="item fixWindow">';
+                            item_html += '<div class="item-row">';
+                            item_html += '<div class="col col-1">';
+                            item_html += '<div class="good-pic">';
+                            item_html += '<img src="' + image + '" alt="" width="40px" height="40px">';
+                            item_html += '</div>';
+                            item_html += '<div class="good-info"><a href="' + item_url + id + '">' + title + '</a></div>';
+                            item_html += '</div>';
+                            item_html += '<div class="col col-2">' + price.toFixed(2) + '元</div>';
+                            item_html += '<div class="col col-3">' + count + '</div>';
+                            item_html += '<div class="col col-4">' + (price * count).toFixed(2) + '</div>';
+                            item_html += '</div>';
+                            item_html += '</dd>';
+                            total_price += price * count;
+                        }
+                    }
+                } else {
+                    alert(res.error);
+                }
+                $(".good-list dt").after(item_html);
+                total_price = total_price.toFixed(2);
+                var total_price_html = `<div class="good-confirm-price">
+                                <ul>
+                                    <li>订单总额：<span>${total_price}元</span></li>
+                                    <li>活动优惠：<span>0元</span></li>
+                                    <li>优惠券抵扣：<span>0元</span></li>
+                                    <li>运费：<span>0元</span></li>
+                                </ul>
+                                <p class="good-confirm-total">
+                                    应付总额：
+                                    <span>
+                                        <strong id="totalPrice">${total_price}</strong>
+                                        元
+                                    </span>
+                                </p>
+                            </div>`;
+                $(".good-confirm-note").after(total_price_html);
+
+            }
+        });
+        $.fn.serializeObject = function () {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+        var $checkoutForm = $('#checkout-form');
+        var formData = $checkoutForm.serializeObject();
+
+        function checkoutOrder() {
+            console.log('click checkout order button')
+            console.log(formData)
+            $.ajax({
+                url: 'http://127.0.0.1:5000/v1/order',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(formData),
+                contentType: 'application/json',
+                success: function (res) {
+                    if (res.code == 200) {
+                        alert('订单已生成');
+                        //window.localStorage.setItem('dnblog_token',res.data.token);
+                    } else {
+                        alert(res.error);
+                    }
+                }
+            });
+        }
+    })
+</script>
 </html>

@@ -76,20 +76,26 @@ button, input {
     background-color: #EE330A;
 }
 
-/* .header {
+.btn-small {
+    height: 28px;
+    line-height: 28px;
+    width: 118px;
+    font-size: 12px;
+}
+
+.header {
     width: 100%;
     height: 80px;
     background-color: red;
-} */
+}
 
 /* *******************mid********************** */
 main {
-    overflow: hidden;
-    border-top: 2px solid #aaa;
+    /* overflow: hidden; */
 }
 
 .main-body {
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
 }
 
@@ -127,7 +133,7 @@ main {
 
 /* 选中框 */
 .mbt-box .mbt-box-body .selected {
-    border-color: #ff4646;
+    border-color: #1E96FA;
     background: #fff;
     cursor: default;
 }
@@ -274,6 +280,7 @@ main {
     display: table;
     padding: 10px 0;
     color: #333;
+    margin-left: 0;
 }
 
 .good-list dt {
@@ -293,7 +300,7 @@ main {
 }
 
 .good-list dt .col-1 {
-    width: 840px;
+    width: 650px;
     padding-left: 20px
 }
 
@@ -321,7 +328,7 @@ main {
 }
 
 .good-list .item .col-1 {
-    width: 884px;
+    width: 650px;
     padding-left: 20px;
 }
 
@@ -412,9 +419,103 @@ main {
 .good-confirm-btn .btn-order-now{
     margin-left: 5px;
 }
+/* *******************new address********************** */
+.xm-edit-addr-box {
+	display:none;
+	position:absolute;
+	background:#fff;
+	border:1px solid #1E96FA;
+	z-index:1050
+}
+.xm-edit-addr-box .bd {
+	padding:20px
+}
+.xm-edit-addr-box .bd .item {
+	margin-bottom:10px
+}
+.xm-edit-addr-box .bd .item label {
+	display:none;
+	margin-bottom:5px
+}
+.xm-edit-addr-box .bd .item label span {
+	color:#ee330a
+}
+.xm-edit-addr-box .bd .item .input,.xm-edit-addr-box .bd .item .input-area {
+	width:240px;
+	background:#fff;
+	border:1px solid #dfdfdf;
+	color:#333
+}
+.xm-edit-addr-box .bd .item .input:focus,.xm-edit-addr-box .bd .item .input-area:focus {
+	border-color:#1E96FA;
+	outline:none
+}
+.xm-edit-addr-box .bd .item .input {
+	height:28px;
+	line-height:28px;
+	padding:0 10px
+}
+.xm-edit-addr-box .bd .item .input-area {
+	height:40px;
+	line-height:20px;
+	padding:5px 10px
+}
+.xm-edit-addr-box .bd .item .xm-ph-blur {
+	color:#8c8c8c
+}
+.xm-edit-addr-box .bd .item select {
+
+	margin-right:5px;
+	margin-bottom:8px
+}
+.xm-edit-addr-box .bd .item .select-1,.xm-edit-addr-box .bd .item .select-2 {
+	width:124px
+}
+.xm-edit-addr-box .bd .item .select-2 {
+	margin-right:0
+}
+.xm-edit-addr-box .bd .item .select-3 {
+	width:260px;
+	margin-right:0
+}
+.xm-edit-addr-box .bd .item .zipcode-tip {
+	margin:5px 0 0;
+	font-size:12px;
+	color:#8c8c8c
+}
+.xm-edit-addr-box .bd .item .tel-modify-tip {
+	display:none;
+	margin-top:5px;
+	color:#8c8c8c;
+	font-size:12px
+}
+.xm-edit-addr-box .bd .item .tel-modify-tip em {
+	color:#ee330a
+}
+.xm-edit-addr-box .bd .item .tip-msg {
+	display:none;
+	margin-top:5px;
+	color:#f32f39;
+	font-size:12px
+}
+.xm-edit-addr-box .ft {
+	padding:20px;
+	background:#fafafa;
+	text-align:center
+}
+.xm-edit-addr-box .ft .btn {
+	width:124px
+}
+.xm-edit-addr-box .ft .btn-gray {
+	float:left;
+	border-color:#dfdfdf
+}
+.xm-edit-addr-box .ft .btn-red {
+	float:right
+}
 /* *******************footer********************** */
-footer {
+/* footer {
     width: 100%;
     height: 80px;
     background-color: aquamarine;
-}
+} */

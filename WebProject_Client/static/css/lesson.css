@@ -28,21 +28,30 @@ video{
     height: 100%;
     width: 100%;
 }
+.hide{
+    display: none;
+}
 
 
 .title_area{
     width: 100%;
     height: 100px;
     text-align: left;
+
 }
 .title_area table{
     position: relative;
     top: 50px;
 }
+.title_area td{
+    /* border: 1px solid rgb(30, 150, 250); */
+
+}
 
 
 .title{
     height: 50px;
+    width: 860px;
     font-size: 30px;
     font-weight: bold;
 }
@@ -83,6 +92,13 @@ video{
     display: inline-block;
     margin-left: 10px;
 }
+.tag img{
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+}
+
+
 .blank{
     z-index: -1;
     position: absolute;
@@ -92,15 +108,16 @@ video{
     background-color:   #f7f8fa;
 }
 
-.content{
+.content {
     text-align: left;
     width: 70%;
+    min-height: 700px;
     margin-top: 120px;
-    background-color:rgb(206, 208, 255, 0.5);
+    background-color:rgb(206, 208, 255, 0.2);
     margin-left: 10px;
     border-radius: 5px;
     padding: 10px;
- 
+    color: #333;
 }
 
 .content samp{
@@ -111,9 +128,17 @@ video{
     max-height: 500px;
     margin: 10px auto;
 }
+.action, .commentlist{
+    width: 70%;
+    border-top: 2px solid  #f7f8fa;
+    background-color:rgb(206, 208, 255, 0.2);
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 0 10px;
+}
 .action{
     height: 50px;
-    border-top: 2px solid  #f7f8fa;
+    background-color:rgb(206, 208, 255, 0.4);
 }
 .action ul{
     display: inline-block;
@@ -136,10 +161,49 @@ video{
 
 }
 
+.commentlist ul>li{
+    margin: 10px 0;
+    min-height: 70px;
+    color: #333;
+}
+.commentlist ul>li:first-child{
+    background-color: rgb(255, 255, 255, 0.5);
+}
+.buttom{
+    text-align: center;
+}
+
+.head{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(30, 150, 250);
+    background-size: cover;
+    background-position: 50% 50%;
+    float: left;
+    margin: 5px 10px 5px 5px;
+}
+.time{
+    margin: 5px;
+}
+.body{
+    margin: 5px;
+    min-height: 50px;
+    padding-bottom: 5px;
+    /* border-top: 2px solid rgb(30, 150, 250, 0.4); */
+    border-bottom: 2px dashed rgb(30, 150, 250, 0.2);
+}
+
+.subcomment{
+    width: 85%;
+    margin-left: 100px;
+}
+
+
 
 
 #goods{
-
+    z-index: 1;
     width: 200px;
     height:200px;
     border: 1px solid rgb(255, 255, 255);

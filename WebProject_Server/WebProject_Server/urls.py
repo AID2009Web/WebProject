@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from user import views as user_views
+from order import views as order_views
 # from wtoken import views as wtoken_views
 
 
@@ -29,6 +30,8 @@ urlpatterns = [
     # path('v1/tokens', wtoken_views.TokenView.as_view()),
     path('v1/topic/',include('topic.urls')),
     path('v1/lesson/',include('lesson.urls')),
+    path('v1/message/',include('message.urls')),
+    path('v1/order', order_views.OrderView.as_view()),
     
 ]
 

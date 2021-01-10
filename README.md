@@ -1,13 +1,40 @@
 # 初始文件
-V2.2021/01/01
-V1.2020/12/12
+V3.2021/01/10  
+V2.2021/01/01  
+V1.2020/12/12  
 
 ### GIT  
 
 * 使用github 备份  
 * .gitignore文件默认跳过缓存文件  
-  * `WebProject_Client/WebProject_Client/__pycache__`
-  * `WebProject_Server/WebProject_Server/__pycache__`
+  * `WebProject_Client/WebProject_Client/__pycache__`  
+  * `WebProject_Server/WebProject_Server/__pycache__`  
+  * 以及各个APP下所生成的`__pycache__`  
+  * 以及各个APP下migrations所生成的迁移文件。  
+
+### 同步开发需要注意的点  
+1. 数据库创建  
+1.1 创建名为web的数据库（编码UTF8）  
+`create database web default charset utf8;`  
+1.2 WebProject_Server下的setting.py文件，确认DATABASES配置正确。  
+1.3 WebProject_Server下进行数据迁移生成表。  
+`python3 manage.py makemigrations`  
+`python3 manage.py migrate`  
+2. 服务开启(nginx/uwsgi未配置时)  
+2.1 WebProject_Server开启端口为5000的服务。  
+`python3 manage.py runserver 0.0.0.0:5000`  
+2.2 WebProject_Client开启端口为8000的服务。  
+`python3 manage.py runserver 0.0.0.0:8000`  
+2.3 Celery开启服务（如不使用异步处理SMS时不开启,如需开启需要Redis支持）  
+`~`  
+3. 局域网演示  
+3.1 WebProject_Server下的setting.py文件，确认ALLOWED_HOSTS是否绑定开启服务的本机IP。  
+3.2 WebProject_Client/static/js下的init.js文件确认地址开启正确。  
+4. 服务器上线  
+4.1 待完善  
+
+
+
 
 ### Django  
 部分设置  
@@ -30,10 +57,14 @@ V1.2020/12/12
 |`/login`|`login.html`|登录注册页|
 |`/u/<uid>/info`||用户个人信息页|
 |`/u/<uid>/hm`|`homepage_m.html`|用户个人动态页|
+|`/u/<uid>/hl`|`homepage_l.html`|用户个人教程页|
 |`/u/<uid>/hc`|`homepage_c.html`|用户收藏页|
 |`/square`|`square.html`|广场页|
 |`/shop`|`shop.html`|商城页|
 |`/<uid>/topic`|`topic.html`|发布动态页|
+|`/<int:uid>/lesson`|`lesson_add.html`|发布教程页|
+|`/<int:uid>/lesson/<int:lid>`|`lesson.html`|教程详细页|
+
 
 
 * WebProject/urls.py  
@@ -42,16 +73,9 @@ V1.2020/12/12
     * 增加静态CSS/JS导入方法  
 
 * templates 文件夹为放HTML文件  
-
-    * 默认模板为index.html 增加了
-        1. header / main / footer 标签
-        2. 默认导入common.css和 jQuery
-
 * static/css 文件夹为放CSS样式
-
-    * 其中common.css 样式为通用样式  用于统一风格 后续可更改 	
-
-* images 文件夹为图标/图片文件存放  
+* static/css 文件夹为放js文件
+* static/images 文件夹为图标/图片文件存放  
 
 #### WebProject_Server 即网站后端  
 * 设置 settings.py   
