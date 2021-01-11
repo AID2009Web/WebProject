@@ -17,15 +17,15 @@ class LessonView(View):
 
   @method_decorator(login_check)
   def post(self, request, uid):
-    json_str = request.body
-    py_obj = json.loads(json_str)
+    
 
-    title = py_obj['title']
-    category = py_obj['category']
-    limit = py_obj['limit']
-    content = py_obj['content']
-    content_text = py_obj['content_text']
-    video = py_obj['video']
+    title = request.POST.get('title')
+    category = request.POST.get('category')
+    limit = request.POST.get('limit')
+    content = request.POST.get('content')
+    content_text = request.POST.get('content_text')
+    video = request.POST.get('video')
+    
 
     if limit not in ['public', 'private']:
       result = {'code': 10401, 'error': '权限码错误'}
@@ -37,14 +37,28 @@ class LessonView(View):
 
     introduce = content_text[:110]+'...'
 
+    img_exist = False
+    try:
+      image = request.FILES['cover']
+      img_exist = True
+    except:
+      img_exist = False
+    print(img_exist)
     author = request.myuser
     try:
-      Lesson.objects.create(title=title, category=category, limit=limit, introduce=introduce, content=content, video=video, author=author)
+      if img_exist:
+        print(image)
+        Lesson.objects.create(title=title, category=category, limit=limit, introduce=introduce, content=content, video=video, image=image, author=author)
+      else:
+        Lesson.objects.create(title=title, category=category, limit=limit, introduce=introduce, content=content, video=video, author=author)
+
     except:
       result = {'code': 10403, 'error': '入库失败'}
       return JsonResponse(result)
     return JsonResponse({'code': 200, 'uid': author.id,})
       
+
+    
   def get(self, request, uid):
     try:
       author = User.objects.get(id=uid)

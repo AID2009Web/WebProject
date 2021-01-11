@@ -9,11 +9,12 @@ $(function(){
 
   var token = window.localStorage.getItem('web_token');
   var uid = window.localStorage.getItem('web_user');
+
+  // 未登录将重定向，ID不一致则禁止访问
   if(!(token)){
     alert('请先登录');
     $('body').addClass('hide');
     window.location.href = '/login';
-    
   }
   if(uid != author_uid){
     alert('地址错误禁止访问，正在重定向...');
@@ -24,7 +25,7 @@ $(function(){
   const editor = new E('#editor');
   editor.create();
 
-
+  // 用户信息获取
   $.ajax({
     url: BASE_URL+'/v1/u/'+ uid,
     type: 'GET',
@@ -36,18 +37,9 @@ $(function(){
         console.log(res);
         if (res.data.avatar){
           var avatar_url = BASE_URL+'/media/'+ res.data.avatar;
-        }else{
-          var avatar_url = BASE_URL_WEB+'/static/images/head/boy.png';
         }
-        
         $('.tx img').attr('src', avatar_url);
         $('.yhm').html(res.data.nickname);
-        $('.nickname').attr('value', res.data.nickname);
-        $('.gender').val(res.data.gender);
-        $('.location').val(res.data.location);
-        $('.birthday').attr('value', res.data.birthday);
-        $('.sign').attr('value', res.data.sign);
-        $('.profile').html(res.data.info);
         
       }else{
         alert(res.error);
@@ -56,31 +48,37 @@ $(function(){
   });
 
   sumbit = function (){
+    var token = window.localStorage.getItem('web_token');
     var title = $('#title').val();
     var content_text = editor.txt.text();
     var content = editor.txt.html();
     var limit = $("input[name='limit']:checked").val();
     var category = $("input[name='category']:checked").val();
     var video = $('#video').val();
-    var post_data = {
-      'title': title,
-      'category': category,
-      'limit': limit,
-      'content': content,
-      'content_text': content_text,
-      'video': video,
+
+    var formdata = new FormData();
+    if($('#cover')[0].files[0]){
+      formdata.append('cover',$('#cover')[0].files[0]);
     }
-    console.log(post_data)
+    formdata.append('title', title)
+    formdata.append('category', category)
+    formdata.append('limit', limit)
+    formdata.append('content', content)
+    formdata.append('content_text', content_text)
+    formdata.append('video', video)
+    console.log(formdata)
     console.log(uid);
     
     $.ajax({
       type: 'POST',
-      contentType: 'application/json',
+      contentType: false,
+      processData: false,
       dataType: 'json',
       url: BASE_URL + '/v1/lesson/' + uid,
-      data: JSON.stringify(post_data),
+      data: formdata,
       beforeSend: function(request){
         request.setRequestHeader('Authorization', token);
+        console.log(token);
       },
       success: function(res){
         if(res.code==200){
@@ -89,7 +87,7 @@ $(function(){
           
           window.location.href = BASE_URL_WEB + '/' + uid +'/hl'
         }else{
-          alert(res.error)
+          alert(res.code)
         }
       }
     })

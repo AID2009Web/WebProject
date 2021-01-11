@@ -13,7 +13,7 @@ def login_check(func):
     try:
       payload = jwt.decode(token, settings.JWT_TOKEN_KEY, algorithms='HS256')
     except:
-      result = {'code': 10110, 'error': '用户未登录'}
+      result = {'code': 10111, 'error': '用户未登录'}
       return JsonResponse(result)
 
     uid = payload['uid']
