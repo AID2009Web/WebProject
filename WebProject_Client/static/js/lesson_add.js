@@ -96,6 +96,20 @@ $(function(){
   }
     
   upload = function(){
-
+    viewImage();
   }
+  function viewImage(){
+    var file = $('#cover').prop('files')[0];
+    console.log(file);
+    
+    if (file){
+      console.log('1')
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = function(even){
+        $('#cover_preview').attr('style', 'background-image: url('+even.currentTarget.result+');');
+      }
+    }
+  }
+  
 })

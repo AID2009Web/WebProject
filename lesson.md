@@ -97,7 +97,7 @@ json 具体参数如下：
 |data|{}|返回教程数据。id/title/category/limit/inductor/content/author/created_time/message|
 
 响应示例：  
-{'code': 200, 'data':{'id':lesson_id, 'category': 'food', 'limit':'public', 'introduce':'sss', 'content': 'xxx', 'author':nickname, 'created_time':'2020-12-31 12:00:00','messages_count': 2, 'messages':{'content': 'vvv', 'created_time': "2021-01-10 23:18:15", 'id': 8, 'publisher': "用户3210", 'publisher_avatar': "avatar/boy.png", 'reply': [{'msg_id': 10, 'content': "11", 'publisher': "用户8901", 'publisher_avatar': "avatar/a_DKe6dJZ.jpg",created_time: "2021-01-10 23:19:30"}]
+{'code': 200, 'data':{'id':lesson_id, 'category': 'food', 'limit':'public', 'introduce':'sss', 'content': 'xxx', 'author':nickname, 'created_time':'2020-12-31 12:00:00','messages_count': 2, 'messages':{'content': 'vvv', 'created_time': "2021-01-10 23:18:15", 'id': 8, 'publisher': "用户3210", 'publisher_avatar': "avatar/boy.png", 'reply': [{'msg_id': 10, 'content': "11", 'publisher': "用户8901", 'publisher_avatar': "avatar/a_DKe6dJZ.jpg",created_time: "2021-01-10 23:19:30"}]}}}
 ### 3.4 异常码  
 |异常码|含义|备注|
 |---|---|---|

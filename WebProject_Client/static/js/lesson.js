@@ -52,7 +52,10 @@ $(function(){
     success: function(res){
       if(res.code == 200){
         console.log(res);
-        if(!(res.data.vide)){
+        if(res.data.vide != ''){
+          var video = `<source src="`+res.data.vide+`" type="video/mp4" />`;
+          $('video').append(video);
+        }else{
           $('.video').addClass('hide');
         }
         $('.title').html(res.data.title);
@@ -88,7 +91,7 @@ $(function(){
         }
 
         var list = document.getElementsByClassName('replyComment');
-        console.log(list);
+        // console.log(list);
         for(var i of list){
           i.addEventListener('click', function(even){
             even.preventDefault();
