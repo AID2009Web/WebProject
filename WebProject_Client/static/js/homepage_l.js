@@ -65,17 +65,21 @@ $(function(){
           
         }else{
           $('.message').css('height','100%')
-
-          for(var i=0;i<lessons.length;i++){
-
+          for(var lesson of lessons){
+            if(lesson.image != ''){
+              var cover = `style="background-image: url(`+BASE_URL+'/media/' + lesson.image+`);"`;
+            }else{
+              var cove = '';
+            }
+            var view_link = BASE_URL_WEB + '/' + homepage_uId + '/lesson/'+ lesson.id + '#action';
             if(1){
               var view = `
               <div class="view">
                 <ul>
                     <li>
-                        <a href="javascript:void(0)" >
+                        <a href="`+view_link+`" class="comment">
                             <img src="../static/images/icon/comment.png" alt="">
-                            <div>1231</div>
+                            <div>`+lesson.comment+`</div>
                         </a>
                     </li>
                     <li>
@@ -94,16 +98,16 @@ $(function(){
               </div>`
               
               var html = `
-              <li>
+              <li lid="`+lesson.id+`">
                 <div class="msg_withpic" data-scroll-reveal="enter bottom over 1s">
-                <div class="msg_pic">
-                  <img src="../static/images/pic/18.jpeg" alt="" class="msg_img">
-                </div>
+                  <div class="msg_pic">
+                    <div class="msg_img"`+cover+`></div>
+                  </div>
                   <div class="user_m">
                     <div class="head"></div>
-                    <div class="info">`+ res.data.lessons[i].author +`</div>
-                    <div class="time">`+ res.data.lessons[i].created_time+`</div>
-                    <span class="content">`+ res.data.lessons[i].introduce +`</span>`
+                    <div class="info">`+ lesson.author +`</div>
+                    <div class="time">`+ lesson.created_time+`</div>
+                    <span class="content">`+ lesson.introduce +`</span>`
                     + view + `
                   </div>
                 </div>
@@ -112,17 +116,18 @@ $(function(){
               
               $('.message>ul').prepend(html);
               
-              var id = res.data.lessons[i].id
-              $('.msg_img').on('click',function(){
-                window.location.href= BASE_URL_WEB + '/' + homepage_uId + '/lesson/'+ id;
-                console.log(id);
-              })
             }
-        
+            
           }
           //初始化scroll
           window.scrollReveal = new scrollReveal();
           $('.head').css('background-image', ('url('+avatar_url+')'))
+          // 添加跳转
+          $('.msg_img').on('click',function(){
+            var id = $(this).parents('li').attr("lid")
+            console.log(id);
+            window.location.href = BASE_URL_WEB + '/' + homepage_uId + '/lesson/'+ id
+          })
         }
       }else{
         alert(res.error)

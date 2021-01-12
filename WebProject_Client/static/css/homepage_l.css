@@ -136,7 +136,7 @@
 
   width: 300px;
   /* height: 150px; */
-  top: 870px;
+  top: 800px;
   display: inline-block;
 }
 .personalData ul{
@@ -192,13 +192,19 @@
   overflow: hidden;
   /* display: inline-block; */
   /* border: 1px solid blue; */
+  border: 1px solid rgb(30, 150, 250);
   border-radius: 5px;
   margin: 10px;
   float: left;
+  transition: all 0.5s;
+  
 }
 
 .msg_img{
   height: 100%;
+  background-image: url();
+  background-size: cover;
+  background-position: 50% 50%;
   transition: all 0.5s;
 }
 .msg_img:hover{
@@ -214,7 +220,7 @@
   padding-bottom: 5px;
 }
 .user_m{
-  width: 340px;
+  width: 320px;
   max-height: 220px;
   display: inline-block;
   padding: 10px;

@@ -22,15 +22,19 @@ $(function(){
           </a>
       </div>
       <div class="user_area is_logout">
-        <a href="javascript:void(0)" id="setting">
-            <img src="/static/images/icon/setting.png" alt="">
-        </a>
-        <a href="javascript:void(0)" id="user">
-          <div>
-            <img src="/static/images/icon/user.png" alt="">
-            <div class="username"></div>
+        
+          <div id="setting">
+            <a href="javascript:void(0)" id="user">
+              <img src="/static/images/icon/user.png" alt="">
+              <div class="username"></div>
+            </a>    
+            <ul>
+              <li class="changeInfo">修改信息</li>
+              <li class="loginout">登出</li>
+            </ul>
           </div>
-        </a>
+          
+        
       </div>
   </nav>`
   $('header').append(html);  
@@ -55,7 +59,15 @@ $(function(){
         if(res.code == 200){
           $('.username').html(res.data.nickname);
           $('#user').attr('href',BASE_URL_WEB+ '/' + uid + '/hm');
-          $('#setting').attr('href',BASE_URL_WEB+ '/' + uid + '/info');
+          $('.changeInfo').on('click', function(){
+            window.location.href = BASE_URL_WEB+ '/' + uid + '/info';
+          });
+          $('.loginout').on('click', function(){
+            window.localStorage.removeItem('web_user');
+            window.localStorage.removeItem('web_token');
+            window.location.reload();
+          })
+          
         }else{
           alert(res.error)
         }

@@ -2,17 +2,59 @@ from django.shortcuts import render
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
+from django.core.cache import cache
 
 import json
 
 from tools.login_dec import login_check, get_user_by_request
+from tools.cache_dec import lesson_cache
 from user.models import User
 from lesson.models import Lesson
 from message.models import MessageLesson
 
 # Create your views here.
 class LessonView(View):
-  
+  @method_decorator(lesson_cache(600))
+  def get(self, request, uid):
+    # print('-in views-')
+    try:
+      author = User.objects.get(id=uid)
+    except:
+      result = {'code': 10404, 'error': '访问用户不存在' }
+      return JsonResponse(result)
+
+    vistor = get_user_by_request(request)
+
+    lid = request.GET.get('lid')
+    is_self = False
+
+    if lid:
+      if vistor == author.id:
+        is_self = True
+        try: 
+          author_lesson = Lesson.objects.get(id=lid, author_id=author.id)
+        except:
+          result = {'code': 10405, 'error': '访问教程不存在'}
+          return JsonResponse(result)
+      else:
+        try: 
+          author_lesson = Lesson.objects.get(id=lid, author_id=author.id, limit='public')
+        except:
+          result = {'code': 10405, 'error': '访问教程不存在'}
+          return JsonResponse(result)
+      
+      res = self.make_lesson_res(author, author_lesson, is_self)
+      return JsonResponse(res)
+
+    else:
+      if vistor == author.id :
+        author_lessons = Lesson.objects.filter(author_id=author.id)
+      else:
+        author_lessons = Lesson.objects.filter(author_id=author.id, limit='public')
+
+      res = self.make_lessons_res(vistor, author, author_lessons)
+      return JsonResponse(res)
+
 
 
   @method_decorator(login_check)
@@ -55,49 +97,40 @@ class LessonView(View):
     except:
       result = {'code': 10403, 'error': '入库失败'}
       return JsonResponse(result)
+    
+    self.clear_lesson_cache(request)
     return JsonResponse({'code': 200, 'uid': author.id,})
       
-
-    
-  def get(self, request, uid):
+  @method_decorator(login_check)
+  def delete(self, request, uid):
     try:
       author = User.objects.get(id=uid)
     except:
       result = {'code': 10404, 'error': '访问用户不存在' }
       return JsonResponse(result)
 
-    vistor = get_user_by_request(request)
+    operator = request.myuser
+    if operator != author:
+      print(operator)
+      print(author.id)
+      result = {'code': 10406, 'error': '没有权限'}
+      return JsonResponse(result)
 
     lid = request.GET.get('lid')
-    is_self = False
+    try: 
+      author_lesson = Lesson.objects.get(id=lid, author_id=author.id)
+    except:
+      result = {'code': 10405, 'error': '访问教程不存在'}
+      return JsonResponse(result)
 
-    if lid:
-      if vistor == author.id:
-        is_self = True
-        try: 
-          author_lesson = Lesson.objects.get(id=lid, author_id=author.id)
-        except:
-          result = {'code': 10405, 'error': '访问教程不存在'}
-          return JsonResponse(result)
-      else:
-        try: 
-          author_lesson = Lesson.objects.get(id=lid, author_id=author.id, limit='public')
-        except:
-          result = {'code': 10405, 'error': '访问教程不存在'}
-          return JsonResponse(result)
-      
-      res = self.make_lesson_res(author, author_lesson, is_self)
-      return JsonResponse(res)
+    try:
+      author_lesson.delete()
+    except:
+      result = {'code': 10407, 'error': '数据库操作失败'}
+      return JsonResponse(result)
 
-    else:
-      if vistor == author.id :
-        author_lessons = Lesson.objects.filter(author_id=author.id)
-      else:
-        author_lessons = Lesson.objects.filter(author_id=author.id, limit='public')
-
-      res = self.make_lessons_res(vistor, author, author_lessons)
-      return JsonResponse(res)
-
+    self.clear_lesson_cache(request)
+    return JsonResponse({'code': 200})
 
   def make_lessons_res(self, vistor_id, author, author_lessons):
     lessons_res = []
@@ -107,8 +140,11 @@ class LessonView(View):
       data['category'] = lesson.category
       data['limit'] = lesson.limit
       data['introduce'] = lesson.introduce
+      data['image'] = str(lesson.image)
       data['author'] = author.nickname
       data['created_time'] = lesson.created_time.strftime('%Y-%m-%d %H:%M:%S')
+
+      data['comment'] = self.get_all_messages(lesson)[1]
       lessons_res.append(data)
 
     result = {'code': 200, 'data': {}}
@@ -127,8 +163,13 @@ class LessonView(View):
     result['data']['video'] = author_lesson.video
     result['data']['author'] = author.nickname
     result['data']['created_time'] = author_lesson.created_time.strftime('%Y-%m-%d %H:%M:%S')
-    
 
+    msg_list, msg_count = self.get_all_messages(author_lesson)
+    result['data']['messages'] = msg_list
+    result['data']['messages_count'] = msg_count
+    return result
+    
+  def get_all_messages(self, author_lesson):
     all_messages = MessageLesson.objects.filter(lesson=author_lesson).order_by('-created_time')
     msg_list = []
     r_dict = {}
@@ -156,9 +197,16 @@ class LessonView(View):
     for m in msg_list:
       if m['id'] in r_dict:
         m['reply'] = r_dict[m['id']]
+    return msg_list,msg_count
 
-    result['data']['messages'] = msg_list
-    result['data']['messages_count'] = msg_count
-    return result
+  def clear_lesson_cache(self, request):
+    path = request.path_info
+    all_key_p = ['lesson_cache_self_', 'lesson_cache_']
+    all_keys = []
+    for key_p in all_key_p:
+      for key_h in ['', '?category=food', '?category=life']:
+        all_keys.append(key_p + path + key_h)
+    cache.delete_many(all_keys)
+    
 
 

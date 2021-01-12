@@ -31,7 +31,7 @@
             <div class="vlocation">
                 <video controls="controls" autoplay="autoplay"  >
                     <!-- <source src="http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.ogg" type="video/ogg" /> -->
-                    <source src="http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4" type="video/mp4" />
+                    <source src="http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4" type="video/mp4" referrerPolicy="no-referrer">
                     <!-- <source src="http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.webm" type="video/webm" />
                     <object data="http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.mp4">
                         <embed src="http://vfx.mtime.cn/Video/2019/03/18/mp4/190318231014076505.swf">
@@ -75,9 +75,14 @@
                         </li>
                         <li class="tag">
                             <a href="Javascript:void(0)">
-                                美食
                                 <img src="/static/images/icon/tag.png" alt="">
                             </a>
+                        </li>
+                        <li class="options">...
+                            <ul>
+                                <li id="modify">修改</li>
+                                <li id="del">删除</li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -86,7 +91,7 @@
             <div class="content">  
                 没有内容
             </div>
-            <div class="action">
+            <div class="action" id='action'>
                 <ul>
                     <li>
                         <a href="Javascript:void(0)">

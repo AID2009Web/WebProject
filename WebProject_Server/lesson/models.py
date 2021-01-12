@@ -8,7 +8,7 @@ class Lesson(models.Model):
   limit = models.CharField('权限', max_length=10)
   introduce = models.CharField('简介', max_length=120)
   content = models.TextField('内容')
-  image = models.ImageField(upload_to='lesson', null=True)
+  image = models.ImageField(upload_to='lessonCover', null=True)
   video = models.CharField('视频外链',max_length=300)
   created_time = models.DateTimeField(auto_now_add=True)
   updated_time = models.DateTimeField(auto_now=True)

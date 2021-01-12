@@ -53,13 +53,14 @@ $(function(){
       if(res.code == 200){
         console.log(res);
         if(res.data.vide != ''){
-          var video = `<source src="`+res.data.vide+`" type="video/mp4" />`;
-          $('video').append(video);
+          // var video = `<source src="`+res.data.vide+`" type="video/mp4" />`;
+          // $('video').append(video);
         }else{
           $('.video').addClass('hide');
         }
         $('.title').html(res.data.title);
-        $('.content_info .date').html('发表日期：'+res.data.created_time)
+        $('.content_info .date').html('发表日期：'+res.data.created_time);
+        $('.tag a img').after(res.data.category);
         $('.content').html(res.data.content);
         $('.comment span').text(res.data.messages_count)
         for(var message of res.data.messages){
@@ -112,10 +113,10 @@ $(function(){
                   },
                   success: function(res){
                     if(res.code == 200){
-                      alert('评论成功')
-                      window.location.reload()
+                      alert('评论成功');
+                      window.location.reload();
                     }else{
-                      alert(res.error)
+                      alert(res.error);
                     }
                   }
                 })
@@ -125,7 +126,11 @@ $(function(){
         }
 
       }else{
-        alert(res.error)
+        alert(res.error);
+        if(res.code == 10405){
+          $('html').addClass('hide');
+          window.location.href = BASE_URL_WEB + '/' + author_uid + '/hl';
+        }
       }
     }
   })
@@ -136,7 +141,7 @@ $(function(){
   editor.customConfig.zIndex = 0;
   editor.create();
 
-
+  // 评论
   sumbit = function (){
     var content_text = editor.txt.text();
     var post_data = {'content': content_text} 
@@ -163,6 +168,25 @@ $(function(){
     }
     
   }
+
+  // 删除
+  $('#del').on('click',function(){
+    $.ajax({
+      type: 'DELETE',
+      url: BASE_URL+'/v1/lesson/'+author_uid+'?lid='+lid,
+      beforeSend: function(request){
+        request.setRequestHeader("Authorization", token);
+      },
+      success: function(res){
+        if (res.code == 200){
+          alert('删除成功');
+          window.location.href = BASE_URL_WEB +'/'+ uid + '/hl';
+        }else{
+          alert(res.error)
+        }
+      }
+    })
+  })
 
 
 

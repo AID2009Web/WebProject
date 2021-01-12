@@ -75,9 +75,9 @@ class UsersView(View):
       if not cache_code:
         result = {'code': 10105, 'error': '验证码已过期'}
         return JsonResponse(result)
-      if int(sms) != cache_code:
-        result = {'code': 10106, 'error': '验证码输入错误'} 
-        return JsonResponse(result)
+      # if int(sms) != cache_code:
+      #   result = {'code': 10106, 'error': '验证码输入错误'} 
+      #   return JsonResponse(result)
         
     
     # if pwd:

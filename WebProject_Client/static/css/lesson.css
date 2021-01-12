@@ -83,6 +83,8 @@ video{
 }
 .content_info ul{
     display: inline-block;
+    height: 30px;
+    line-height: 30px;
     position: relative;
     top: 50px;
     left: 140px;
@@ -96,6 +98,17 @@ video{
     height: 20px;
     float: left;
     margin-right: 10px;
+}
+.options:hover {
+    cursor: pointer;
+}
+.options ul{
+    display: none;
+    top: 0;
+    left: 0;
+}
+.options:hover ul{
+    display: inline-block;
 }
 
 

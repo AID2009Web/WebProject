@@ -23,6 +23,7 @@ $(function(){
 
   const E = window.wangEditor;
   const editor = new E('#editor');
+  editor.customConfig.zIndex = 0;
   editor.create();
 
   // 用户信息获取
@@ -92,11 +93,8 @@ $(function(){
       }
     })
   }
-    
-  upload = function(){
-    viewImage();
-  }
-  function viewImage(){
+  
+  $('#cover').change(function viewImage(){
     var file = $('#cover').prop('files')[0];
     console.log(file);
     
@@ -104,10 +102,12 @@ $(function(){
       console.log('1')
       var reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onloadend = function(even){
+      reader.onload = function(even){
         $('#cover_preview').attr('style', 'background-image: url('+even.currentTarget.result+');');
       }
     }
-  }
+  });
+
+  
   
 })

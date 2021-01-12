@@ -20,7 +20,7 @@ URL: `http://127.0.0.1:5000/v1/lesson/<uid>`
 ### 1.1 请求方式  
 POST
 ### 1.2 请求格式  
-json 具体参数如下：  
+fromdata 具体参数如下：  
 |字段|类型|备注|
 |---|---|---|
 |title|varchar||
@@ -30,8 +30,7 @@ json 具体参数如下：
 |content|varchar|内容带HTML格式|
 |image|varchar|封面图|
 |video|text|教程视频外链|
-请求示例：  
-`{'title':'xxx', 'category':'food', 'limit':'public', 'content_text':'xxx','content': '<p>xxx</p>', 'video':'xxxx'} `
+
 ### 1.3 响应格式  
 json 具体参数如下：  
 |字段|类型|备注|
@@ -69,10 +68,10 @@ json 具体参数如下：
 |error|varchar|错误提示|
 |data|{}|返回数据。|
 |reader|varchar|用户ID数据库编码|
-|lessons|[]|返回教程数据。id/title/category/limit/inductor/author/created_time|
+|lessons|[]|返回教程数据。id/title/image/category/limit/inductor/author/created_time|
 
 响应示例：  
-{'code': 200, 'data':{'reader': '123', 'lessons':[{'id':lesson_id, 'category': 'food', 'limit':'public', 'introduce':'sss', 'author':nickname, 'created_time':'2020-12-31 12:00:00'}]}}  
+{'code': 200, 'data':{'reader': '123', 'lessons':[{'id':lesson_id, 'title':'xx', 'image':'xxx','category': 'food', 'limit':'public', 'introduce':'sss', 'author':nickname, 'created_time':'2020-12-31 12:00:00'}]}}  
 ### 2.4 异常码  
 |异常码|含义|备注|
 |---|---|---|
@@ -104,6 +103,34 @@ json 具体参数如下：
 |10400|请求错误||
 |10404|访问用户不存在||
 |10405|访问教程不存在||
+|500|服务器异常||
+异常响应示例：  
+{'code': 10404, 'error': '访问用户不存在'} 
+
+### 4.删除教程详情接口  
+URL: `http://127.0.0.1:5000/v1/lesson/<uid>？lid=<lid>`  
+### 4.1 请求方式  
+DELETE
+### 4.2 请求格式  
+地址后添加查询字符串lid,值为具体教程文章ID
+### 4.3 响应格式  
+json 具体参数如下：  
+|字段|类型|备注|
+|---|---|---|
+|code|int|状态码。默认正常为200，异常见4.4|
+|error|varchar|错误提示|
+
+
+响应示例：  
+{'code': 200 }
+### 3.4 异常码  
+|异常码|含义|备注|
+|---|---|---|
+|10400|请求错误||
+|10404|访问用户不存在||
+|10405|访问教程不存在||
+|10406|没有权限删除||
+|10407|数据库操作失败||
 |500|服务器异常||
 异常响应示例：  
 {'code': 10404, 'error': '访问用户不存在'} 

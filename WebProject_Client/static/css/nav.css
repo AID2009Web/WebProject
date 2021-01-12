@@ -6,7 +6,12 @@ nav{
   margin: 0 auto;
   line-height: 60px;
   /* 为后面元素添加定位 */
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 10;
   box-shadow: -3px 2px 7px  rgb(70, 70, 70);
 }
 #logo{
@@ -31,7 +36,7 @@ nav{
 .user_btn{
   background-color: #fff;
 }
-.user_btn a, .user_area a{
+.user_btn a, .user_area {
   /* position: absolute; */
   color: #000;
   font-size: 18px;
@@ -54,11 +59,13 @@ nav{
   text-align: center;
   line-height: 40px;
 }
-.user_area{
 
-}
-.user_area a{
+.user_area{
   margin-right: 40px;
+  /* width: 200px; */
+}
+.user_area a>div{
+  display: inline-block;
 }
 .username{
   width: 130px;
@@ -67,19 +74,25 @@ nav{
   height: 60px;
   display: block;
 }
-#setting{
-  /* margin-right: 40px; */
+#setting ul{
+  display: none;
+  background-color: #fff;
+  text-align: center;
+  padding: 5px;
 }
-#user img{
-  height: 30px;
+#setting:hover ul{
   display: block;
-  margin: 15px 15px 0 0;
-  float: left;
+}
+#setting ul>li:hover{
+  background-color: rgb(30, 150, 250, 0.4);
+  cursor:pointer;
 }
 #setting img{
   height: 30px;
-  margin: 15px 0;
+  margin: 15px 15px 0 0;
+  float: left;
 }
+
 
 .is_logout{
   display: none;
