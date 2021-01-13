@@ -171,21 +171,23 @@ $(function(){
 
   // 删除
   $('#del').on('click',function(){
-    $.ajax({
-      type: 'DELETE',
-      url: BASE_URL+'/v1/lesson/'+author_uid+'?lid='+lid,
-      beforeSend: function(request){
-        request.setRequestHeader("Authorization", token);
-      },
-      success: function(res){
-        if (res.code == 200){
-          alert('删除成功');
-          window.location.href = BASE_URL_WEB +'/'+ uid + '/hl';
-        }else{
-          alert(res.error)
+    window.wxc.xcConfirm("确认删除？",{onOk:function(){
+      $.ajax({
+        type: 'DELETE',
+        url: BASE_URL+'/v1/lesson/'+author_uid+'?lid='+lid,
+        beforeSend: function(request){
+          request.setRequestHeader("Authorization", token);
+        },
+        success: function(res){
+          if (res.code == 200){
+            alert('删除成功');
+            window.location.href = BASE_URL_WEB +'/'+ uid + '/hl';
+          }else{
+            alert(res.error)
+          }
         }
-      }
-    })
+      })
+    }})
   })
 
 

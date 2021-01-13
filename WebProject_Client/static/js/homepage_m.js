@@ -96,13 +96,22 @@ $(function(){
                 </ul>
               </div>`
               
+              var options =`
+                <div class="options">[+]
+                  <ul>
+                    <li id="modify">修改</li>
+                    <li id="del">删除</li>
+                  </ul>
+                </div>`
+
               var html = `
-              <li>
+              <li tid=`+topic.id+`>
                 <div class="msg_withoutpic" data-scroll-reveal="enter bottom over 1s">
                   <div class="user_m">
                     <div class="head" style="background-image: url(`+avatar_url+`);"></div>
                     <div class="info">`+ topic.author +`</div>
-                    <div class="time">`+ topic.created_time+`</div>
+                    <div class="time">`+ topic.created_time+`</div>`
+                    + options + `
                     <span class="content">`+ topic.content +`</span>`
                     + view + `
                   </div>
@@ -157,7 +166,28 @@ $(function(){
     }
   })
 
-  
+  $('#del').on('click',function(){
+    window.wxc.xcConfirm("确认删除？",{onOk:function(){
+      $.ajax({
+        type: 'DELETE',
+        url: BASE_URL+'/v1/lesson/'+author_uid+'?lid='+lid,
+        beforeSend: function(request){
+          request.setRequestHeader("Authorization", token);
+        },
+        success: function(res){
+          if (res.code == 200){
+            alert('删除成功');
+            window.location.href = BASE_URL_WEB +'/'+ uid + '/hl';
+          }else{
+            alert(res.error)
+          }
+        }
+      })
+    }})
+  })
 
-
+  $('.options').on('hover',function(){
+    console.log('sada');
+    
+  })
 })

@@ -111,8 +111,6 @@ class LessonView(View):
 
     operator = request.myuser
     if operator != author:
-      print(operator)
-      print(author.id)
       result = {'code': 10406, 'error': '没有权限'}
       return JsonResponse(result)
 

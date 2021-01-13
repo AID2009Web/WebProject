@@ -113,10 +113,11 @@ $(function(){
       success: function(res){
         console.log(res);
         if(res.code == 200){
-          alert('登录成功') ;
+          
           window.localStorage.setItem('web_token', res.data.token);
           window.localStorage.setItem('web_user', res.uid);
           window.location.href = BASE_URL_WEB +'/'+ res.uid + '/info';
+          alert('登录成功') ;
         }else{
           alert(res.error);
         }

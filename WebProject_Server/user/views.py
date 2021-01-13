@@ -13,6 +13,7 @@ import jwt
 import hashlib
 
 from user.models import User
+from user.tasks import send_sms
 from tools.sms import YunTongXin
 from tools.login_dec import login_check
 
@@ -128,6 +129,10 @@ class UsersView(View):
     sign = py_obj['sign']
     info = py_obj['info']
     
+    if len(nickname)>= 20:
+      result = {'code': 10112, 'error': '昵称长度超标'}
+      return JsonResponse(result)
+
     try:
       user = request.myuser
       user.nickname = nickname
@@ -160,15 +165,17 @@ def sms_view(request):
     code = random.randint(1000, 9999)
     print(phone, code)
 
-    # 1 先验证码暂存(redis)，以备注册时使用
     cache_key = 'sms_%s' % phone
     cache.set(cache_key, code, 65)
-    # 2 发送短信验证码
+    # 同步方式发送，可能会阻塞。
     # x = YunTongXin(settings.SMS_ACCOUNT_ID,
     #                settings.SMS_ACCOUNT_TOKEN,
     #                settings.SMS_APP_ID,
     #                settings.SMS_TEMPLATE_ID)
     # res = x.run(phone, code)
+
+    # 异步方式发送，生产者产生任务放在队列中让消费者处理。
+    # res = send_sms.delay(phone, code)
     # print(res)
     return JsonResponse({'code': 200})
 

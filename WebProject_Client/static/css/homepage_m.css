@@ -233,6 +233,22 @@
   margin-left: 20px;
   font-size: 14px;
 }
+.options, .options li{
+  display: inline-block;
+  cursor: pointer; 
+}
+
+.options ul{
+  display: none;
+}
+.options ul>li:hover{
+  
+  background-color: rgb(30, 150, 250, 0.4);
+}
+.options:hover ul{
+  display: inline-block;
+  
+}
 .content{
   width: 100%;
   max-height: 105px;

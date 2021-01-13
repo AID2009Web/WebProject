@@ -12,7 +12,22 @@ from user.models import User
 
 # Create your views here.
 class TopicView(View):
-  
+  def get(self, request, uid):
+    try: 
+      author = User.objects.get(id=uid) 
+    except:
+      result = {'code':10303, 'error': '访问用户不存在'}
+      return JsonResponse(result)
+    
+    vistor = get_user_by_request(request)
+    if vistor == author.id :
+      author_topics = Topic.objects.filter(author_id=uid)
+    else:
+      author_topics = Topic.objects.filter(author_id=uid,limit='public')
+
+    res = self.make_topics_res(vistor, author, author_topics)
+    return JsonResponse(res)
+
   @method_decorator(login_check)
   def post(self, request, uid):
     json_str = request.body
@@ -33,21 +48,35 @@ class TopicView(View):
       return JsonResponse(result)
     return JsonResponse({'code': 200, 'uid': author.id,})
 
-  def get(self, request, uid):
-    try: 
-      author = User.objects.get(id=uid) 
+  
+  @method_decorator(login_check)
+  def delete(self, request, uid):
+    try:
+      author = User.objects.get(id=uid)
     except:
-      result = {'code':10303, 'error': '访问用户不存在'}
+      result = {'code': 10303, 'error': '访问用户不存在' }
       return JsonResponse(result)
-    
-    vistor = get_user_by_request(request)
-    if vistor == author.id :
-      author_topics = Topic.objects.filter(author_id=uid)
-    else:
-      author_topics = Topic.objects.filter(author_id=uid,limit='public')
 
-    res = self.make_topics_res(vistor, author, author_topics)
-    return JsonResponse(res)
+    operator = request.myuser
+    if operator != author:
+      result = {'code': 10305, 'error': '没有权限'}
+      return JsonResponse(result)
+
+    tid = request.GET.get('tid')
+    try: 
+      author_topic = Topic.objects.get(id=tid, author_id=author.id)
+    except:
+      result = {'code': 10304, 'error': '访问动态不存在'}
+      return JsonResponse(result)
+
+    try:
+      author_topic.delete()
+    except:
+      result = {'code': 10306, 'error': '数据库操作失败'}
+      return JsonResponse(result)
+
+    # self.clear_topic_cache(request)
+    return JsonResponse({'code': 200})
 
 
   def make_topics_res(self, vistor_id, author, author_topics):

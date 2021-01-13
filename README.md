@@ -20,18 +20,26 @@ V1.2020/12/12
 1.3 WebProject_Server下进行数据迁移生成表。  
 `python3 manage.py makemigrations`  
 `python3 manage.py migrate`  
-2. 服务开启(nginx/uwsgi未配置时)  
+2. 本地调试服务开启【使用Django开启服务】
+(访问路径：127.0.0.1:8000)  
 2.1 WebProject_Server开启端口为5000的服务。  
 `python3 manage.py runserver 0.0.0.0:5000`  
 2.2 WebProject_Client开启端口为8000的服务。  
 `python3 manage.py runserver 0.0.0.0:8000`  
 2.3 Celery开启服务（如不使用异步处理SMS时不开启,如需开启需要Redis支持）  
 `~`  
-3. 局域网演示  
-3.1 WebProject_Server下的setting.py文件，确认ALLOWED_HOSTS是否绑定开启服务的本机IP。  
-3.2 WebProject_Client/static/js下的init.js文件确认地址开启正确。  
-4. 服务器上线  
-4.1 待完善  
+3. 本地多线程调试服务开启【使用nginx/uwsgi】
+(访问路径：127.0.0.1)默认端口为80
+3.1 开启uwsgi:开启后进入守护进程  
+`sudo uwsgi --init uwsgi.ini`  
+3.2 开启nginx:  
+`sudo /etc/init.d/nginx start`  
+
+4. 局域网演示  
+4.1 WebProject_Server下的setting.py文件，确认ALLOWED_HOSTS是否绑定开启服务的本机IP。  
+4.2 WebProject_Client/static/js下的init.js文件确认地址开启正确。  
+5. 服务器上线  
+5.1 待完善  
 
 
 
@@ -107,8 +115,26 @@ V1.2020/12/12
 ### 并发访问所需技术  
 #### 上线服务器  
 nginx/uwsgi
+* 使用Web服务器网关端口uwsgi启动服务器【Web Server Gateway Interface】  
+启动：`sudo uwsgi --ini uwsgi.ini`  
+停止：`sudo uwsgi --stop uwsgi.pid`  
+强制结束：`ps -ef | grep 'uwsgi' | grep -v grep | awk '{print $2}' | xargs sudo kill -9`
+* uwsgi配置文件`uwsgi.ini`(注：用socket) 
+
+* 使用nginx反向代理服务器  
+启动：`sudo /etc/init.d/nginx start`  
+停止：`sudo /etc/init.d/nginx stop`  
+* nginx配置文件`/etc/nginx/sites-enabled/default` 
+
+* 静态文件配置  
+uwsgi配置STATIC_ROOT
+执行 `python3 manage.py collectstatic`  
+nginex配置location /static
 
 ### 接口所需技术  
+### 全局变量  
+前端设置全局变量JS文件，方便切换  
+
 #### SMS短信发送  
 使用容联云通讯进行短信API接入。  
 

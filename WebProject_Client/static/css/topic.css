@@ -139,3 +139,30 @@
 .hide{
   display:none;
 }
+
+.img_area{
+  border: 1px dashed rgb(30, 150, 250);
+  margin: 10px;
+}
+.img_area ul>li{
+  display: inline-block;
+  margin-left: 10px;
+}
+.add{
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  background-color: #fafafa;
+  background-image: url(../images/add.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+
+
+.img{
+  
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+}

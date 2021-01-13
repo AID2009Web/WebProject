@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l=sbaf53j%o0_n0$d-m=3!zw6@8xljj7fj-47cbz@99jm#xcin'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
-ALLOWED_HOSTS = ['176.140.3.180','127.0.0.1']
+ALLOWED_HOSTS = ['176.140.3.191','127.0.0.1']
 
 
 # Application definition
@@ -127,3 +127,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+STATIC_ROOT = '/home/tarena/WebProject_Client_static/static'
