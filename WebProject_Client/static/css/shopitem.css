@@ -1,6 +1,6 @@
 /* ---------------------------分类路径------------------------------- */
 main{
-    margin-top: 30px;
+    /* margin-top: 60px; */
 }
 #path{
     height: 25px;
@@ -23,7 +23,7 @@ main{
     
 }
 /* 商品图片 */
-#commodity>p{
+.img{
     width:350px;
     height:350px;
     /* display: inline-block; */
@@ -32,13 +32,14 @@ main{
     margin:25px;
     margin-right:40px;
     overflow: hidden;
-}
-#commodity img{
-    height: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
+
 /* 商品交易内容 */
-#commodity>div{
+.info{
     width:510px;
     height:389px;
     float: right;
@@ -57,7 +58,7 @@ border-bottom: 2px solid #eeeff2;
     border-bottom: 0;
 }
 /* 每一行都横向排列 */
-#commodity p,
+.top p, 
 #commodity .style li,
 #commodity .btn>button
 {
@@ -145,13 +146,13 @@ margin-right: 30px;
     /* bottom: 10%; */
 }
 #details li{
-    width: 165px;
-    height: 165px;
+    //width: 165px;
+    //height: 165px;
     /* background-color: aqua; */
     border-radius: 5px;
 }
 #details li:first-child{
-    margin-bottom: 20px;
+    //margin-bottom: 30px;
 }
 #details li a{
     display: inline-block;
@@ -165,7 +166,7 @@ margin-right: 30px;
 #details .content{
     /* position: absolute; */
     margin-left: 250px;
-    width:700px;
+    //width:700px;
     border: 1px solid rgb(30, 150, 250);
     border-radius: 5px;
     /* height: 350px; */

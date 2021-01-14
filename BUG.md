@@ -29,3 +29,5 @@ Wangeditor height 300px 不能改
 
 视频文本框长度会被截断
 确认删除样式更改
+
+format提交json,字典内值不能传字典对象。

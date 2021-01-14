@@ -151,10 +151,13 @@
     padding: 20px 28px 0px;
     
 }
-.shopsbox img{
+.item-img{
     width: 174px;
     height: 174px;
     border-radius: 5px;
+    background-image: url();
+    background-size: cover;
+    background-position: 50% 50%;
 }
 .price{
     height: 31px;

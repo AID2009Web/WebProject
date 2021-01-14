@@ -32,6 +32,9 @@ urlpatterns = [
     path('<int:uid>/topic', views.topic_view),
     path('<int:uid>/lesson', views.lesson_add_view),
     path('<int:uid>/lesson/<int:lid>', views.lesson_view),
+    path('item/<int:gid>', views.item_view),
+    path('item/add', views.item_add_view),
+    path('item/del', views.item_del_view),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

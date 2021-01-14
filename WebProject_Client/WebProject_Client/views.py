@@ -36,3 +36,12 @@ def lesson_view(request, uid, lid):
 
 def order_view(request):
   return render(request, 'order.html')
+
+def item_view(request, gid):
+  return render(request, 'shopitem.html')
+
+def item_add_view(request):
+  return render(request, 'shopitem_add.html')
+
+def item_del_view(request):
+  return render(request, 'shopitem_del.html')

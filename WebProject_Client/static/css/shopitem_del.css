@@ -1,0 +1,21 @@
+.shopsbox{
+  margin-top: 60px;
+  width: 100%;
+  border: 1px solid red;
+}
+.item-img, .item-title, .price, .del{
+  display: inline-block;
+
+}
+.item-img{
+  width: 50px;
+  height: 50px;
+  background-image: url();
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: all 0.5s;
+}
+
+.del:hover{
+  cursor: pointer;
+}

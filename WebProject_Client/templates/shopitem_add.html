@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>商品添加</title>
+  <!-- 引入外部css文件 -->
+  <link rel="stylesheet" href="../static/css/common.css">
+  <link rel="stylesheet" href="../static/css/shopitem_add.css">
+  <!-- 引入外部js文件 -->
+  <script src="../static/js/jquery.min.js"></script>
+  <!-- 自定js文件 -->
+  <script src="../static/js/init.js"></script>
+  <script src="../static/js/nav.js"></script>
+  <script src="../static/js/footer.js"></script>
+  <script src="../static/js/shopitem_add.js"></script>
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div class="infosbox">
+      <br>
+      <p>
+        <label for="title">商品标题</label>
+        <input id="title" maxlength="50" name="title" required="required" size="25" tabindex="1" type="text">
+      </p>
+      <br>
+      <p class="classification">
+        <input name="category" type="radio" value="food" checked=check>美食
+        <input name="category" type="radio" value="life">生活
+      </p>
+      <br>
+      <p>
+        <label for="type">商品款式:&nbsp[+]</label>
+      </p>
+      <br>
+      <p class="classification">
+        <input name="type" type="radio" value="0" checked=check>
+        <input type="text" id="type0" placeholder="请输入款式描述">
+        <input type="text" id="price0" placeholder="请输入款式价格">
+      </p>
+      <br>
+      
+      <form action="" method="POST" enctype="multipart/form-data" class="cover_form">
+        <p>
+          <label for="cover">封面图</label>
+          <input type="file" name="cover" id="cover">
+          <!-- <input type="button" id="submit-btn" value="上传" onclick="upload()"> -->
+          <div class="cover" id='cover_preview'>
+            <img src="" alt="" class="cover_img" >
+          </div>
+        </p>
+      </form>
+      
+      
+      <br>
+      <form>
+
+        <div id="editor" style="margin-left: 12px;margin-right: 12px"></div>
+        <br>
+        <p class="buttom">
+          <span></span>
+          <input name="button" type="button" id="button" tabindex="5" value="提交" class="button" onclick="sumbit()">
+        </p>
+        <br>
+      </form>
+    </div>
+  </main>
+  <footer></footer>
+  
+</body>
+</html>

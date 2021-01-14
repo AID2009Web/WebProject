@@ -1,0 +1,46 @@
+
+
+.clear{
+  clear: both;
+}
+
+.infosbox{
+  /* border: 1px solid #f7f8fa; */
+  position: relative;
+  border: 1px solid rgb(30, 150, 250);
+  border-radius: 5px;
+  width: 75%;
+  margin: 70px auto;
+}
+.infosbox p{
+  /* border: 1px solid red; */
+}
+.infosbox form{
+  /* border: 1px solid blue; */
+}
+.infosbox p>label, .classification{
+  padding-left: 20px;
+}
+
+
+.buttom{
+  text-align: center;
+}
+.hide{
+  display:none;
+}
+
+.cover{
+  width: 215px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 5px;
+  /* display: inline-block; */
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  background-image: url();
+  background-size: cover;
+  background-position: 50% 50%;
+}
