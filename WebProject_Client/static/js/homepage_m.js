@@ -21,6 +21,7 @@ $(function(){
     $('.hm').html('我的动态');
     $('.hl').html('我的教程');
     $('.hc').html('我的收藏');
+    $('.follow').addClass('hide');
   }
 
   // 获取被访问用户个人信息

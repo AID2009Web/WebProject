@@ -22,9 +22,14 @@ class ItemView(View):
       data['category'] = item.category
       data['image'] = str(item.image)
       data['content'] = item.content
-      item_type = ItemType.objects.get(item_id=item.id,type_id='0')
-      data['introduce'] = item_type.introduce
-      data['price'] = item_type.price
+      data['type'] = []
+      item_types = ItemType.objects.filter(item_id=item.id)
+      for item_type in item_types:
+        res = {}
+        res['type_id'] = item_type.type_id  
+        res['introduce'] = item_type.introduce
+        res['price'] = item_type.price
+        data['type'].append(res)
 
       result = {'code': 200, 'item': data}  
     else:

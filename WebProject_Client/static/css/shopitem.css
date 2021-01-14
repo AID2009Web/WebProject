@@ -35,6 +35,7 @@ main{
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 5px;
 }
 
 
@@ -70,6 +71,9 @@ margin-right: 30px;
     margin-top: 15px;
     height: 50px;
     line-height: 50px;
+    padding-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
 }
 .price,.comment_num{
     height: 40px;
@@ -97,25 +101,30 @@ margin-right: 30px;
     /* height: 85px; */
 }
 .style li{
-    border: 1px solid pink;
+    border: 1px solid rgba(30, 151, 250, 0.3);
     height: 23px;
     line-height: 23px;
     margin: 5px 5px;
     padding: 2px 3px;
 }
+.style li:hover{
+    cursor: pointer;
+}
+.selected{
+    background-color: rgba(30, 151, 250, 0.3);
+}
+.un{
+    background-color: rgba(30, 151, 250, 0);
+}
 .volume{
     /* height: 85px; */
     /* line-height: 85px; */
 }
-.volume>p{
+.volume>label{
     line-height: 55px;
 }
-.volume>p:last-child{
-    /* width:60px; */
-    height:50px;
-    /* background-color: blue; */
-    line-height: 50px;
-    margin: 5px 0;
+#orderNum{
+    width: 50px;
 }
 .btn{
     /* height: 74px; */
@@ -191,7 +200,7 @@ margin-right: 30px;
     margin: 70px 10px 10px 10px;
     
     /* width:100%; */
-    /* height:290px; */
+    height:400px;
     text-align: left;
     font-size: 20px;
 }

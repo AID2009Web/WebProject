@@ -1,10 +1,6 @@
 $(function(){
-  $('#buy').click(function(){
-    window.location.href=BASE_URL_WEB+'/order'
-  })
-  var list_price=[]
-  var list_type=[]
 
+ 
   var url = document.location.toString();
   var arrUrl = url.split('//');
   var gid = arrUrl[1].split('/')[2];
@@ -19,153 +15,114 @@ $(function(){
       if (res.code==200){
         console.log(res);
         $('.img').attr('style','background-image: url('+BASE_URL+'/media/'+res.item.image+')')
+        $('.cdetail').html(res.item.content)
+        $('.introduce').html(res.item.title)
+
         
+        // html_tmp='<p >评论：'+res.data.comment_num+'</p>'
+        // html_tmp+='<p >交易量：'+res.data.comment_num+'</p>'
+        // $(".comment_num").html(html_tmp)
+        $('.price>p').html(res.item.type[0].price);
+        // for(var itemType of res.item.type){
+        //   var type_list = `<li tid="${itemType.type_id}" price="${itemType.price}">${itemType.introduce}</li>`;
+        //   $('.type').append(type_list);
+        // }
 
 
-        html_tmp='<p>'+res.data.introduce+'</p>'
-        $(".introduce").html(html_tmp)
 
 
 
-        html_tmp='<p >评论：'+res.data.comment_num+'</p>'
-        html_tmp+='<p >交易量：'+res.data.comment_num+'</p>'
-        $(".comment_num").html(html_tmp)
 
-        list_price=[]
-        list_type=[]
-        //款式
-        console.log('types',res.data.types)
-        html_tmp=''
-        for(var i=0;i<res.data.types.length;i++){
-          //0款式，1价格，2配图
-          html_tmp+='<li onclick="choice(this)" value='+i+'>'+res.data.types[i][0]+' </li>'
-          //配图，搞清楚图的取法即可
-          //
-          //
-          //
-          //
-          //存价格
-          list_price.push(res.data.types[i][1])
-          //存款式
-          list_type.push(res.data.types[i][0])
 
+
+        // html_tmp='<p>'+'订单数量???'+'</p>'
+        // $(".volume").html(html_tmp)
+
+
+
+        //评论内容(div自带display：none
+                //html_tmp='评论～～～～～～～暂时没有数据～～～～～～～～～～～～～～内容'
+                //html_tmp+=  '撑场面=====Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sint officia perspiciatis temporibus adipisci ratione, voluptate, ut accusamus culpa expedita quo tempore distinctio deserunt commodi, dicta quasi sit asperiores cupiditate?'
+                //html_tmp+= " <img src='../static/images/shop_imgs/list15.jpg' alt=''>"
+
+
+        html_body = '</div>';
+        html_body += '<div class="news_pl">';
+        //html_body += '<h2>文章评论</h2>';
+        html_body += '<div class="gbko">';
+        html_body += '<div class="l_box f_l" style="padding:20px;">';
+        html_body += '<div class="commentstitle">';
+        html_body += '<h3 id="comments">到现在<span class="commentsnumber">有' + res.data.messages_count + '条评论</span></h3>';
+        html_body += '</div>';
+
+
+        var messages_list = res.data.messages
+        for(var message in messages_list){
+            //评论内容
+          html_body += '<ol class="commentlist">';
+            html_body += '<li>';
+            html_body += '<div class="top">'+'username不知道啊';
+            //html_body += '<div class="top"><a href="#"  class="url">' + messages_list[message].publisher  + '</a>';
+
+            html_body += '<span class="time"> @';
+            html_body += '<a href="#" title="">' + messages_list[message].created_time  + '</a>';
+            html_body += '<a href="#" class="replyComment" mid=' + messages_list[message].id + '>回复</a>';
+            html_body += '</span>';
+            html_body += '</div>';
+
+            html_body += '<div class="body">';
+            html_body += messages_list[message].content;
+            html_body += '</div>';
+
+            html_body += '</li>';
+
+            var reply_list = messages_list[message].reply
+
+            console.log('reply_list is ')
+            console.log(reply_list)
+
+            //回复内容
+            for(var rm in reply_list){
+                //console.log(reply_list[rm])
+                html_body += '<li>';
+                html_body += '<div class="reply">';
+                html_body += '<div class="top">'+'username不知道啊2';
+                //html_body += '<a href="#" class="url">' + reply_list[rm].publisher + '</a>';
+                html_body += '<span class="time">';
+                html_body += '@ <a href="#" title="">' + reply_list[rm].created_time + '</a>';
+
+                //楼中楼回复,id应该是puyblisher??
+                //html缩进，数据库id结构指向有点问题
+                //html_body += '<a href="#" class="replyComment" mid=' + messages_list[message].id + '>回复</a>';
+
+
+                html_body += '</span>';
+                html_body += '</div>';
+                html_body += '<div class="body">' + reply_list[rm].content  + '</div>';
+                html_body += '</div>';
+                html_body += '</li>';
+            }
+            html_body += '</ol>';
         }
-         $(".type").html(html_tmp)
 
 
-        //款式价格,默认第一个样式
-        //html_tmp='<p>￥'+res.data.price+'</p>'
-        html_tmp1='<p value='+i+' >￥'+res.data.types[0][1]+'</p>'
-        $(".price").html(html_tmp1)
-        //console.log('price',res.data.price)
-
-        //弄清楚订单表结构就ok
-        //
-        //
-        //
-        //
-        html_tmp='<p>'+'订单数量???'+'</p>'
-        $(".volume").html(html_tmp)
-
-
-        //详情内容（默认详情，而不是评价
-
-        html_tmp='数据库内容==='+res.data.content
-        html_tmp+='撑场面=====Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam tenetur distinctio, iusto repudiandae, suscipit aut dolorem hic libero beatae esse impedit neque labore dolorum soluta nobis ex nam commodi. Facilis!'
-        html_tmp+=  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sint officia perspiciatis temporibus adipisci ratione, voluptate, ut accusamus culpa expedita quo tempore distinctio deserunt commodi, dicta quasi sit asperiores cupiditate?'
-         html_tmp+=' Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ipsam neque autem alias laudantium commodi, architecto aliquid modi possimus nulla repellat impedit quibusdam! Quae nulla eaque quibusdam ullam harum non?'
-        html_tmp+='Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, vel eligendi temporibus hic illum vitae asperiores deserunt architecto molestiae. Odio minus beatae nulla dolores ipsam eaque? Dignissimos dolorum debitis unde.'
-        html_tmp+= " <img src='../static/images/shop_imgs/list15.jpg' alt=''>"
-         html_tmp+='Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam tenetur distinctio, iusto repudiandae, suscipit aut dolorem hic libero beatae esse impedit neque labore dolorum soluta nobis ex nam commodi. Facilis!'
-        html_tmp+=  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sint officia perspiciatis temporibus adipisci ratione, voluptate, ut accusamus culpa expedita quo tempore distinctio deserunt commodi, dicta quasi sit asperiores cupiditate?'
-        html_tmp+='Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam tenetur distinctio, iusto repudiandae, suscipit aut dolorem hic libero beatae esse impedit neque labore dolorum soluta nobis ex nam commodi. Facilis!'
-        html_tmp+=  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sint officia perspiciatis temporibus adipisci ratione, voluptate, ut accusamus culpa expedita quo tempore distinctio deserunt commodi, dicta quasi sit asperiores cupiditate?'
-
-        $(".cdetail").html(html_tmp)
-
-//评论内容(div自带display：none
-        //html_tmp='评论～～～～～～～暂时没有数据～～～～～～～～～～～～～～内容'
-        //html_tmp+=  '撑场面=====Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sint officia perspiciatis temporibus adipisci ratione, voluptate, ut accusamus culpa expedita quo tempore distinctio deserunt commodi, dicta quasi sit asperiores cupiditate?'
-        //html_tmp+= " <img src='../static/images/shop_imgs/list15.jpg' alt=''>"
-
-
-html_body = '</div>';
-html_body += '<div class="news_pl">';
-//html_body += '<h2>文章评论</h2>';
-html_body += '<div class="gbko">';
-html_body += '<div class="l_box f_l" style="padding:20px;">';
-html_body += '<div class="commentstitle">';
-html_body += '<h3 id="comments">到现在<span class="commentsnumber">有' + res.data.messages_count + '条评论</span></h3>';
-html_body += '</div>';
-
-
-var messages_list = res.data.messages
-for(var message in messages_list){
-    //评论内容
-	html_body += '<ol class="commentlist">';
-    html_body += '<li>';
-    html_body += '<div class="top">'+'username不知道啊';
-    //html_body += '<div class="top"><a href="#"  class="url">' + messages_list[message].publisher  + '</a>';
-
-    html_body += '<span class="time"> @';
-    html_body += '<a href="#" title="">' + messages_list[message].created_time  + '</a>';
-    html_body += '<a href="#" class="replyComment" mid=' + messages_list[message].id + '>回复</a>';
-    html_body += '</span>';
-    html_body += '</div>';
-
-    html_body += '<div class="body">';
-    html_body += messages_list[message].content;
-    html_body += '</div>';
-
-    html_body += '</li>';
-
-    var reply_list = messages_list[message].reply
-
-    console.log('reply_list is ')
-    console.log(reply_list)
-
-    //回复内容
-    for(var rm in reply_list){
-        //console.log(reply_list[rm])
-        html_body += '<li>';
-        html_body += '<div class="reply">';
-        html_body += '<div class="top">'+'username不知道啊2';
-        //html_body += '<a href="#" class="url">' + reply_list[rm].publisher + '</a>';
-        html_body += '<span class="time">';
-        html_body += '@ <a href="#" title="">' + reply_list[rm].created_time + '</a>';
-
-        //楼中楼回复,id应该是puyblisher??
-        //html缩进，数据库id结构指向有点问题
-        //html_body += '<a href="#" class="replyComment" mid=' + messages_list[message].id + '>回复</a>';
-
-
-        html_body += '</span>';
+        //弹窗回复
+        html_body += '<div id="commentform">';
+        html_body += '<h3 id="respond">在这添加你的留言！</h3>';
+        html_body += '<dir id="editor"></dir>';
+        //html_body += '<br>';
+        html_body += '<p>';
+        html_body += '<input id="id_article" name="article" type="hidden" value="1">';
+        html_body += '<input name="button" type="button" id="button"  tabindex="5" value="提交" class="button" />';
+        html_body += '</p>';
         html_body += '</div>';
-        html_body += '<div class="body">' + reply_list[rm].content  + '</div>';
-        html_body += '</div>';
-        html_body += '</li>';
-    }
-    html_body += '</ol>';
-}
 
 
-//弹窗回复
-html_body += '<div id="commentform">';
-html_body += '<h3 id="respond">在这添加你的留言！</h3>';
-html_body += '<dir id="editor"></dir>';
-//html_body += '<br>';
-html_body += '<p>';
-html_body += '<input id="id_article" name="article" type="hidden" value="1">';
-html_body += '<input name="button" type="button" id="button"  tabindex="5" value="提交" class="button" />';
-html_body += '</p>';
-html_body += '</div>';
-
-
-    $(".ccomment").html(html_body)
-//富文本
-var E = window.wangEditor;
-editor = new E('#editor');
-editor.create();
+        $(".ccomment").html(html_body)
+        //富文本
+        var E = window.wangEditor;
+        editor = new E('#editor');
+        editor.create();
 
 
 
@@ -178,13 +135,58 @@ editor.create();
 
       }
       else{
-
         alert(res.error)
       }
-
     }
+  })
+  
+  var type = document.getElementsByClassName('typ');
+  for(var i of type){
+    i.onclick = function(){
+      for(var j of type){
+        j.className = 'typ';
+      }
+      this.className = 'typ selected';
+      var tid = $(this).attr('tid');
+      var price = $(this).attr('price');
+      $('.price>p').html(price);
+    }
+  }
 
 
+
+  $('#buy').click(function(){
+    var price = $('.price>p').text();
+    var style = $('.selected').attr('tid');
+    if(style==undefined){
+      style = '0';
+    }
+    var orderNum = $('#orderNum').val();
+    var post_data = {
+      'gid': gid,
+      'type': style,
+      'price': price,
+      'orderNum': orderNum,
+    };
+    console.log(post_data);
+    $.ajax({
+      url: BASE_URL + '/v1/order',
+      type: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+      data: JSON.stringify(post_data),
+      beforeSend: function(request){
+        request.setRequestHeader('Authorization', token);
+      },
+      success: function(res){
+        if(res.code == 200){
+          alert('success');
+          console.log(res);
+        }else{
+          alert('res.error')
+        }
+      }
+    })
   })
 
   //选择样式

@@ -3,6 +3,9 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
+from django.utils.decorators import method_decorator
+
+from tools.login_dec import login_check
 
 
 class OrderView(View):
@@ -61,21 +64,22 @@ class OrderView(View):
                   }
 
         return JsonResponse(result)
-
+    @method_decorator(login_check)
     def post(self, request):
         json_str = request.body
         py_obj = json.loads(json_str)
-        addr_state = py_obj['Checkout[addressState]']
-        pay_id = py_obj['Checkout[pay_id]']
-        shipment_id = py_obj['Checkout[shipment_id]']
-        shiptime_id = py_obj['Checkout[shiptime_id]']
-        # 收货人
-        consignee = py_obj['userAddress[consignee]']
-        province = py_obj['userAddress[province]']
-        street = py_obj['userAddress[street]']
-        tag = py_obj['userAddress[tag]']
-        tel = py_obj['userAddress[tel]']
-        zipcode = py_obj['userAddress[zipcode]']
+        
+        # addr_state = py_obj['Checkout[addressState]']
+        # pay_id = py_obj['Checkout[pay_id]']
+        # shipment_id = py_obj['Checkout[shipment_id]']
+        # shiptime_id = py_obj['Checkout[shiptime_id]']
+        # # 收货人
+        # consignee = py_obj['userAddress[consignee]']
+        # province = py_obj['userAddress[province]']
+        # street = py_obj['userAddress[street]']
+        # tag = py_obj['userAddress[tag]']
+        # tel = py_obj['userAddress[tel]']
+        # zipcode = py_obj['userAddress[zipcode]']
         print(py_obj)
-        print('==========' + addr_state)
+        # print('==========' + addr_state)
         return JsonResponse({'code': 200})
