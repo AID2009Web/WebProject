@@ -115,17 +115,20 @@ class ItemView(View):
   def put(self, request):
     return JsonResponse({'code':405})
 
-  def delete(self, request ,gid):
-    try:
-      item = Item.objects.get(id=gid)
-    except:
-      result = {'code': 10606, 'error': '商品不存在'}
-      return JsonResponse(result)
+  def delete(self, request):
+    gid = request.GET.get('gid')
+    if gid:
+      try:
+        item = Item.objects.get(id=gid)
+      except:
+        result = {'code': 10606, 'error': '商品不存在'}
+        return JsonResponse(result)
+      print(item)
+      try:
+        item.delete()
+      except Exception as e:
+        print(e)
+        result = {'code': 10607, 'error': '数据库操作失败'}
+        return JsonResponse(result)
 
-    try:
-      item.delete()
-    except:
-      result = {'code': 10607, 'error': '数据库操作失败'}
-      return JsonResponse(result)
-
-    return JsonResponse({'code': 200})
+      return JsonResponse({'code': 200})

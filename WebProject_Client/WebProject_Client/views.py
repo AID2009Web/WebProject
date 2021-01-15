@@ -34,7 +34,10 @@ def lesson_add_view(request, uid):
 def lesson_view(request, uid, lid):
   return render(request, 'lesson.html')
 
-def order_view(request):
+def order_view(request, oid):
+  return render(request, 'order.html')
+
+def order_test_view(request):
   return render(request, 'order.html')
 
 def item_view(request, gid):

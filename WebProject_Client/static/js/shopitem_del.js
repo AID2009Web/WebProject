@@ -47,7 +47,7 @@ $(function(){
     window.wxc.xcConfirm("确认删除？",{onOk:function(){
       $.ajax({
         type: 'DELETE',
-        url: BASE_URL+'/v1/item/'+gid,
+        url: BASE_URL+'/v1/item?gid='+gid,
         
         success: function(res){
           if (res.code == 200){

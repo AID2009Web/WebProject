@@ -236,7 +236,7 @@
                 <!-- 商品清单结束 -->
                 <!-- 下单按钮 -->
                 <div class="good-confirm-btn">
-                    <a href="#" class="btn btn-gray btn-back-cart">返回</a>
+                    <a href="javascript:void(0)" class="btn btn-gray btn-back-cart">返回</a>
                     <input type="button" class="btn btn-red btn-order-now" value="立即下单" id="checkoutToPay"
                            onclick="checkoutOrder()">
                 </div>
@@ -251,116 +251,27 @@
 
 </body>
 <script>
-    $(function () {
-        // 初始化 地址三级联动选择
-        $('#addr_select').distpicker({
-            province: '请选择省份/自治区',
-            city: '请选择城市/地区',
-            district: '请选择区/县'
-        });
-        var item_html = "";
-        // 商品跳转详情页 "127.0.0.1:5000/item/" + id
-        var item_url = "http://127.0.0.1:8000/item/";
-        var total_price = 0;
+    // $(function () {
 
-        $.ajax({
-            // 此地址作为测试，实际应向上一级页面发get请求
-            url: 'http://127.0.0.1:5000/v1/order',
-            type: 'get',
-            dataType: 'json',
-            beforeSend: function (request) {
-                // request.setRequestHeader("Authorization", token);
-            },
-            success: function (res) {
-                if (res.code == 200) {
-                    // alert('导入商品列表');
-                    var item = res.data.item
-                    if (item.length == 0) {
-                        alert('没有商品数据');
-                    } else {
-                        for (var i in item) {
-                            var id = item[i].id;
-                            var title = item[i].title;
-                            var image = item[i].image;
-                            var price = item[i].price;
-                            var count = item[i].count;
-                            item_html += '<dd class="item fixWindow">';
-                            item_html += '<div class="item-row">';
-                            item_html += '<div class="col col-1">';
-                            item_html += '<div class="good-pic">';
-                            item_html += '<img src="' + image + '" alt="" width="40px" height="40px">';
-                            item_html += '</div>';
-                            item_html += '<div class="good-info"><a href="' + item_url + id + '">' + title + '</a></div>';
-                            item_html += '</div>';
-                            item_html += '<div class="col col-2">' + price.toFixed(2) + '元</div>';
-                            item_html += '<div class="col col-3">' + count + '</div>';
-                            item_html += '<div class="col col-4">' + (price * count).toFixed(2) + '</div>';
-                            item_html += '</div>';
-                            item_html += '</dd>';
-                            total_price += price * count;
-                        }
-                    }
-                } else {
-                    alert(res.error);
-                }
-                $(".good-list dt").after(item_html);
-                total_price = total_price.toFixed(2);
-                var total_price_html = `<div class="good-confirm-price">
-                                <ul>
-                                    <li>订单总额：<span>${total_price}元</span></li>
-                                    <li>活动优惠：<span>0元</span></li>
-                                    <li>优惠券抵扣：<span>0元</span></li>
-                                    <li>运费：<span>0元</span></li>
-                                </ul>
-                                <p class="good-confirm-total">
-                                    应付总额：
-                                    <span>
-                                        <strong id="totalPrice">${total_price}</strong>
-                                        元
-                                    </span>
-                                </p>
-                            </div>`;
-                $(".good-confirm-note").after(total_price_html);
+    //     // 商品跳转详情页 "127.0.0.1:5000/item/" + id
+    //     var item_url = "http://127.0.0.1:8000/item/";
+    //     
 
-            }
-        });
-        $.fn.serializeObject = function () {
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function () {
-                if (o[this.name]) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-            });
-            return o;
-        };
-        var $checkoutForm = $('#checkout-form');
-        var formData = $checkoutForm.serializeObject();
+    //     $.ajax({
+    //         // 此地址作为测试，实际应向上一级页面发get请求
+    //         url: 'http://127.0.0.1:5000/v1/order',
+    //         type: 'get',
+    //         dataType: 'json',
+    //         beforeSend: function (request) {
+    //             // request.setRequestHeader("Authorization", token);
+    //         },
+    //         success: function (res) {
+    
+    //             
+    //         }
+    //     });
 
-        function checkoutOrder() {
-            console.log('click checkout order button')
-            console.log(formData)
-            $.ajax({
-                url: 'http://127.0.0.1:5000/v1/order',
-                type: 'POST',
-                dataType: 'json',
-                data: JSON.stringify(formData),
-                contentType: 'application/json',
-                success: function (res) {
-                    if (res.code == 200) {
-                        alert('订单已生成');
-                        //window.localStorage.setItem('dnblog_token',res.data.token);
-                    } else {
-                        alert(res.error);
-                    }
-                }
-            });
-        }
-    })
+    //     
+    // })
 </script>
 </html>

@@ -37,7 +37,7 @@ urlpatterns = [
     path('v1/item',item_views.ItemView.as_view()),
     # path('v1/item/', include('item.urls')),
     path('v1/order', order_views.OrderView.as_view()),
-    
+    path('payment/', include('payment.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

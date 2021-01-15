@@ -53,8 +53,10 @@ $(function(){
       if(res.code == 200){
         console.log(res);
         if(res.data.vide != ''){
-          // var video = `<source src="`+res.data.vide+`" type="video/mp4" />`;
-          // $('video').append(video);
+          console.log(res.data.video);
+          
+          var video = `<source src="${res.data.video}" type="video/mp4" />`;
+          $('video').append(video);
         }else{
           $('.video').addClass('hide');
         }
@@ -197,5 +199,48 @@ $(function(){
 
   })
 
-
+  $('#goods').on('click', function(){
+    var token = window.localStorage.getItem('web_token');
+    var uid = window.localStorage.getItem('web_user');
+    
+    var orderNum = $('#orderNum').val();
+    var post_data = [
+      {
+        'gid': 4,
+        'type': 0,
+        'price': 99.00,
+        'orderNum': 1,
+      },
+      {
+        'gid': 5,
+        'type': 0,
+        'price': 35.00,
+        'orderNum': 3,
+      },
+      {
+        'gid': 6,
+        'type': 0,
+        'price': 39.90,
+        'orderNum': 1,
+      },
+    ];
+    console.log(post_data);
+    $.ajax({
+      url: BASE_URL + '/v1/order',
+      type: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+      data: JSON.stringify(post_data),
+      beforeSend: function(request){
+        request.setRequestHeader('Authorization', token);
+      },
+      success: function(res){
+        if(res.code == 200){
+          window.location.href = BASE_URL_WEB + '/order/' + res.oid;
+        }else{
+          alert(res.error)
+        }
+      }
+    })
+  })
 })

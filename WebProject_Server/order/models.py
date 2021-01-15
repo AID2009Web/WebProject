@@ -16,18 +16,18 @@ class Order(models.Model):
     已收货订单完成   2           1           2
     """
     # 订单状态码：取消订单0 已下单未支付100 已支付待发货110 已发货待确认111 已收货订单完成212
-    ORDER_STATUS = ((0, 'cancel'), (100, 'unpaid'), (110, 'paid'), (111, 'shipped'), (212, 'completed'))
-    order = models.IntegerField(unique=True, verbose_name='订单编号')
+    ORDER_STATUS = ((0, 'cancel'), (100, 'created'),(101, 'unpaid'), (110, 'paid'), (111, 'shipped'), (212, 'completed'))
+    # order = models.IntegerField(unique=True, verbose_name='订单编号')
     status = models.IntegerField(choices=ORDER_STATUS, null=True, verbose_name='订单状态')
-    # buyer = models.ForeignKey(to='user.User', to_field='id', on_delete=models.CASCADE, verbose_name='购买者')
-    address = models.CharField(max_length=100, verbose_name='订单配送地址')
+    buyer = models.ForeignKey(to='user.User', to_field='id', on_delete=models.CASCADE, verbose_name='购买者')
+    # address = models.CharField(max_length=100, verbose_name='订单配送地址')
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='订单创建时间')
 
 
 class Item(models.Model):
     # order = models.IntegerField(max_length=11)
     order = models.ForeignKey(Order, to_field='id', on_delete=models.CASCADE, verbose_name='')
-    # item = models.ForeignKey(to='item.Item', to_field='id', on_delete=models.CASCADE, verbose_name='')
+    item = models.ForeignKey(to='item.Item', to_field='id', on_delete=models.CASCADE, verbose_name='商品')
     count = models.IntegerField(default=1, verbose_name='')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='')
     # 评论内容：blank=True 字段不为空，由Django填充空字符串

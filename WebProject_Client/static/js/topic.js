@@ -14,6 +14,7 @@ $(function(){
 
   const E = window.wangEditor
   const editor = new E('#editor')
+  editor.customConfig.menus = ['emoticon'];
   editor.create()
 
 

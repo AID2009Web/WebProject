@@ -29,7 +29,7 @@ V1.2020/12/12
 2.3 Celery开启服务（如不使用异步处理SMS时不开启,如需开启需要Redis支持）  
 `~`  
 3. 本地多线程调试服务开启【使用nginx/uwsgi】
-(访问路径：127.0.0.1)默认端口为80
+(访问路径：127.0.0.1)默认端口为80  
 3.1 开启uwsgi:开启后进入守护进程  
 `sudo uwsgi --init uwsgi.ini`  
 3.2 开启nginx:  
@@ -72,6 +72,10 @@ V1.2020/12/12
 |`/<uid>/topic`|`topic.html`|发布动态页|
 |`/<int:uid>/lesson`|`lesson_add.html`|发布教程页|
 |`/<int:uid>/lesson/<int:lid>`|`lesson.html`|教程详细页|
+|`/item/<int:gid>`|`shopitem.html`|商品详情页|
+|`/item/add`|`shopitem_add.html`||商品增加页|
+|`/item/del`|`shopitem_del.html`|商品删除页|
+|`/order/<int:oid>`|`order.html`|订单提交页|
 
 
 

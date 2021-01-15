@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'message',
     'item',
     'order',
+    'payment',
     
 ]
 
@@ -88,8 +89,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'web',
         'USER': 'root',
-        'PASSWORD': '123456aF.',
-        # 'PASSWORD': '123456',
+        # 'PASSWORD': '123456aF.',
+        'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -176,3 +177,9 @@ CACHES = {
             }
         }
 }
+# BASE_URL = 'http://127.0.0.1:5000/'
+BASE_URL = 'http://176.140.3.191:5000/'
+ALIPAY_APPID = '2021000116690154'
+ALIPAY_RETURN_URL = BASE_URL+'payment/result/'
+ALIPAY_NOTIFY_URL = BASE_URL+'payment/result/'
+ALIPAY_KEY_DIR = os.path.join(BASE_DIR, 'static/key_file/')
