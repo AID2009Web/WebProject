@@ -19,7 +19,6 @@
     <script src="../static/js/nav.js"></script>
     <script src="../static/js/footer.js"></script>
     <script src="../static/js/order.js"></script>
-    <script src="../static/js/address.js"></script>
 </head>
 
 <body>
@@ -39,21 +38,21 @@
                     </div>
                     <div class="mbt-box-body">
                         <div class="mbt-addr-body-list fixWindow">
-                            <dl class="addr-item selected">
-                                <dt>
-                                    <strong class="addr-name">王小二</strong>
-                                    <span class="addr-tag">家</span>
-                                </dt>
-                                <dd>
-                                    <p class="addr-tel">18800001111</p>
-                                    <p class="addr-region">深圳 龙华 民治</p>
-                                    <p class="addr-street">嘉熙业广场01号001</p>
-                                    <span class="addr-edit">编辑</span>
-                                </dd>
-                                <dd style="display: none">
-                                    <input type="radio" name="checkout[address]" class="address-id" value="123456">
-                                </dd>
-                            </dl>
+                            <!--<dl class="addr-item">-->
+                            <!--    <dt>-->
+                            <!--       <strong class="addr-name">令狐冲</strong>-->
+                            <!--        <span class="addr-tag">公司</span>-->
+                            <!--    </dt>-->
+                            <!--    <dd>-->
+                            <!--       <p class="addr-tel">18822221111</p>-->
+                            <!--       <p class="addr-region">广东 深圳 南山</p>-->
+                            <!--       <p class="addr-street">南海大道9999号(518001)</p>-->
+                            <!--       <span class="addr-edit">编辑</span>-->
+                            <!--    </dd>-->
+                            <!--    <dd style="display: none">-->
+                            <!--       <input type="radio" name="checkout[address]" class="address-id" value="123456">-->
+                            <!--    </dd>-->
+                            <!--</dl>-->
                             <div class="addr-item addr-add">
                                     <span>
                                         <img src="../static/images/add.png">
@@ -73,7 +72,7 @@
                                 <div class="item">
                                     <label>联系电话<span>*</span></label>
                                     <input type="text" name="userAddress[tel]" class="input" id="Telephone"
-                                           placeholder="11位手机号" autocomplete='off'>
+                                           placeholder="11位手机号" maxlength="11" autocomplete='off'>
                                     <p class="tel-modify-tip" id="telModifyTip"></p>
                                     <p class="tip-msg tipMsg"></p>
                                 </div>
@@ -86,20 +85,20 @@
                                     <select name="userAddress[county]" id="Countys" class="select-3">
                                     </select>
                                     <textarea name="userAddress[street]" class="input-area" id="Street"
-                                              placeholder="路名或街道地址，门牌号"></textarea>
+                                              placeholder="路名或街道地址，门牌号" maxlength="32"></textarea>
                                     <p class="tip-msg tipMsg"></p>
                                 </div>
                                 <div class="item">
                                     <label>邮政编码<span>*</span></label>
                                     <input type="text" name="userAddress[zipcode]" id="Zipcode" class="input"
-                                           placeholder="邮政编码" autocomplete='off'>
+                                           placeholder="邮政编码，可不填，默认000000"  maxlength="6" autocomplete='off'>
                                     <p class="zipcode-tip" id="zipcodeTip"></p>
                                     <p class="tip-msg tipMsg"></p>
                                 </div>
                                 <div class="item">
                                     <label>地址标签<span>*</span></label>
                                     <input type="text" name="userAddress[tag]" id="Tag" class="input"
-                                           placeholder='地址标签：如"家"、"公司"。限5个字内'>
+                                           placeholder='地址标签：如"家"、"公司"。限5个字内' maxlength="5">
                                     <p class="tip-msg tipMsg"></p>
                                 </div>
                             </div>
@@ -110,6 +109,7 @@
                             </div>
                         </div>
                         <!--点击弹出新增/收货地址界面end-->
+                        <div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop"></div>
                     </div>
                 </div>
                 <!-- 收货地址结束 -->
@@ -155,7 +155,7 @@
                         <h2 class="title">送货时间</h2>
                     </div>
                     <div class="mbt-box-body">
-                        <ul id="shipment-select" class="checkout-option-list fixWindow">
+                        <ul id="shiptime-select" class="checkout-option-list fixWindow">
                             <li class="item-shiptime selected">
                                 <input type="radio" name="Checkout[shiptime_id]" checked="checked" value="1">
                                 <p>
@@ -237,8 +237,7 @@
                 <!-- 下单按钮 -->
                 <div class="good-confirm-btn">
                     <a href="javascript:void(0)" class="btn btn-gray btn-back-cart">返回</a>
-                    <input type="button" class="btn btn-red btn-order-now" value="立即下单" id="checkoutToPay"
-                           onclick="checkoutOrder()">
+                    <input type="button" class="btn btn-red btn-order-now" value="立即下单" id="checkoutToPay">
                 </div>
                 <!-- 下单按钮结束 -->
             </div>
@@ -246,32 +245,13 @@
     </div>
 </main>
 <footer>
-    
+
 </footer>
 
 </body>
 <script>
-    // $(function () {
+    $(function () {
 
-    //     // 商品跳转详情页 "127.0.0.1:5000/item/" + id
-    //     var item_url = "http://127.0.0.1:8000/item/";
-    //     
-
-    //     $.ajax({
-    //         // 此地址作为测试，实际应向上一级页面发get请求
-    //         url: 'http://127.0.0.1:5000/v1/order',
-    //         type: 'get',
-    //         dataType: 'json',
-    //         beforeSend: function (request) {
-    //             // request.setRequestHeader("Authorization", token);
-    //         },
-    //         success: function (res) {
-    
-    //             
-    //         }
-    //     });
-
-    //     
-    // })
+    })
 </script>
 </html>

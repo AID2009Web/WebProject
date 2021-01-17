@@ -16,11 +16,11 @@ class Order(models.Model):
     已收货订单完成   2           1           2
     """
     # 订单状态码：取消订单0 已下单未支付100 已支付待发货110 已发货待确认111 已收货订单完成212
-    ORDER_STATUS = ((0, 'cancel'), (100, 'created'),(101, 'unpaid'), (110, 'paid'), (111, 'shipped'), (212, 'completed'))
+    ORDER_STATUS = ((0, 'cancel'),(101, 'unpaid'), (110, 'paid'), (111, 'shipped'), (212, 'completed'))
     # order = models.IntegerField(unique=True, verbose_name='订单编号')
     status = models.IntegerField(choices=ORDER_STATUS, null=True, verbose_name='订单状态')
     buyer = models.ForeignKey(to='user.User', to_field='id', on_delete=models.CASCADE, verbose_name='购买者')
-    # address = models.CharField(max_length=100, verbose_name='订单配送地址')
+    address = models.CharField(max_length=100, verbose_name='订单配送地址')
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='订单创建时间')
 
 
@@ -38,7 +38,7 @@ class Item(models.Model):
 
 class Lesson(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='')
-    # lesson = models.ForeignKey(to='lesson.Lesson0', to_field='id', on_delete=models.CASCADE, verbose_name='')
+    # lesson = models.ForeignKey(to='lesson.Lesson', to_field='id', on_delete=models.CASCADE, verbose_name='')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='')
 
 
@@ -46,14 +46,15 @@ class BuyerAddr(models.Model):
     """
     主键id自动生成；用户buyer关联外键user_user0的id字段；收货人name; 电话tel；收货地址addr_1 addr_2...
     """
-    # buyer = models.ForeignKey(to='user.User0', to_field='id', on_delete=models.CASCADE, verbose_name='')
-    name = models.CharField(max_length=11, blank=True, verbose_name='')
-    tel = models.IntegerField(null=True, verbose_name='')
-    addr_1 = models.CharField(max_length=100, blank=True, verbose_name='')
-    addr_2 = models.CharField(max_length=100, blank=True, verbose_name='')
-    addr_3 = models.CharField(max_length=100, blank=True, verbose_name='')
-    addr_4 = models.CharField(max_length=100, blank=True, verbose_name='')
-    addr_5 = models.CharField(max_length=100, blank=True, verbose_name='')
+    buyer = models.ForeignKey(to='user.User', to_field='user_id', on_delete=models.CASCADE, verbose_name='用户')
+    consignee = models.CharField(max_length=15, blank=True, verbose_name='收货人')
+    tel = models.CharField(max_length=11, null=True, verbose_name='手机号')
+    tag = models.CharField(max_length=10, blank=True, verbose_name='地址标签')
+    province = models.CharField(max_length=10, blank=True, verbose_name='省份')
+    city = models.CharField(max_length=15, blank=True, verbose_name='城市')
+    county = models.CharField(max_length=15, blank=True, verbose_name='区县')
+    street = models.CharField(max_length=35, blank=True, verbose_name='街道')
+    zipcode = models.CharField(max_length=6, blank=True, verbose_name='邮政编码')
 
 
 class Status(models.Model):
