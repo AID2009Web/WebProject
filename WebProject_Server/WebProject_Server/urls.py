@@ -39,6 +39,7 @@ urlpatterns = [
     path('v1/order', order_views.OrderView.as_view()),
     path('payment/', include('payment.urls')),
     path('v1/order/', include('order.urls')),
+    path('weibo/',include('weibo.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -249,6 +249,9 @@ $(function () {
             dataType: 'json',
             data: JSON.stringify(post_data),
             contentType: 'application/json',
+            beforeSend: function (request) {
+                request.setRequestHeader('Authorization', token);
+            },
             success: function (res) {
                 if (res.code == 200) {
                     if ($('.mbt-addr-body-list').find('.selected').length) {
@@ -376,7 +379,7 @@ $(function () {
         type: 'get',
         dataType: 'json',
         beforeSend: function (request) {
-
+            request.setRequestHeader('Authorization', token);
         },
         success: function (res) {
             if (res.code == 200) {

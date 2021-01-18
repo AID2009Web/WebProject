@@ -145,4 +145,20 @@ $(function(){
     })
   }
 
+  weibo=function(){
+    //alert('进入函数')
+    $.ajax({
+      url:BASE_URL+'/weibo/authorization',
+      type:'GET',
+      dataType:'json',
+      success:function(res){
+      if (res.code=='200'){
+      alert('即将跳转到微博...')
+      window.location=res.auth_url;
+      }else{
+        alert(res.error);
+          }
+      }
+    })
+    }
 })

@@ -36,6 +36,7 @@ urlpatterns = [
     path('item/<int:gid>', views.item_view),
     path('item/add', views.item_add_view),
     path('item/del', views.item_del_view),
+    path('login_callback',views.login_callback),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

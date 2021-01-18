@@ -145,12 +145,14 @@ class OrderView(View):
 
 @login_check
 def user_address(request, uid):
+    print(uid)
     if request.method == 'GET':
         # 查表取数据
+        print('GET')
         try:
-            user_obj = User.objects.get(user_id=uid)
+            user_obj = User.objects.get(id=uid)
         except Exception as e:
-            print('-----获取用户id失败-----%d' % e)
+            print('-----获取用户id失败-----%s' % e)
             result = {'code': 10706, 'error': 'the user id is error'}
             return JsonResponse(result)
         addr_list = BuyerAddr.objects.filter(buyer=user_obj)
@@ -174,7 +176,7 @@ def user_address(request, uid):
         return JsonResponse(result)
 
     if request.method == 'POST':
-
+        print('POST')
         json_str = request.body
         py_obj = json.loads(json_str)
         print(py_obj)
@@ -191,9 +193,9 @@ def user_address(request, uid):
         zipcode = py_obj['zipcode']
 
         try:
-            user_obj = User.objects.get(user_id=buyer)
+            user_obj = User.objects.get(id=buyer)
         except Exception as e:
-            print('-----获取用户id失败-----%d' % e)
+            print('-----获取用户id失败-----%s' % e)
             result = {'code': 10706, 'error': 'the user id is error'}
             return JsonResponse(result)
         if addr_id == '':

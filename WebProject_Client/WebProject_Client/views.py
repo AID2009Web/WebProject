@@ -48,3 +48,6 @@ def item_add_view(request):
 
 def item_del_view(request):
   return render(request, 'shopitem_del.html')
+
+def login_callback(request):
+  return render(request,'oauth_callback.html')
